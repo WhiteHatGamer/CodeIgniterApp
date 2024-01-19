@@ -17,4 +17,19 @@
             $this->load->view('news/index',$data);
             $this->load->view('templates/footer');
         }
+
+        public function view($slug = NULL){
+            $data['newsItem'] = $this->newsModel->getNews(urldecode($slug));
+            
+            if(empty($data['newsItem'])){
+                show_404();
+            }
+
+            $data['title'] = $data['newsItem'][0]['title'];
+
+            $this->load->view('templates/header',$data);
+            $this->load->view('news/view',$data);
+            $this->load->view('templates/footer');
+
+        }
     }
