@@ -18,5 +18,10 @@
             $this->load->view('admin/frames/iframe.php');
         }
 
+        public function iframeDark(){
+
+            $this->load->view('admin/frames/iframe-dark.php');
+        }
+
     }
 ?>
