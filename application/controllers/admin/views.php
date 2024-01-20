@@ -148,5 +148,25 @@
             $this->load->view('admin/views/examples/'.$page);
         
         }
+
+        public function search($page){
+                        
+            // Checking if Empty argument is passed
+            if(empty($page)){
+
+                show_404();
+            }
+            
+            // Checking if file Available
+            $requestedFile = APPPATH.'views/admin/views/search/'.$page;
+            if(!file_exists($requestedFile)){
+                
+                // Page doesn't Exists
+                show_404();
+            }
+            
+            $this->load->view('admin/views/search/'.$page);
+        
+        }
     }
 ?>
