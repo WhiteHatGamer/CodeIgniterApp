@@ -13,5 +13,10 @@
             $this->load->view('admin/frames/dashboard3.php');
         }
 
+        public function iframe(){
+
+            $this->load->view('admin/frames/iframe.php');
+        }
+
     }
 ?>
