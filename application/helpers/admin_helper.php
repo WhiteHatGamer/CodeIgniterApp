@@ -20,4 +20,9 @@
         return base_url("/index.php/admin/frames/");
     }
 
+    // Travel Planner Folder Returned
+    function adminTravelPlannerUrl(){
+        return base_url("/index.php/admin/Travel_planner/");
+    }
+
 ?>
