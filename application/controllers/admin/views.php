@@ -168,5 +168,24 @@
             $this->load->view('admin/views/search/'.$page);
         
         }
+        
+        public function calendar(){
+            
+            $this->load->view('admin/views/Calendar');
+
+        }
+        
+        public function gallery(){
+            
+            $this->load->view('admin/views/gallery');
+
+        }
+        
+        public function kanban(){
+            
+            $this->load->view('admin/views/kanban');
+
+        }
+
     }
 ?>
