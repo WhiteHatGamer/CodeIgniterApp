@@ -10,4 +10,9 @@
         return base_url("/index.php/admin/views/");
     }
     
+    // Docs Folder Returned
+    function adminDocsUrl(){
+        return base_url("/index.php/admin/docs/");
+    }
+
 ?>
