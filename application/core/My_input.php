@@ -19,4 +19,19 @@
             return $post;
         }
 
+        function dump_post_array(array $input_array){
+
+            try{
+
+                $post = array();
+                foreach ( $input_array as $key )
+                {
+                    $post[$key] = $_POST[$key]?? null;
+                }
+    
+                return $post;
+            }catch(Exception $e){
+                show_404("Server Error".$e->getMessage());
+            }
+        }
     }
