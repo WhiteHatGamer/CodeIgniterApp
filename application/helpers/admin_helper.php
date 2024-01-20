@@ -15,4 +15,9 @@
         return base_url("/index.php/admin/docs/");
     }
 
+    // Frames Folder Returned
+    function adminFramesUrl(){
+        return base_url("/index.php/admin/frames/");
+    }
+
 ?>
