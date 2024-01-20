@@ -8,4 +8,15 @@
             parent::__construct();
         }
 
+        function dump_post(){
+
+            $post = array();
+            foreach ( array_keys($_POST) as $key )
+            {
+                $post[$key] = $_POST[$key];
+            }
+
+            return $post;
+        }
+
     }
