@@ -28,5 +28,26 @@
             $this->load->view('admin/views/charts/'.$page);
         
         }
+
+        public function layout($page){
+                        
+            // Checking if Empty argument is passed
+            if(empty($page)){
+
+                show_404();
+            }
+            
+            // Checking if file Available
+            $requestedFile = APPPATH.'views/admin/views/layout/'.$page;
+            if(!file_exists($requestedFile)){
+                
+                // Page doesn't Exists
+                show_404();
+            }
+            
+            $this->load->view('admin/views/layout/'.$page);
+        
+        }
+
     }
 ?>
