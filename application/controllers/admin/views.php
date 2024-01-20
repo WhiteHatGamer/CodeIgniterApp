@@ -88,5 +88,26 @@
             $this->load->view('admin/views/forms/'.$page);
         
         }
+        
+        public function tables($page){
+                        
+            // Checking if Empty argument is passed
+            if(empty($page)){
+
+                show_404();
+            }
+            
+            // Checking if file Available
+            $requestedFile = APPPATH.'views/admin/views/tables/'.$page;
+            if(!file_exists($requestedFile)){
+                
+                // Page doesn't Exists
+                show_404();
+            }
+            
+            $this->load->view('admin/views/tables/'.$page);
+        
+        }
+
     }
 ?>
