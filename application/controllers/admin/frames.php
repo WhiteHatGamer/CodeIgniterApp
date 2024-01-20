@@ -8,5 +8,10 @@
             $this->load->view('admin/frames/dashboard2.php');
         }
         
+        public function dashboard3(){
+
+            $this->load->view('admin/frames/dashboard3.php');
+        }
+
     }
 ?>
