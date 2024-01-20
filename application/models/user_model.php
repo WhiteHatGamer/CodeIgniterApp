@@ -19,5 +19,19 @@
       $this->load->library('session');
     }
 
+      
+    public function get_user_details($Email = ""){
+      if($Email == ""){
+        $Email = $this->session->email;
+      }
+      // $query = $this->db->get_where($this->table, array('email'=>$Email));
+      $query = $this->db->query("SELECT name,email,number,gender,dob,image,prefix FROM {$this->table} WHERE email='$Email'");
+
+      if($query->num_rows() > 0){
+        return $query->result_array()[0];
+      }else{
+        return false;
+      }
+    }
 
   }
