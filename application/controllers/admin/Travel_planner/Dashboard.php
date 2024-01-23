@@ -10,6 +10,20 @@
       $this->load->model("user_model");
     }
 
+    public function index(){
+
+      // Checking If User is Logged In
+      if(!$this->session->email){
+        redirect(adminTravelPlannerUrl());
+          return;
+      }
+
+      $CookieName = $_SERVER['REMOTE_ADDR'];
+      
+      // Starting Session
+      @session_start();
+      
+    }
   }
 
 ?>
