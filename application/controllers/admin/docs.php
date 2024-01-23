@@ -24,5 +24,24 @@
         
         }
 
+        public function assets($page){
+            
+            // Checking if Empty argument is passed
+            if(empty($page)){
+    
+                show_404();
+            }
+            
+            // Checking if file Available
+            $requestedFile = APPPATH.'views/admin/docs/assets/'.$page;
+            if(!file_exists($requestedFile)){
+                
+                // Page doesn't Exists
+                show_404();
+            }
+            
+            $this->load->view('admin/docs/assets/'.$page);
+        
+        }
     }
 ?>
