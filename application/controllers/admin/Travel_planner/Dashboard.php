@@ -23,6 +23,18 @@
       // Starting Session
       @session_start();
       
+
+      // Get Name from db
+      $user_details = $this->user_model->get_user_details($_SESSION['email']);
+      $name = $user_details['name'];
+      if(isset($name)){
+          $_SESSION['name'] = $name;
+      }
+
+      $this->load->view('admin/Travel_planner/inc/header');
+      $this->load->view('admin/Travel_planner/dashboard/index', $user_details);
+      $this->load->view('admin/Travel_planner/inc/footer');
+      
     }
   }
 
