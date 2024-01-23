@@ -52,6 +52,10 @@
       $this->load->view('admin/Travel_planner/inc/footer');
       
     }
+    
+    public function get_hint(){
+      $this->load->view('admin/Travel_planner/dashboard/getHint');
+    }
   }
 
 ?>
