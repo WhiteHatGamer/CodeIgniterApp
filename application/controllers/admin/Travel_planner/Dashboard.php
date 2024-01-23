@@ -23,6 +23,22 @@
       // Starting Session
       @session_start();
       
+      if(isset($_POST['logout'])){
+        if($this->session->remember){
+          $email= $this->session->email;
+          session_unset();
+          session_destroy();
+          session_start();
+          $_SESSION['remember'] = '1';
+          $_SESSION['remail'] = $email;
+          header("Location: ".adminTravelPlannerUrl());
+
+        }else{
+          session_unset();
+          session_destroy();
+          header("Location: ".adminTravelPlannerUrl());
+        }
+      }
 
       // Get Name from db
       $user_details = $this->user_model->get_user_details($_SESSION['email']);
