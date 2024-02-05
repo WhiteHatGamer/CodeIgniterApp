@@ -37,6 +37,21 @@
                 $this->load->view("admin\Travel_planner\inc/footer");
             }
         }
+
+        public function get_note($id = false){
+            // Checking If User is Logged In
+            if(!$this->session->email){
+                redirect(adminTravelPlannerUrl());
+                    return;
+            }
+
+            $result = $this->note_model->get_note($id);
+            if($result){
+                echo $result[0]['note'];
+            }else{
+                return;
+            }
+        }
     }
 
 ?>
