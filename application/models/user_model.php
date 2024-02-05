@@ -19,6 +19,15 @@
       $this->load->library('session');
     }
 
+    public function Validate_user($Email, $Password){
+
+      $query = $this->db->get_where($this->table, array('email'=>$Email, 'password'=>md5($Password)));
+      if($query->num_rows() > 0){
+        return true;
+      }else{
+        return false;
+      }
+    }
       
     public function get_user_details($Email = ""){
       if($Email == ""){
