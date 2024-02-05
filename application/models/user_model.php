@@ -43,4 +43,27 @@
       }
     }
 
+    public function register_user(){
+      
+      $this->email    = $this->input->post('email');
+      $this->name     = $this->input->post('name');
+      $this->password = $this->input->post('password');
+      $this->image    = 'C:/xampp/htdocs/CodeIgniterApp/assets/dist/img/default-user.png';
+
+      if($this->name){
+        $result = $this->db->insert($this->table,array("name"=>$this->name, "email"=>$this->email, "password"=>md5($this->password)));
+        
+      }else{
+        $result = $this->db->insert($this->table,array("email"=>$this->email, "password"=>md5($this->password)));
+        
+      }
+      if($result){
+        // Default Image set
+        $QueryUpdate = "UPDATE {$this->table} SET image = LOAD_FILE('$this->image') WHERE email='".$this->email."'";
+        $this->db->query($QueryUpdate);
+      }
+      return $result;
+
+    }
+
   }
