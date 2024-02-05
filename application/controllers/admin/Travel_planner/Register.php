@@ -24,5 +24,35 @@
 
         }
 
+        public function action(){
+
+            $this->load->view("admin/Travel_planner/inc/header");
+
+            $email = htmlspecialchars($this->input->post('email'));
+            $password = htmlspecialchars($this->input->post('password'));
+            $name = htmlspecialchars($this->input->post('name'));
+
+            // Checking if User Already Exists
+            $result = $this->user_model->get_user_details($email);
+            if($result){
+
+                $this->load->view("admin/Travel_planner/Register/error");
+            }else{
+                
+                $result = $this->user_model->register_user();
+                if($result){
+                    
+                    $this->load->view("admin/Travel_planner/Register/success");
+                }else{
+                    
+                    $this->load->view("admin/Travel_planner/Register/error");
+                }
+            }
+            $this->load->view('admin/Travel_planner/Register/index');
+            
+            $this->load->view("admin/Travel_planner/inc/footer");
+
+        }
+        
     }
 ?>
