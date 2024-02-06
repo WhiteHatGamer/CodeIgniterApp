@@ -70,6 +70,40 @@
             $this->load->view("admin\Travel_planner\inc/footer");
         }
 
+        public function update(){
+            // Checking If User is Logged In
+            if(!$this->session->email){
+              redirect(adminTravelPlannerUrl());
+                return;
+            }
+
+            $this->load->view("admin\Travel_planner\inc/header");
+
+            if($this->input->post('submit')){
+                if($this->note_model->update_note()){
+                    
+                    $this->load->view("admin\Travel_planner\inc/saved");
+                }else{
+                    $data['errorTitle'] = "Not Saved";
+                    $data['error'] = "Couldn't Update Note";
+                    $this->load->view("admin\Travel_planner\inc/warning", $data);
+                }
+            }
+            
+            $result = $this->note_model->get_notes();
+            if(!$result){
+
+                // No Data Stored
+                $this->load->view("admin\Travel_planner\inc/no_data_note");
+            }else{
+                
+                // Details Available
+                $data['result']=$result;
+                $this->load->view("admin\Travel_planner\Dashboard\UpdateNote\index",$data);
+            }
+
+            $this->load->view("admin\Travel_planner\inc/footer");
+        }
     }
 
 ?>
