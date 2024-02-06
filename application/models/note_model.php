@@ -52,6 +52,24 @@
             }
 
         }
+
+        public function insert_note(){
+            $email  = $this->session->email;
+
+            $inputs = $this->input->dump_post_array(array('note'));
+            $inputs['email'] = $email;
+            $result = $this->db->insert($this->table,$inputs);
+
+            if($result){
+        
+                return true;
+            }else{
+                
+                return false;
+            }
+
+        }
+
         public function update_note(){
             $email  = $this->session->email;
             
