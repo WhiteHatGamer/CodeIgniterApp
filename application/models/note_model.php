@@ -52,5 +52,20 @@
             }
 
         }
+        public function update_note(){
+            $email  = $this->session->email;
+            
+            $inputs = $this->input->dump_post_array(array('note'));
+            $result = $this->db->update($this->table,$inputs, array('id'=>$this->input->post('id'), 'email'=>$email));
+
+            if($result){
+        
+                return true;
+            }else{
+
+                return false;
+            }
+
+        }
     }
 ?>
