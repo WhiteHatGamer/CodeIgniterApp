@@ -85,5 +85,21 @@
             }
 
         }
+
+        public function delete_note($id = null){
+            $email  = $this->session->email;
+            
+            $inputs = [];
+            $inputs['id'] = $this->input->post('confirmDlt');
+            if($this->get_note($inputs['id'])){
+
+                $inputs['email'] = $email;
+                $result = $this->db->delete($this->table,$inputs);
+                return true;
+            }
+            
+            return false;
+        }
+
     }
 ?>
