@@ -50,4 +50,17 @@
         <!-- !center-page -->
         <a class='float-right' href='vscode://file/C:\xampp\htdocs\CodeIgniterApp\application\views\admin\Travel_planner\Dashboard\UpdateNote\index.php'><button class='btn btn-sm btn-dark'>Open In</button><button class="btn btn-sm btn-outline-primary">Code</button></a>
     </body>
+    <script>
+        function getNote(id){
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    document.getElementById("note").value = this.responseText;
+                }
+            }
+            xmlHttp.open("GET","<?= adminTravelPlannerUrl()?>note/get_note/"+id, true);
+            xmlHttp.send();
+
+        }
+    </script>
 </html>
