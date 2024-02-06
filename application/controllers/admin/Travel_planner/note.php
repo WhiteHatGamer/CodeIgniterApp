@@ -104,6 +104,61 @@
 
             $this->load->view("admin\Travel_planner\inc/footer");
         }
+
+        public function delete(){
+
+            // Checking If User is Logged In
+            if(!$this->session->email){
+              redirect(adminTravelPlannerUrl());
+                return;
+            }
+
+            $this->load->view("admin\Travel_planner\inc/header");
+            
+            // Checking if Submitted Already
+            if($this->input->post('confirmDlt')){
+
+                if($this->note_model->delete_note()){
+                    
+                    $this->load->view("admin\Travel_planner\inc/deleted");
+                }else{
+                    
+                    $data['errorTitle'] = "Note Not Deleted";
+                    $data['error'] = "Please Check ID";
+                    $this->load->view("admin\Travel_planner\inc/warning",$data);
+                }
+
+            }
+            if($this->input->post('submit')){
+                
+                $data['value'] = $this->input->post('id');
+                if($this->note_model->get_note($data['value'])){
+
+                    $this->load->view("admin/Travel_planner/inc/confirm",$data);
+                }else{
+                    
+                    $data['errorTitle'] = "Note Not Deleted";
+                    $data['error'] = "Please Check ID";
+                    $this->load->view("admin\Travel_planner\inc/warning",$data);
+
+                }
+                // CREATING  DELETE  NOTE  CONFIRMATION
+            }
+            
+            $result = $this->note_model->get_notes();
+            if(!$result){
+
+                // No Data Stored
+                $this->load->view("admin\Travel_planner\inc/no_data_note");
+            }else{
+                
+                $data['result']=$result;
+                // Details Available
+                $this->load->view("admin\Travel_planner\Dashboard\DeleteNote\index",$data);
+            }
+
+            $this->load->view("admin\Travel_planner\inc/footer");
+        }
     }
 
 ?>
