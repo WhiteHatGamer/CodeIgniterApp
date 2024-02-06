@@ -52,6 +52,24 @@
                 return;
             }
         }
+        public function create(){
+            // Checking If User is Logged In
+            if(!$this->session->email){
+              redirect(adminTravelPlannerUrl());
+                return;
+            }
+            $this->load->view("admin\Travel_planner\inc/header");
+
+            if($this->input->post('submit')){
+                if($this->note_model->insert_note()){
+                    $this->load->view('admin/Travel_planner/inc/saved');
+                }
+            }
+            
+            $this->load->view("admin\Travel_planner\Dashboard\CreateNote\index");
+            $this->load->view("admin\Travel_planner\inc/footer");
+        }
+
     }
 
 ?>
