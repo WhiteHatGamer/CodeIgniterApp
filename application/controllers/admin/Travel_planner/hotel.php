@@ -83,4 +83,38 @@
                 $this->load->view("admin\Travel_planner\inc/footer");
             }
         }
+        public function appoint(){
+
+            // Checking If User is Logged In
+            if(!$this->session->email){
+                redirect(adminTravelPlannerUrl());
+                return;
+            }
+            
+            if(isset($_POST['stay'])){
+        
+                try {
+        
+                    // Insertion Query
+                    if($this->hotel_model->store_stays()){
+                        
+                        // If success Show Toast Animation
+                        $this->load->view("admin\Travel_planner\inc\saved");
+                    }
+                    
+
+                } catch (\Throwable $th) {
+        
+                    // Catches Exception
+                    $data['errorTitle'] = "Error Occurred";
+                    $data['error'] = $th->getMessage();
+                    $this->load->view("admin\Travel_planner\inc\warning", $data);
+                    return;
+                }
+            }
+            
+            $this->load->view("admin\Travel_planner\inc/header");
+            $this->load->view("admin\Travel_planner\Dashboard\AppointHotel/index");
+            $this->load->view("admin\Travel_planner\inc/footer");
+        }
     }
