@@ -51,5 +51,22 @@
             }
         }
 
+        public function delete_stay($id){
+            $email  = $this->session->email;
+
+            $result = $this->db->get_where($this->table,array('id'=>$id,'email'=>$email));
+
+            if($result->num_rows() > 0){
+
+                if($this->db->delete($this->table, array('id'=>$id, 'email'=>$email))){
+
+                    return true;
+                }
+
+            }
+            
+            return false;
+        }
+
     }
 ?>
