@@ -66,4 +66,32 @@
 
     }
 
+    // Execute Query
+    function update_column($column, $value){
+
+      switch($column){
+        case 'image':
+          $QueryUpdate = "UPDATE {$this->table} SET $column = $value WHERE email='".$this->session->email."'";
+          $result = $this->db->query($QueryUpdate);
+          break;
+
+        case 'password':
+          if($this->Validate_user($this->session->email, $this->input->post('OldPassword'))){
+            $QueryUpdate = "UPDATE {$this->table} SET $column = md5('$value') WHERE email='".$this->session->email."' && password=md5('{$this->input->post('OldPassword')}')";
+            $result = $this->db->query($QueryUpdate);
+          }else{
+            return 'wrongPassword';
+          }
+          break;
+
+        default:
+          $result = $this->db->update($this->table,array($column=>$value),array('email'=>$this->session->email));
+          break;
+
+      }  
+      return $result;
+
+    }
+
+
   }
