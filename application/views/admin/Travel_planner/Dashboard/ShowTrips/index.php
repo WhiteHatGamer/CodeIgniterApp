@@ -10,6 +10,19 @@
     <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') ?>">
     
+    <script>
+            
+        function export_table(str) {
+            window.open("<?=adminTravelPlannerUrl().'journey/export_table'?>/"+str);
+        }
+
+        $(function() {
+            $("#journey_table").DataTable({ 
+                "responsive": true, "autoWidth": false,"pageLength":25,
+                "buttons": ["colvis"]
+            }).buttons().container().appendTo('#journey_table_wrapper .col-md-6:eq(0)');
+        });
+    </script>
 </head>
 </html>
 <body>
