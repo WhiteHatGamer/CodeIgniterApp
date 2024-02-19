@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plan Trip | Travel Planner</title>
+    <script>
+        function getCity(str){
+            // Function to suggest City
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    document.getElementById("id_city").innerHTML = this.responseText;
+                }
+            }
+            xmlHttp.open("GET","<?= adminTravelPlannerUrl()?>dashboard/get_hint?q=searchCity&s="+str, true);
+            xmlHttp.send();
+        }
+    </script>
 </head>
 <body>
     <div style="min-height: 90%; background-image: url('https://in2english.net/wp-content/uploads/2017/04/transport.png'); background-size: cover;" class='login-page'>
