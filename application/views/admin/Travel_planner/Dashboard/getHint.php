@@ -207,6 +207,25 @@ switch ($q) {
             echo "Estimated: AED $hotelRate for $night Night(s) => AED $fare";
         }
         exit;
+    case 'calculateExpense':
+
+        // Calculate Expense of the Hotel with Daily into Days Chosen
+        $checkIn = htmlspecialchars($_REQUEST['i']);
+        $checkOut = htmlspecialchars($_REQUEST['o']);
+        $hotel = htmlspecialchars($_REQUEST['h']);
+        $cityName = htmlspecialchars($_REQUEST['c']);
+
+        $hotelRate = @$city[$cityName][1][$hotel];
+
+        // Checking if checkin after checkout
+        if($checkOut <= $checkIn){
+            echo "Estimated: AED $hotelRate for 1 Night";
+            exit;
+        }
+        $day = round((strtotime($checkOut)-strtotime($checkIn))/60/60/24, 2);
+        $fare = $hotelRate * $day;
+        echo "Estimated: AED $hotelRate for $day Night(s) => AED $fare";
+        exit;
     default:
         # code...
         exit;
