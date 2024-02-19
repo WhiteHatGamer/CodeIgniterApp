@@ -234,6 +234,22 @@ switch ($q) {
         $day = strtotime($checkIn)+(60*60*24*$night);
         echo date("Y-m-d",$day);
         exit;
+    case 'calculateNight':
+        // Calculate Night From CheckOut Selected
+        $checkIn = htmlspecialchars($_REQUEST['i']);
+        $checkOut = htmlspecialchars($_REQUEST['o']);
+
+        if($checkOut <= $checkIn){
+            echo "1";
+            exit;
+        }
+
+        $day = round((strtotime($checkOut)-strtotime($checkIn))/60/60/24, 2);
+        if($day<31){
+            echo "$day";
+        }else{
+            echo "31";
+        }
     default:
         # code...
         exit;
