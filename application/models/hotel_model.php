@@ -68,5 +68,18 @@
             return false;
         }
 
+        public function store_stays(){
+            $email  = $this->session->email;
+
+            $inputs = $this->input->dump_post_array(array('city','hotel','checkIn','checkOut'));
+
+            $inputs['email'] = $email;
+            if(@$this->db->insert($this->table,$inputs)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
     }
 ?>
