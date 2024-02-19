@@ -45,5 +45,17 @@
     <a class='float-right' href='vscode://file/C:\xampp\htdocs\CodeIgniterApp\application\views\admin\Travel_planner\Dashboard\Profile\Password.php'><button class='btn btn-sm btn-dark'>Open In</button><button class="btn btn-sm btn-outline-primary">Code</button></a>
 </body>
 
+<script>
+      var password = document.getElementById("NewPassword");
+      var confirm_password = document.getElementById("ConfirmPassword");
+
+      function validatePassword(){
+        if(password.value != confirm_password.value) {
+          confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+          confirm_password.setCustomValidity('');
+        }
+      }
+  </script>
 
 </html>
