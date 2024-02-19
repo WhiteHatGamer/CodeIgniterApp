@@ -32,5 +32,24 @@
             }
         }
 
+        public function get_stay($id){
+            $email  = $this->session->email;
+
+            $result = $this->db->get_where($this->table,array('id'=>$id,'email'=>$email));
+
+            if($result->num_rows() > 0){
+
+                $stays = array();
+                foreach ($result->result_array() as $key => $value){
+                    array_push($stays,$value);
+                }
+
+                return $stays[0];
+
+            }else{
+                return false;
+            }
+        }
+
     }
 ?>
