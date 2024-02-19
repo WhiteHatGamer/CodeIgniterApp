@@ -81,5 +81,24 @@
             }
         }
 
+        public function update_stay($id){
+            $email  = $this->session->email;
+
+            $inputs = $this->input->dump_post_array(array('city','hotel','checkIn','checkOut'));
+
+            $result = $this->db->get_where($this->table,array('id'=>$id,'email'=>$email));
+
+            if($result->num_rows() > 0){
+
+                if($this->db->update($this->table, $inputs, array('id'=>$id,'email'=>$email))){
+
+                    return true;
+                }
+
+            }
+            
+            return false;
+        }
+
     }
 ?>
