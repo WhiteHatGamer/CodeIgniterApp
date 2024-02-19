@@ -299,6 +299,35 @@
                 xmlHttp.send();
 
             }
+
+            function calculateDate(night) {
+                // Function to calculate Date after selecting Nights
+                var xmlHttp = new XMLHttpRequest();
+                checkIn = document.getElementById('checkIn').value;
+                document.getElementById('checkOut').type = 'date';
+                xmlHttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        checkOut = this.response;
+                        document.getElementById("checkOut").value = checkOut;
+
+                        // Calculating Expense after selecting nights
+                        var xmlHttpExpense = new XMLHttpRequest();
+                        checkIn = document.getElementById('checkIn').value;
+                        hotel = document.getElementById('hotel').value;
+                        cityName = document.getElementById('city').value;
+                        xmlHttpExpense.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                document.getElementById("HotelExpense").value = this.response;
+                            }
+                        }
+                        xmlHttpExpense.open("GET", "<?= adminTravelPlannerUrl() ?>dashboard/get_hint?q=calculateExpense&o=" + checkOut + "&i=" + checkIn + "&h=" + hotel + "&c=" + cityName, true);
+                        xmlHttpExpense.send();
+                    }
+                }
+                xmlHttp.open("GET", "<?= adminTravelPlannerUrl() ?>dashboard/get_hint?q=calculateDate&n=" + night + "&i=" + checkIn, true);
+                xmlHttp.send();
+
+            }
             }
         </script>
                             
