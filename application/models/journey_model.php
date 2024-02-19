@@ -86,4 +86,11 @@
         return $result;
 
     }
+
+    public function delete_trip(){
+        $result = $this->db->delete($this->table,array('id'=>$this->input->post('confirm_delete'),'email'=>$this->session->email));
+        return $result;
+
+    }
+
 }
