@@ -16,6 +16,21 @@
             xmlHttp.open("GET","<?= adminTravelPlannerUrl()?>dashboard/get_hint?q=searchCity&s="+str, true);
             xmlHttp.send();
         }
+
+        function CalculateTime(way){
+            // Function to calculate ETA using source and destination
+            var xmlHttp = new XMLHttpRequest();
+            destination = document.getElementById('destination').value;
+            source = document.getElementById('source').value;
+            xmlHttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    document.getElementById("tripTime").value = this.responseText;
+                }
+            }
+            xmlHttp.open("GET","<?= adminTravelPlannerUrl()?>dashboard/get_hint?q=time&w="+way+"&s="+source+"&d="+destination, true);
+            xmlHttp.send();
+        }
+
         function Calculate_min(){
             // Function to calculate Return Date After Journey
             const journey = new Date(document.getElementById('journey').value);
