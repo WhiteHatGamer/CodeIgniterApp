@@ -79,4 +79,11 @@
         }
 
     }
+
+    public function update_trip(){
+        $post_keys = $this->input->dump_post_array(array('source','destination','way','journey','round'));
+        $result = $this->db->update($this->table,$post_keys,array('id'=>$this->input->post('confirm_edit'),'email'=>$this->session->email));
+        return $result;
+
+    }
 }
