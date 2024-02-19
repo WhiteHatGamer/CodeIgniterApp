@@ -39,4 +39,30 @@
             }
         }
 
+        
+        public function plan(){
+            
+            // Checking If User is Logged In
+            if(!$this->session->email){
+                redirect(adminTravelPlannerUrl());
+                return;
+            }
+
+            $this->load->view("admin\Travel_planner\inc/header");
+            if($this->input->server('REQUEST_METHOD')=='POST'){
+                try{
+                    $this->journey_model->insert_trip();
+
+                    $this->load->view("admin\Travel_planner\inc\saved");
+                }catch(Exception $e){
+        
+                    // Catching Exception
+                    $data['errorTitle'] = "Journey Not Saved";
+                    $data['error'] = "Duplicate Journey Time Not Possible";
+                    $this->load->view("admin\Travel_planner\inc\warning",$data);
+                }
+            }
+            $this->load->view("admin\Travel_planner\Dashboard\PlanTrip\index");
+            $this->load->view("admin\Travel_planner\inc/footer");
+        }
     }
