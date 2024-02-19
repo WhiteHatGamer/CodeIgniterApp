@@ -56,4 +56,27 @@
         
     }
 
+    public function insert_trip(){
+        $email  = $this->session->email;
+        foreach($this->db->query("SELECT EXISTS(SELECT * FROM $this->table WHERE email='$email' AND  journey='{$this->input->post('journey')}')")->result_array()[0] as $key => $val){
+            if($val == '1'){
+                throw new Exception("Duplicate Entry", 1062);
+            }
+        }
+
+        if($this->input->post('round')){
+
+            $inputs = $this->input->dump_post_array(array('source','destination','way','journey','round'));
+        }else{
+            
+            $inputs = $this->input->dump_post_array(array('source','destination','way','journey'));
+        }
+        $inputs['email'] = $email;
+        if(@$this->db->insert($this->table,$inputs)){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 }
