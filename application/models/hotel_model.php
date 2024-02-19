@@ -18,5 +18,19 @@
         $this->load->library('session');
         }
 
+        public function get_stays(){
+            $email  = $this->session->email;
+
+            $result = $this->db->get_where($this->table,array('email'=>$email));
+            
+            if($result->num_rows() > 0){
+                
+                return $result->result_array();
+
+            }else{
+                return false;
+            }
+        }
+
     }
 ?>
