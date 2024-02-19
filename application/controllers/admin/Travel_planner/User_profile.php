@@ -95,6 +95,33 @@
             $this->load->view("admin/Travel_planner/inc/footer");
         }
 
+        public function password(){
+
+            // Checking If User is Logged In
+            if(!$this->session->email){
+                redirect(adminTravelPlannerUrl());
+                return;
+            }
+            // Checking If Submitted
+            if($this->input->server('REQUEST_METHOD') == 'POST'){
+                $changeFlag = $this->user_model->update_column('password', $this->input->post('NewPassword'));
+                if($changeFlag === 'wrongPassword'){
+
+                    $data['errorTitle'] = 'Wrong Password';
+                    $data['error'] = 'Unable to Update Password';
+                    $this->load->view("admin/Travel_planner/inc/warning",$data);
+                }else{
+                    
+                    $_POST['PasswordChanged'] = true;
+                    $this->clear_session();
+                }
+            }
+    
+            $this->load->view("admin/Travel_planner/inc/header");
+            $this->load->view("admin/Travel_planner/Dashboard/Profile/Password");
+            $this->load->view("admin/Travel_planner/inc/footer");
+        }
+
         public function clear_session(){
             
             @session_start();
