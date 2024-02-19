@@ -83,6 +83,74 @@
                 $this->load->view("admin\Travel_planner\inc/footer");
             }
         }
+
+        public function export_table($export){
+
+            $hotel_data = $this->hotel_model->get_stays();
+
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+
+            $sheet->setCellValue('A1', 'Sl. No');
+            $sheet->setCellValue('B1', 'City');
+            $sheet->setCellValue('C1', 'Hotel');
+            $sheet->setCellValue('D1', 'Check-In');
+            $sheet->setCellValue('E1', 'Check-Out');
+            $sheet->getColumnDimension('A')->setAutoSize(true);
+            $sheet->getColumnDimension('B')->setAutoSize(true);
+            $sheet->getColumnDimension('C')->setAutoSize(true);
+            $sheet->getColumnDimension('D')->setAutoSize(true);
+            $sheet->getColumnDimension('E')->setAutoSize(true);
+            $rows = 2;
+            foreach ($hotel_data as $val){
+                $sheet->setCellValue('A' . $rows, ($rows-1));
+                $sheet->setCellValue('B' . $rows, $val['city']);
+                $sheet->setCellValue('C' . $rows, $val['hotel']);
+                $sheet->setCellValue('D' . $rows, $val['checkIn']);
+                $sheet->setCellValue('E' . $rows, $val['checkOut']);
+                $rows++;
+            }
+            
+            switch ($export) {
+
+                case 'excel':
+                    
+                    $fileName = 'hotel.xlsx';
+                    $writer = new Xlsx($spreadsheet);
+                    $writer->save("uploads/".$fileName);
+                    header("Content-Type: application/vnd.ms-excel");
+                    redirect(base_url()."uploads/".$fileName);
+                    break;
+                    
+                case 'pdf':
+                    
+                    // instantiate and use the dompdf class
+                    $fileName = 'hotel.pdf';
+                    $writer = new Dompdf($spreadsheet);
+                    $writer->save("uploads/".$fileName);
+                    $filePath = "uploads/".$fileName;
+                    header('Content-Disposition: attachment; filename="hotel.pdf"');
+                    header("Content-Type: application/download");
+                    header('Content-Description: File Transfer;');
+                    header("Content-Length: " . filesize($filePath));
+                    readfile($filePath);
+                    break;
+
+                case 'csv':
+                        
+                    // instantiate and use the dompdf class
+                    $fileName = 'hotel.csv';
+                    $writer = new Csv($spreadsheet);
+                    $writer->save("uploads/".$fileName);
+                    header("Content-Type: application/csv");
+                    redirect(base_url()."uploads/".$fileName);
+                    break;
+                default:
+                    show_404();
+                    break;
+            }
+        }
+
         public function appoint(){
 
             // Checking If User is Logged In

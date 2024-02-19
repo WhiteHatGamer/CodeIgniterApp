@@ -39,6 +39,82 @@
             }
         }
 
+        public function export_table($export){
+
+            $journey_data = $this->journey_model->get_trips();
+
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+
+            // $styleArray = [
+            //     'borders' => [
+            //         'allBorders' => ['borderStyle' => 'BORDER_THICK', 'color' => ['argb' => 'F0F0F0F0']],
+            //     ],
+            // ];
+            // $sheet->getStyle('A1:C1')->applyFromArray($styleArray);
+            
+            $sheet->setCellValue('A1', 'Sl. No');
+            $sheet->setCellValue('B1', 'Source');
+            $sheet->setCellValue('C1', 'Destination');
+            $sheet->setCellValue('D1', 'Way');
+            $sheet->setCellValue('E1', 'Journey');
+            $sheet->setCellValue('F1', 'Return');
+            $rows = 2;
+            foreach ($journey_data as $val){
+                $sheet->setCellValue('A' . $rows, ($rows-1));
+                $sheet->setCellValue('B' . $rows, $val['source']);
+                $sheet->setCellValue('C' . $rows, $val['destination']);
+                $sheet->setCellValue('D' . $rows, $val['way']);
+                $sheet->setCellValue('E' . $rows, $val['journey']);
+                $sheet->setCellValue('F' . $rows, $val['round']);
+                $rows++;
+            }
+            $sheet->getColumnDimension('A')->setAutoSize(true);
+            $sheet->getColumnDimension('B')->setAutoSize(true);
+            $sheet->getColumnDimension('C')->setAutoSize(true);
+            $sheet->getColumnDimension('D')->setAutoSize(true);
+            $sheet->getColumnDimension('E')->setAutoSize(true);
+            $sheet->getColumnDimension('F')->setAutoSize(true);
+            
+            switch ($export) {
+
+                case 'excel':
+                    
+                    $fileName = 'journey.xlsx';
+                    $writer = new Xlsx($spreadsheet);
+                    $writer->save("uploads/".$fileName);
+                    header("Content-Type: application/vnd.ms-excel");
+                    redirect(base_url()."uploads/".$fileName);
+                    break;
+                    
+                case 'pdf':
+                    
+                    // instantiate and use the dompdf class
+                    $fileName = 'journey.pdf';
+                    $writer = new Dompdf($spreadsheet);
+                    $writer->save("uploads/".$fileName);
+                    $filePath = "uploads/".$fileName;
+                    header('Content-Disposition: attachment; filename="journey.pdf"');
+                    header("Content-Type: application/download");
+                    header('Content-Description: File Transfer;');
+                    header("Content-Length: " . filesize($filePath));
+                    readfile($filePath);
+                    break;
+
+                case 'csv':
+                        
+                    // instantiate and use the dompdf class
+                    $fileName = 'journey.csv';
+                    $writer = new Csv($spreadsheet);
+                    $writer->save("uploads/".$fileName);
+                    header("Content-Type: application/csv");
+                    redirect(base_url()."uploads/".$fileName);
+                    break;
+                default:
+                    show_404();
+                    break;
+            }
+        }
         
         public function plan(){
             
