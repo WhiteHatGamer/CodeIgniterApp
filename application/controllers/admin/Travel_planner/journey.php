@@ -15,4 +15,28 @@
             $this->load->library('session');
         }
 
+        public function index(){
+
+            // Checking If User is Logged In
+            if(!$this->session->email){
+              redirect(adminTravelPlannerUrl());
+                return;
+            }
+            
+            $result = $this->journey_model->get_trips();
+            if(!$result){
+                // No Data Stored
+                $this->load->view("admin\Travel_planner\inc/header");
+                $this->load->view("admin\Travel_planner\inc/no_data_journey");
+                $this->load->view("admin\Travel_planner\inc/footer");
+            }else{
+                
+                $data['result']=$result;
+                // Details Available
+                $this->load->view("admin\Travel_planner\inc/header");
+                $this->load->view("admin\Travel_planner\Dashboard\ShowTrips\index",$data);
+                $this->load->view("admin\Travel_planner\inc/footer");
+            }
+        }
+
     }
