@@ -177,6 +177,36 @@ switch ($q) {
         // printing Option string
         echo ($options);
         exit;
+    case 'getExpense':
+        // Get Hotel Name
+        $hotel = $_REQUEST['h'];
+        $CityName = $_REQUEST['c'];
+        $night = $_REQUEST['n'];
+        $len = strlen($hotel);
+
+        // checking if any string exist
+        if(!isset($hotel)){
+            exit;
+        }
+
+        // Check if Hotel is Available
+        if(!isset($city[$CityName][1][$hotel])){
+            exit;
+        }
+
+        $hotelRate = @$city[$CityName][1][$hotel];
+        
+        if($night==1){
+            
+            // Check price of one day from array
+            echo "Estimated: AED $hotelRate for $night Night";
+        }else{
+            
+            $fare = (int)$hotelRate*(int)$night;
+            // Check price of one day from array
+            echo "Estimated: AED $hotelRate for $night Night(s) => AED $fare";
+        }
+        exit;
     default:
         # code...
         exit;
