@@ -17,6 +17,20 @@
                 xmlHttp.open("GET","<?= adminTravelPlannerUrl()?>dashboard/get_hint?q=searchCity&s="+str, true);
                 xmlHttp.send();
             }
+
+            function getHotels(str){
+                // Function to get City Hotels
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        const list = document.getElementById("hotel");
+                        list.innerHTML = this.response;
+                    }
+                }
+                xmlHttp.open("GET","<?= adminTravelPlannerUrl()?>dashboard/get_hint?q=getHotel&s="+str, true);
+                xmlHttp.send();
+            }
+
         </script>
     </head>
     <body>
