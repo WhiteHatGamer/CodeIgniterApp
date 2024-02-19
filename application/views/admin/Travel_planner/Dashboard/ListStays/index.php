@@ -263,6 +263,43 @@
                 checkOut.min = checkIn.toISOString().slice(0, 10);
 
             }
+
+            function calculateExpense(checkOut) {
+                // Function to Calculate Expense Based on Days
+                var xmlHttp = new XMLHttpRequest();
+                checkIn = document.getElementById('checkIn').value;
+                hotel = document.getElementById('hotel').value;
+                cityName = document.getElementById('city').value;
+
+                if (new Date(checkIn).getTime() > new Date(checkOut).getTime()) {
+                    // CheckOut is before CheckIn
+                    document.getElementById("HotelExpense").value = "Please Select Check Out Date After Check In";
+                    document.getElementById('checkOut').value = document.getElementById('checkIn').value;;
+                    document.getElementById("night").value = 1;
+                    return;
+                };
+
+                xmlHttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("HotelExpense").value = this.response;
+                    }
+                }
+                xmlHttp.open("GET", "<?= adminTravelPlannerUrl() ?>dashboard/get_hint?q=calculateExpense&o=" + checkOut + "&i=" + checkIn + "&h=" + hotel + "&c=" + cityName, true);
+                xmlHttp.send();
+
+                // Calculate Night
+                var xmlHttp = new XMLHttpRequest();
+                checkIn = document.getElementById('checkIn').value;
+                xmlHttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("night").value = this.response;
+                    }
+                }
+                xmlHttp.open("GET", "<?= adminTravelPlannerUrl() ?>dashboard/get_hint?q=calculateNight&o=" + checkOut + "&i=" + checkIn, true);
+                xmlHttp.send();
+
+            }
+            }
         </script>
                             
         <?php
