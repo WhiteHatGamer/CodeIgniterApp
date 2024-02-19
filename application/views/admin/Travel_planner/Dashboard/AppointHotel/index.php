@@ -31,6 +31,19 @@
                 xmlHttp.send();
             }
 
+            function getExpense(hotel){
+                // Function to get Expense of Hotel Selected
+                var xmlHttp = new XMLHttpRequest();
+                cityName = document.getElementById('city').value;
+                night = document.getElementById('night').value;
+                xmlHttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        document.getElementById("HotelExpense").value = this.responseText;
+                    }
+                }
+                xmlHttp.open("GET","<?= adminTravelPlannerUrl()?>dashboard/get_hint?q=getExpense&h="+hotel+"&c="+cityName+"&n="+night, true);
+                xmlHttp.send();
+            }
 
             function Calculate_min(){
                 // Function to calculate Return Date After Journey
