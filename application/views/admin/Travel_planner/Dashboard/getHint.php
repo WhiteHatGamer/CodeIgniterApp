@@ -104,6 +104,47 @@ switch ($q) {
         echo $time === '' ? "Select an Option" : "ETA: ".$time;
         exit;
     
+    case 'searchCity':
+        // Get string from GET with HTML filter
+        $options = '';
+        $str = htmlspecialchars($_REQUEST['s']);
+        $len = strlen($str);
+        $Return_all = $len == 0;
+
+        // // Checking if any string entered
+        // if($len==0){
+        //     exit;
+        // }
+
+
+        // Loop through every City name in 
+        foreach($city as $key => $value){
+            if($Return_all){
+
+                // Add Option
+                $options = "<option>$key</option>".$options;
+                continue;
+            }
+
+            // cut string of city to check if contains from start
+            $strip = mb_strcut($key, 0, $len);
+            if(!(stripos($strip, $str)===false)) {
+
+                // Add Option
+                $options = "<option>$key</option>".$options;
+            }else{
+
+                // removing space from key to suggest if entered without space also
+                $noSpace = str_replace(' ','',$key);
+                $strip = mb_strcut($noSpace, 0, $len);
+                if(!(stripos($strip, $str)===false)) {
+                    $options = "<option>$key</option>".$options;
+                }
+            }
+        }
+        // printing Option string
+        echo $options;
+        exit;
     default:
         # code...
         exit;
