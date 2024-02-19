@@ -8,6 +8,15 @@
     <script>
         // Ajax Scripts For requesting php
 
+        function Calculate_min(){
+            // Function to calculate Return Date After Journey
+            const journey = new Date(document.getElementById('journey').value);
+            round = document.getElementById('round');
+            journey.setMinutes(journey.getMinutes() + 1);
+            journey.setHours(journey.getHours() + 4);
+            round.min = journey.toISOString().slice(0,16);
+        }
+
         function getCity(str){
             // Function to suggest City
             var xmlHttp = new XMLHttpRequest();

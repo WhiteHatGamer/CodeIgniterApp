@@ -16,6 +16,14 @@
             xmlHttp.open("GET","<?= adminTravelPlannerUrl()?>dashboard/get_hint?q=searchCity&s="+str, true);
             xmlHttp.send();
         }
+        function Calculate_min(){
+            // Function to calculate Return Date After Journey
+            const journey = new Date(document.getElementById('journey').value);
+            round = document.getElementById('round');
+            journey.setMinutes(journey.getMinutes() + 1);
+            journey.setHours(journey.getHours() + 4);
+            round.min = journey.toISOString().slice(0,16);
+        }
     </script>
 </head>
 <body>

@@ -31,6 +31,16 @@
                 xmlHttp.send();
             }
 
+
+            function Calculate_min(){
+                // Function to calculate Return Date After Journey
+                const checkIn = new Date(document.getElementById('checkIn').value);
+                checkOut = document.getElementById('checkOut');
+                checkIn.setMinutes(checkIn.getMinutes() + 1);
+                checkIn.setHours(checkIn.getHours() + 4);
+                checkOut.min = checkIn.toISOString().slice(0,10);
+
+            }
         </script>
     </head>
     <body>
