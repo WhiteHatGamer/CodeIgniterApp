@@ -2,10 +2,15 @@
 
     defined('BASEPATH') OR exit('No direct script access allowed');
 
-    use PhpOffice\PhpSpreadsheet\Spreadsheet;
-    use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-    use PhpOffice\PhpSpreadsheet\Writer\Pdf\Dompdf;
-    use PhpOffice\PhpSpreadsheet\Writer\Csv;
+use PhpOffice\PhpSpreadsheet\Reader\Csv as ReaderCsv;
+use PhpOffice\PhpSpreadsheet\Reader\Xls;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx as ReaderXlsx;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Html as WriterHtml;
+use PhpOffice\PhpSpreadsheet\Writer\Pdf\Dompdf;
+use PhpOffice\PhpSpreadsheet\Writer\Csv;
+use PhpOffice\PhpSpreadsheet\Writer\Xls as WriterXls;
 
     class Hotel extends CI_Controller{
         
@@ -158,6 +163,68 @@
                 redirect(adminTravelPlannerUrl());
                 return;
             }
+
+
+            if($this->input->post('submit')){
+                // print_r($_POST);
+                // print_r($_FILES);
+                if(@$_FILES['excel']){
+
+                    $reader = new ReaderXlsx();
+                    if(!$reader->canRead($_FILES['excel']['tmp_name'])){
+                        redirect(adminTravelPlannerUrl().'hotel/appoint');
+
+                    }
+                    $reader->setReadDataOnly(true);
+                    $spreadsheet = $reader->load($_FILES['excel']['tmp_name']);
+                    
+
+                }elseif(@$_FILES['csv']){
+                    
+                    $reader = new ReaderCsv();
+                    if(!$reader->canRead($_FILES['csv']['tmp_name'])){
+                        redirect(adminTravelPlannerUrl().'hotel/appoint');
+
+                    }
+                    $reader->setReadDataOnly(true);
+                    $spreadsheet = $reader->load($_FILES['csv']['tmp_name']);
+                }else{
+                    redirect(adminTravelPlannerUrl().'\hotel');
+                }
+                $dataTitle = [];
+                $dataArray = [];
+                $dataIDX = 0;
+                foreach ($spreadsheet->getActiveSheet()->toArray() as $idx=>$row) {
+                    if($idx == 0){
+                        $dataTitle[1]=$row[1]=='City'? 'city':exit;
+                        $dataTitle[2]=$row[2]=='Hotel'? 'hotel':exit;
+                        $dataTitle[3]=$row[3]=='Check-In'? 'checkIn':exit;
+                        $dataTitle[4]=$row[4]=='Check-Out'? 'checkOut':exit;
+                        continue;
+                    }
+                    foreach($row as $key=>$value){
+                        if($key==0){
+                            continue;
+                        }
+                        $dataArray[$dataIDX][$dataTitle[$key]] = $value;
+                    }
+                    $dataIDX++;
+                }
+                $successRow = 0;
+                $writer = new WriterHtml($spreadsheet);
+                $DataHtml = $writer->generateHtmlAll();
+                echo $DataHtml;
+                foreach($dataArray as $row){
+                    if($this->hotel_model->store_stays($row)){
+                        $successRow++;
+                    }
+                }
+                $data['errorTitle'] = "Uploading Finished";
+                $data['error'] = "$successRow Out of $dataIDX Uploaded";
+
+                $this->load->view("admin\Travel_planner\inc/warning",$data);
+
+            }
             
             if(isset($_POST['stay'])){
         
@@ -180,7 +247,7 @@
                     return;
                 }
             }
-            
+
             $this->load->view("admin\Travel_planner\inc/header");
             $this->load->view("admin\Travel_planner\Dashboard\AppointHotel/index");
             $this->load->view("admin\Travel_planner\inc/footer");
