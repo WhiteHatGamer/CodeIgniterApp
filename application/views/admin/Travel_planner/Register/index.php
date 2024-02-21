@@ -37,7 +37,7 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <input name='email' placeholder='Email*' type="email" class="form-control" required>
+              <input name='email' placeholder='Email*' autocomplete="username" type="email" class="form-control" required>
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-envelope"></span>
@@ -45,7 +45,7 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <input name="password" id="password" type="password" class="form-control" placeholder="Password*" required onchange=validatePassword()>
+              <input name="password" id="password" type="password" autocomplete="new-password" class="form-control" placeholder="Password*" required onchange=validatePassword()>
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-lock"></span>
@@ -53,7 +53,7 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <input id="confirm_password" name="confirm_password" type="password" class="form-control" placeholder="Confirm password*" required onkeyup=validatePassword()>
+              <input id="confirm_password" name="confirm_password" autocomplete="new-password" type="password" class="form-control" placeholder="Confirm password*" required onkeyup=validatePassword()>
               <div class="input-group-append">
                 <div class="input-group-text">
                   <button type="button" name="hidden" onclick="

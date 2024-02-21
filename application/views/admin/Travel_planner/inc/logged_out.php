@@ -91,9 +91,9 @@
 
     <!-- lockscreen credentials (contains the form) -->
     <form class="lockscreen-credentials" action="<?=adminTravelPlannerUrl()."Login/validate"?>" method="post">
-      <input name="email" id="email" type="email" class="form-control form-control-border" value="<?=@$email?>" readonly>
+      <input name="email" id="email" autocomplete="username" type="email" class="form-control form-control-border" value="<?=@$email?>" readonly>
       <div class="input-group">
-        <input name="password" type="password" class="form-control" placeholder="password">
+        <input name="password" autocomplete="current-password" type="password" class="form-control" placeholder="password">
 
         <div class="input-group-append">
           <button type="submit" class="btn">
