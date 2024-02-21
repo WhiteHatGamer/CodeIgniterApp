@@ -19,7 +19,7 @@
     <script src="<?=base_url('assets/plugins/datatables-buttons/js/buttons.html5.min.js')?>"></script>
     <script src="<?=base_url('assets/plugins/datatables-buttons/js/buttons.print.min.js')?>"></script>
     <script src="<?=base_url('assets/plugins/datatables-buttons/js/buttons.colVis.min.js')?>"></script>
-    <!-- AdminLTE for demo purposes -->
+    
     <script src="<?=base_url('assets/dist/js/demo.js')?>"></script>
     <div style="background-image: url(
                                     'https://static.vecteezy.com/system/resources/previews/016/005/875/original/arrow-road-yellow-sign-warning-striped-arrow-safety-type-construction-border-isolated-on-white-background-illustration-vector.jpg'
