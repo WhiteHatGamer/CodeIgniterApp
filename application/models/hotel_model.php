@@ -18,6 +18,19 @@
         $this->load->library('session');
         }
 
+        public function checkDuplicate($input = array(null=>null)){
+            if($input==array(null=>null)){
+                return false;
+            }
+
+            $result = $this->db->get_where($this->table,$input);
+            if($result->num_rows() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         public function get_stays(){
             $email  = $this->session->email;
 
@@ -68,16 +81,23 @@
             return false;
         }
 
-        public function store_stays(){
+        public function store_stays($inputs = array('city'=>'null')){
             $email  = $this->session->email;
 
-            $inputs = $this->input->dump_post_array(array('city','hotel','checkIn','checkOut'));
+            if($inputs['city'] == 'null'){
+
+                $inputs = $this->input->dump_post_array(array('city','hotel','checkIn','checkOut'));
+            }
 
             $inputs['email'] = $email;
-            if(@$this->db->insert($this->table,$inputs)){
-                return true;
-            }else{
+            if($this->checkDuplicate($inputs)){
                 return false;
+            }
+            $this->db->insert($this->table,$inputs);
+            if($this->db->error()['code']){
+                return false;
+            }else{
+                return true;
             }
         }
 
@@ -99,6 +119,7 @@
             
             return false;
         }
+
 
     }
 ?>
