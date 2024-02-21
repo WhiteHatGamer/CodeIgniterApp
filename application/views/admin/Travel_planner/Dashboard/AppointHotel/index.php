@@ -5,7 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hotels | <?=@$_SESSION['name']?></title>
         <script>
+            function importData(str){
+                Swal.fire({
+                    title: "Select Your "+str+" File.",
+                    html: `
+                    <form method='post' enctype="multipart/form-data">
+                        <input type='file' class='form-control' name='`+str+`'><br>
+                        <button class='btn bg-gradient-primary' type='submit' name='submit' value='1'>Submit</button>
+                        <button class='btn bg-gradient-danger' type='menu' name='submit' value='0'>Cancel</button>
+                    </form>
+                    `,
+                    showConfirmButton: false,
+                });
+                
+            }
             async:false;
+
             function getCity(str){
                 // Function to suggest City
                 var xmlHttp = new XMLHttpRequest();
@@ -158,18 +173,23 @@
                 <div class="card col-md-5" style="background-color: rgba(255, 255, 255, 0.92);">
                     <div class="card-header">
                         <h3 class="card-title"><b>H</b>otel <b>S</b>tay</h3>
+                        <div class="btn-group float-right">
+                            <button type="button" class="btn btn-outline-success dropdown-toggle btn-sm" data-toggle="dropdown"><i class="fas fa-file-import"></i>Import<span class="sr-only"></span></button>
+                            <div class="dropdown-menu" role="menu">
+                                <button onclick="importData('excel')" class="dropdown-item btn-sm"><i class="fas fa-file-excel"></i>Excel</button>
+                                <button onclick="importData('csv')" class="dropdown-item btn-sm"><i class="fas fa-file-csv"></i>CSV</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                 
                         <!-- Form Start -->
                         <form method="post" name="stay" action=<?=$_SERVER['PHP_SELF']?>>
-                            <input class='form-control' type="text" name="city" id="city" placeholder="Type Location" required list="id_list" onclick="getCity(this.value)" onkeyup="getCity(this.value)" onblur="getHotels(this.value)" autocomplete="off">
-                            <datalist id="id_list">
-                                <div id="id_city">
-                                    <!-- To be filled onKeyUp type -->
-                                    
-                                </div>
-                            </datalist>
+                            <input class='form-control' type="text" name="city" id="city" placeholder="Type Location" required list="id_list" onkeyup="getCity(this.value)" onblur="getHotels(this.value)" autocomplete="off">
+                            <div id="id_city">
+                                <!-- To be filled onKeyUp type -->
+                                
+                            </div>
                             
                             <!-- Select List Based on Selected City -->
                             <select class='form-control' id="hotel" name="hotel" onchange=getExpense(this.value) required>
