@@ -39,6 +39,13 @@
           header("Location: ".adminTravelPlannerUrl());
         }
       }
+      
+      // Checking If User is Logged In
+      if(!isset($_SESSION['email'])){
+          echo "<h3>You Are Logged out Please Login Again!!!</h3><br>";
+          echo '<a href="'.adminTravelPlannerUrl().'">Home</a><br>';
+          exit;
+      }
 
       // Get Name from db
       $user_details = $this->user_model->get_user_details($_SESSION['email']);
