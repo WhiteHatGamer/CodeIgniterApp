@@ -38,7 +38,7 @@
           <p class="login-box-msg">LogIn to Travel Planner:</p>
             <form action="<?= $_SERVER['PHP_SELF']."/login/validate"; ?>" method="post">
               <div class="input-group mb-3">
-                <input type="email" class="form-control" name="email" placeholder="Email" required>
+                <input type="email" class="form-control" name="email" placeholder="Email" autocomplete="username" required>
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <span class="fas fa-envelope"></span>
@@ -46,7 +46,7 @@
                 </div>
               </div>
               <div class="input-group mb-3">
-                <input type="password" class="form-control" name="password" placeholder="Password" required>
+                <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="current-password" required>
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <span class="fas fa-lock"></span>
