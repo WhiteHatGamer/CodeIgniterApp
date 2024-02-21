@@ -106,16 +106,17 @@ switch ($q) {
     
     case 'searchCity':
         // Get string from GET with HTML filter
+        echo '<datalist id="id_list">';
         $options = '';
         $str = htmlspecialchars($_REQUEST['s']);
         $len = strlen($str);
-        $Return_all = $len == 0;
+        $Return_all = false; //$len == 0;
 
-        // // Checking if any string entered
-        // if($len==0){
-        //     exit;
-        // }
-
+        // Checking if any string entered
+        if($len==0){
+            echo "</datalist>";
+            exit;
+        }
 
         // Loop through every City name in 
         foreach($city as $key => $value){
@@ -143,7 +144,7 @@ switch ($q) {
             }
         }
         // printing Option string
-        echo $options;
+        echo $options."</datalist>";
         exit;
     case 'getHotel':
 
