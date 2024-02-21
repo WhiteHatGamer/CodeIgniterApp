@@ -15,10 +15,11 @@
             </div>
             <div class="card-body">
                 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
-                    <input style="background-color: rgba(242, 242, 242, 0.7);" class="form-control" type="password" placeholder='Old Password' name="OldPassword" required><br>
-                    <input style="background-color: rgba(242, 242, 242, 0.7);" class='form-control' type="password" placeholder="New Password" name="NewPassword" id="NewPassword" required onchange=validatePassword()>
+                    <input hidden autocomplete="username" class="form-control" style="background-color: rgba(242, 242, 242, 0.7);" type="text" placeholder='User Name' value="<?=$_SESSION['email']?>" disabled>
+                    <input style="background-color: rgba(242, 242, 242, 0.7);" autocomplete="current-password" class="form-control" type="password" placeholder='Old Password' name="OldPassword" required><br>
+                    <input style="background-color: rgba(242, 242, 242, 0.7);" autocomplete="new-password" class='form-control' type="password" placeholder="New Password" name="NewPassword" id="NewPassword" required onchange=validatePassword()>
                     <div class="input-group mb-3">
-                        <input style="background-color: rgba(242, 242, 242, 0.7);" class='form-control' type="password" placeholder="Confirm Password" name="ConfirmPassword" id="ConfirmPassword" required onkeyup=validatePassword()>
+                        <input style="background-color: rgba(242, 242, 242, 0.7);" autocomplete="new-password" class='form-control' type="password" placeholder="Confirm Password" name="ConfirmPassword" id="ConfirmPassword" required onkeyup=validatePassword()>
                         <div class="input-group-append">
                             <div class="input-group-text">
                             <button type="button" name="hidden" onclick="
