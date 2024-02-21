@@ -59,12 +59,10 @@
                                 </tr>
                                 <tr>
                                     <td><input class='form-control' type="text" name="city" id="city" placeholder="Type City" required list="id_list" onkeyup="getCity(this.value)" onblur="getHotels(this.value)" autocomplete="off" value="<?= $city ?>" autofocus></td>
-                                    <datalist id="id_list">
                                         <div id="id_city">
                                             <!-- To be filled onKeyUp type -->
 
                                         </div>
-                                    </datalist>
 
                                     <!-- Select List Based on Selected City -->
                                     <td><select class='form-control' id="hotel" name="hotel" onchange=getExpense(this.value) required>
