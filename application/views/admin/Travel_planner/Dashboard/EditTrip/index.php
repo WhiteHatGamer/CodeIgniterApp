@@ -73,11 +73,9 @@
 
         <!-- // List Details with same form as create -->
             <td><input class='form-control' type="text" name="source" id="source" required list="id_list" value="<?=$edit['source']?>" onkeyup="getCity(this.value)" autocomplete="off"></td>
-            <td><input class='form-control' type="text" name="destination" id="destination" value="<?=$edit['destination']?>" required list="id_list" onkeyup="getCity(this.value)" autocomplete="off"></td>
-            <datalist id="id_list">
-                <div id="id_city">
-                </div>
-            </datalist>
+        <td><input class='form-control' type="text" name="destination" id="destination" value="<?=$edit['destination']?>" required list="id_list" onkeyup="getCity(this.value)" autocomplete="off"></td>
+            <div id="id_city">
+            </div>
             <td><select class='form-control form-select' name="way" onchange=CalculateTime(this.value)>
                 <option value="">--select-Transport--</option>
                 <option value="airplane" <?php if($edit['way']=='airplane') echo 'selected'; ?>>Airplane</option>
