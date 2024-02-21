@@ -73,12 +73,10 @@
                         </div>
                         <input type="text" class="form-control" name="destination" id="destination" placeholder="Type Destination City" required list="id_list" onclick="getCity(this.value)" onkeyup="getCity(this.value)" autocomplete="off">
                     </div>
-                    <datalist id="id_list">
-                        <div id="id_city">
-                            <!-- To be filled onKeyUp type -->
-            
-                        </div>
-                    </datalist>
+                    <div id="id_city">
+                        <!-- To be filled onKeyUp type -->
+        
+                    </div>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn bg-olive">
                             <input id="way1" name='way' type="radio" onclick="CalculateTime(this.value)" autocomplete='off' value="airplane" required><i class="fas fa-plane"></i>Airplane</option>
