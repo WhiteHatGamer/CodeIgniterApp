@@ -22,7 +22,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><button class='btn bg-gradient-info'><i class="fas fa-bars"></i></button></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?= base_url()."index.php/admin/"?>frames/dashboard3" class="nav-link">Home</a>
+        <a href="<?= base_url()."admin/"?>frames/dashboard3" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>

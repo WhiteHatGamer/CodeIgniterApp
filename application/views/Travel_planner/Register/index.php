@@ -18,7 +18,7 @@
       <div class="register-box">
         <div class="card card-outline card-primary">
           <div class="card-header text-center">
-            <a href="<?= base_url()."index.php/admin/"?>Travel_planner" class="h1">
+            <a href="<?= base_url()."admin/"?>Travel_planner" class="h1">
               <img src="<?=base_url("assets/dist/img/Travel_planner_128.png")?>" alt="Travel Planner Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
               <b>T</b>ravel<b>P</b>lanner
             </a>
@@ -100,7 +100,7 @@
 
     </div>
     <!-- /.register-page -->
-    <a class='float-right' href='vscode://file/C:\xampp\htdocs\CodeIgniterApp\application\views\admin\Travel_planner\Register\index.php'><button class='btn btn-sm btn-dark'>Open In</button><button class="btn btn-sm btn-outline-primary">Code</button></a>
+    <a class='float-right' href='vscode://file/C:\xampp\htdocs\CodeIgniterApp\application\views\Travel_planner\Register\index.php'><button class='btn btn-sm btn-dark'>Open In</button><button class="btn btn-sm btn-outline-primary">Code</button></a>
   </body>
   <script>
       var password = document.getElementById("password");
