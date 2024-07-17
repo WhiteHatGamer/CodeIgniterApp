@@ -54,14 +54,14 @@
           $_SESSION['name'] = $name;
       }
 
-      $this->load->view('admin/Travel_planner/inc/header');
-      $this->load->view('admin/Travel_planner/dashboard/index', $user_details);
-      $this->load->view('admin/Travel_planner/inc/footer');
+      $this->load->view('Travel_planner/inc/header');
+      $this->load->view('Travel_planner/dashboard/index', $user_details);
+      $this->load->view('Travel_planner/inc/footer');
       
     }
     
     public function get_hint(){
-      $this->load->view('admin/Travel_planner/dashboard/getHint');
+      $this->load->view('Travel_planner/dashboard/getHint');
     }
   }
 

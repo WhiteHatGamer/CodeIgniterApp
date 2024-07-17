@@ -44,11 +44,11 @@ use PhpOffice\PhpSpreadsheet\Writer\Xls as WriterXls;
             if($this->input->post('stay')){
                 if($this->hotel_model->update_stay($this->input->post('stay'))){
 
-                    $this->load->view("admin\Travel_planner\inc\saved");
+                    $this->load->view("Travel_planner\inc\saved");
                 }else{
                     $data['errorTitle'] = "Not Saved";
                     $data['error'] = "Unable To Update Details";
-                    $this->load->view("admin\Travel_planner\inc\warning",$data);
+                    $this->load->view("Travel_planner\inc\warning",$data);
                 }
 
             }
@@ -66,7 +66,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xls as WriterXls;
             
             if($this->input->post('confirm_delete')){
                 if($this->hotel_model->delete_stay($this->input->post('confirm_delete'))){
-                    $this->load->view("admin\Travel_planner\inc\deleted");
+                    $this->load->view("Travel_planner\inc\deleted");
                 }else{
                     
                     redirect(adminTravelPlannerUrl().'hotel/');
@@ -76,16 +76,16 @@ use PhpOffice\PhpSpreadsheet\Writer\Xls as WriterXls;
             $result = $this->hotel_model->get_stays();
             if(!$result){
                 // No Data Stored
-                $this->load->view("admin\Travel_planner\inc/header");
-                $this->load->view("admin\Travel_planner\inc/no_data_hotel");
-                $this->load->view("admin\Travel_planner\inc/footer");
+                $this->load->view("Travel_planner\inc/header");
+                $this->load->view("Travel_planner\inc/no_data_hotel");
+                $this->load->view("Travel_planner\inc/footer");
             }else{
                 
                 $data['result']=$result;
                 // Details Available
-                $this->load->view("admin\Travel_planner\inc/header");
-                $this->load->view("admin\Travel_planner\Dashboard\ListStays\index",$data);
-                $this->load->view("admin\Travel_planner\inc/footer");
+                $this->load->view("Travel_planner\inc/header");
+                $this->load->view("Travel_planner\Dashboard\ListStays\index",$data);
+                $this->load->view("Travel_planner\inc/footer");
             }
         }
 
@@ -222,7 +222,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xls as WriterXls;
                 $data['errorTitle'] = "Uploading Finished";
                 $data['error'] = "$successRow Out of $dataIDX Uploaded";
 
-                $this->load->view("admin\Travel_planner\inc/warning",$data);
+                $this->load->view("Travel_planner\inc/warning",$data);
 
             }
             
@@ -234,7 +234,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xls as WriterXls;
                     if($this->hotel_model->store_stays()){
                         
                         // If success Show Toast Animation
-                        $this->load->view("admin\Travel_planner\inc\saved");
+                        $this->load->view("Travel_planner\inc\saved");
                     }
                     
 
@@ -243,13 +243,13 @@ use PhpOffice\PhpSpreadsheet\Writer\Xls as WriterXls;
                     // Catches Exception
                     $data['errorTitle'] = "Error Occurred";
                     $data['error'] = $th->getMessage();
-                    $this->load->view("admin\Travel_planner\inc\warning", $data);
+                    $this->load->view("Travel_planner\inc\warning", $data);
                     return;
                 }
             }
 
-            $this->load->view("admin\Travel_planner\inc/header");
-            $this->load->view("admin\Travel_planner\Dashboard\AppointHotel/index");
-            $this->load->view("admin\Travel_planner\inc/footer");
+            $this->load->view("Travel_planner\inc/header");
+            $this->load->view("Travel_planner\Dashboard\AppointHotel/index");
+            $this->load->view("Travel_planner\inc/footer");
         }
     }

@@ -19,9 +19,9 @@
             }
 
             $data = $this->user_model->get_user_details($this->session->email);
-            $this->load->view("admin/Travel_planner/inc/header");
-            $this->load->view("admin/Travel_planner/Dashboard/Profile/index", $data);
-            $this->load->view("admin/Travel_planner/inc/footer");
+            $this->load->view("Travel_planner/inc/header");
+            $this->load->view("Travel_planner/Dashboard/Profile/index", $data);
+            $this->load->view("Travel_planner/inc/footer");
         }
 
         public function edit_profile(){
@@ -43,11 +43,11 @@
                     
                     $data = $this->user_model->get_user_details($this->session->email);
                     if($data['image']){
-                        $this->load->view("admin/Travel_planner/inc/confirm");
+                        $this->load->view("Travel_planner/inc/confirm");
                     }else{
                         $data['errorTitle'] = "Sorry";
                         $data['error'] = "No Image Stored to Delete";
-                        $this->load->view("admin/Travel_planner/inc/warning",$data);
+                        $this->load->view("Travel_planner/inc/warning",$data);
                     }
                     
                 }
@@ -90,9 +90,9 @@
             }
     
             $data = $this->user_model->get_user_details($this->session->email);
-            $this->load->view("admin/Travel_planner/inc/header");
-            $this->load->view("admin/Travel_planner/Dashboard/Profile/Edit_profile", $data);
-            $this->load->view("admin/Travel_planner/inc/footer");
+            $this->load->view("Travel_planner/inc/header");
+            $this->load->view("Travel_planner/Dashboard/Profile/Edit_profile", $data);
+            $this->load->view("Travel_planner/inc/footer");
         }
 
         public function password(){
@@ -109,7 +109,7 @@
 
                     $data['errorTitle'] = 'Wrong Password';
                     $data['error'] = 'Unable to Update Password';
-                    $this->load->view("admin/Travel_planner/inc/warning",$data);
+                    $this->load->view("Travel_planner/inc/warning",$data);
                 }else{
                     
                     $_POST['PasswordChanged'] = true;
@@ -117,9 +117,9 @@
                 }
             }
     
-            $this->load->view("admin/Travel_planner/inc/header");
-            $this->load->view("admin/Travel_planner/Dashboard/Profile/Password");
-            $this->load->view("admin/Travel_planner/inc/footer");
+            $this->load->view("Travel_planner/inc/header");
+            $this->load->view("Travel_planner/Dashboard/Profile/Password");
+            $this->load->view("Travel_planner/inc/footer");
         }
 
         public function clear_session(){

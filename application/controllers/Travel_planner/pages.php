@@ -17,16 +17,16 @@
 
             if((!$this->session->email) && ($this->session->remail)){
                 $data= $this->user_model->get_user_details($this->session->remail);
-                $this->load->view('admin/Travel_planner/inc/logged_out',$data);
+                $this->load->view('Travel_planner/inc/logged_out',$data);
                 return;
             }
             if($this->session->email){
                 redirect(adminTravelPlannerUrl()."dashboard");
             }
 
-            $this->load->view('admin/Travel_planner/inc/header');
-            $this->load->view('admin/Travel_planner/index');
-            $this->load->view('admin/Travel_planner/inc/footer');
+            $this->load->view('Travel_planner/inc/header');
+            $this->load->view('Travel_planner/index');
+            $this->load->view('Travel_planner/inc/footer');
         }
         
     }

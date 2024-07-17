@@ -63,10 +63,10 @@
             }else{
 
                 // Authentication Not Successful
-                $this->load->view("admin/Travel_planner/inc/header");
-                $this->load->view("admin/Travel_planner/inc/invalid_user");
-                $this->load->view('admin/Travel_planner/index');
-                $this->load->view("admin/Travel_planner/inc/footer");
+                $this->load->view("Travel_planner/inc/header");
+                $this->load->view("Travel_planner/inc/invalid_user");
+                $this->load->view('Travel_planner/index');
+                $this->load->view("Travel_planner/inc/footer");
             }
         }
     }
