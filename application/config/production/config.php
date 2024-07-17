@@ -35,7 +35,7 @@ $config['base_url'] = 'http://10.255.254.37/CodeIgniterApp/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
