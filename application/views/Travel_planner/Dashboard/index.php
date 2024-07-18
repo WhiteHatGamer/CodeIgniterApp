@@ -136,7 +136,7 @@
     <button type="submit">Edit Profile</button>
     </form> -->
 </div>
-<a class='float-right' href='vscode://file/C:\xampp\htdocs\CodeIgniterApp\application\views\admin\Travel_planner\Dashboard\index.php'><button class='btn btn-sm btn-dark'>Open In</button><button class="btn btn-sm btn-outline-primary">Code</button></a>
+<a class='float-right' href='vscode://file/C:\xampp\htdocs\CodeIgniterApp\application\views\Travel_planner\Dashboard\index.php'><button class='btn btn-sm btn-dark'>Open In</button><button class="btn btn-sm btn-outline-primary">Code</button></a>
 
 <!-- jQuery -->
 <script src="<?=base_url('assets/plugins/jquery/jquery.min.js')?>"></script>
