@@ -16,7 +16,7 @@
 <!-- Automatic element centering -->
 <div class="lockscreen-wrapper">
   <div class="lockscreen-logo">
-    <a href="<?= base_url()."index.php/admin/"?>frames/dashboard2"><b>Admin</b>LTE</a>
+    <a href="<?= base_url()."admin/"?>frames/dashboard2"><b>Admin</b>LTE</a>
   </div>
   <!-- User name -->
   <div class="lockscreen-name">John Doe</div>

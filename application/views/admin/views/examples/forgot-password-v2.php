@@ -18,7 +18,7 @@
 <div class="login-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="<?= base_url()."index.php/admin/"?>frames/dashboard2" class="h1"><b>Admin</b>LTE</a>
+      <a href="<?= base_url()."admin/"?>frames/dashboard2" class="h1"><b>Admin</b>LTE</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>

@@ -17,14 +17,14 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="<?= base_url()."index.php/admin/"?>frames/dashboard2"><b>Admin</b>LTE</a>
+    <a href="<?= base_url()."admin/"?>frames/dashboard2"><b>Admin</b>LTE</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="<?= base_url()."index.php/admin/"?>frames/dashboard3" method="post">
+      <form action="<?= base_url()."admin/"?>frames/dashboard3" method="post">
         <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="Email">
           <div class="input-group-append">

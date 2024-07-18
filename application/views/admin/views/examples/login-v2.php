@@ -19,12 +19,12 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="<?= base_url()."index.php/admin/"?>frames/dashboard2" class="h1"><b>Admin</b>LTE</a>
+      <a href="<?= base_url()."admin/"?>frames/dashboard2" class="h1"><b>Admin</b>LTE</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="<?= base_url()."index.php/admin/"?>frames/dashboard3" method="post">
+      <form action="<?= base_url()."admin/"?>frames/dashboard3" method="post">
         <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="Email">
           <div class="input-group-append">
