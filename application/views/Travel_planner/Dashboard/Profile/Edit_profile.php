@@ -20,7 +20,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <img style="height:150px; width: 150px; border-radius: 50%; border: 10px solid #4F5F5F;" src="<?php if($image){ echo ("data:image/jpeg;base64, ".base64_encode($image));}?>"/>
                 <button class='btn btn-xs btn-danger' name='dltImg' value="1"><i class="fas fa-trash"></i></button>

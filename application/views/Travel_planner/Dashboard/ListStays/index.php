@@ -165,7 +165,7 @@
                 <div class="card-body" style="background-color: rgba(255, 255, 255, .75);">
                     <div id="hotel_table_wrapper" class="dataTables_wrapper dt-bootstrap4">
 
-                        <form method='post' action="<?= $_SERVER['PHP_SELF'] ?>">
+                        <form method='post' action="<?= $_SERVER['REQUEST_URI'] ?>">
                             <table id="hotel_table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>

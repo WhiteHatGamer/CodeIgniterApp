@@ -35,7 +35,7 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                    <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+                    <form action="<?php echo $_SERVER['REQUEST_URI']?>" method="post">
                         <input class="form-control" placeholder="Id No:" type="number" name="id" required autocomplete="off"><br>
                         <button class="btn bg-gradient-danger float-right" type="submit" name="submit" value="1">Delete</button>
                     </form>

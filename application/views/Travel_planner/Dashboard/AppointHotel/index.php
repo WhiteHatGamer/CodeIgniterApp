@@ -184,7 +184,7 @@
                     <div class="card-body">
                 
                         <!-- Form Start -->
-                        <form method="post" name="stay" action=<?=$_SERVER['PHP_SELF']?>>
+                        <form method="post" name="stay" action=<?=$_SERVER['REQUEST_URI']?>>
                             <input class='form-control' type="text" name="city" id="city" placeholder="Type Location" required list="id_list" onkeyup="getCity(this.value)" onblur="getHotels(this.value)" autocomplete="off">
                             <div id="id_city">
                                 <!-- To be filled onKeyUp type -->

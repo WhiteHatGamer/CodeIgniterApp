@@ -60,7 +60,7 @@
                 </div>
             
                 <!-- Form Start -->
-                <form method="post" name="plan" action=<?=$_SERVER['PHP_SELF']?>>
+                <form method="post" name="plan" action=<?=$_SERVER['REQUEST_URI']?>>
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-plane-departure"></i></span>

@@ -59,7 +59,7 @@
         <!-- // $result = $mysqli->query("SELECT * FROM $JourneyTable WHERE id={$_POST['edit']}")->fetch_assoc(); -->
         
         <!-- // Creating Form with Table -->
-        <form method='post' action='<?=$_SERVER['PHP_SELF']?>'><table class='table table-striped table-bordered'>
+        <form method='post' action='<?=$_SERVER['REQUEST_URI']?>'><table class='table table-striped table-bordered'>
             <tr>
                 <th>Source</th>
                 <th>Destination</th>
@@ -92,7 +92,7 @@
         </form>
 
         <!-- Separate Form to Cancel Else Conflicts with required and Client side -->
-        <form method="post" action="<?= $_SERVER['PHP_SELF']?>">
+        <form method="post" action="<?= $_SERVER['REQUEST_URI']?>">
             <td><button class="btn btn-danger" type='submit' name='cancel'><i class="fas fa-times"></i></button></td>
             </tr></table></form></div></div>
         <?php
@@ -103,7 +103,7 @@
     if(isset($_POST['delete'])){
         echo "<div style='background-color: #f2f2f2;'>";
         echo "<div class='card-body'><div class='card'><div class='card-header'><h3 class='card-title'><b>C</b>onfirm <b>D</b>elete:</h3></div>";
-        echo "<div class='card-body p-0'><form method='post' action='{$_SERVER['PHP_SELF']}'><table class='table table-striped table-bordered'>
+        echo "<div class='card-body p-0'><form method='post' action='{$_SERVER['REQUEST_URI']}'><table class='table table-striped table-bordered'>
             <tr>
                 <th>Source</th>
                 <th>Destination</th>
@@ -141,7 +141,7 @@
 <div style="min-height: 89%; background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvam9iNjg0LTI3Mi14LmpwZw.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat; background-color: #f8f5f4;">
     <div class="card" style="background-color: rgba(248, 244, 244, 0.6);">
         <!-- // List Upcoming Journeys as Table -->
-        <form method='post' action='<?=$_SERVER['PHP_SELF']?>'>
+        <form method='post' action='<?=$_SERVER['REQUEST_URI']?>'>
                 <div class="card-header">
                     <h3 class="card-title" style="color: black;"><b>E</b>dit <b>J</b>ourneys</h3>
                 </div>
