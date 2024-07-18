@@ -155,7 +155,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="<?= base_url()."index.php/admin/"?>frames/dashboard3" class="brand-link">
+    <a href="<?= base_url()."admin/"?>frames/dashboard3" class="brand-link">
       <img src="<?=base_url('assets/dist/img/AdminLTELogo.png')?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</td></tr>
     </a>
@@ -211,13 +211,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url()."index.php/admin/"?>frames/dashboard2" class="nav-link">
+                <a href="<?= base_url()."admin/"?>frames/dashboard2" class="nav-link">
                   <button class='btn bg-gradient-info'><i class="far fa-circle nav-icon"></i></button>
                   <p>Dashboard v2</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url()."index.php/admin/"?>frames/dashboard3" class="nav-link">
+                <a href="<?= base_url()."admin/"?>frames/dashboard3" class="nav-link">
                   <button class='btn bg-gradient-info'><i class="far fa-circle nav-icon"></i></button>
                   <p>Dashboard v3</p>
                 </a>
@@ -699,7 +699,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url()."index.php/admin/"?>frames/starter" class="nav-link">
+                <a href="<?= base_url()."admin/"?>frames/starter" class="nav-link">
                   <button class='btn bg-gradient-info'><i class="far fa-circle nav-icon"></i></button>
                   <p>Starter Page</p>
                 </a>
@@ -731,7 +731,7 @@
           </li>
           <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
-            <a href="<?= base_url()."index.php/admin/"?>frames/iframe" class="nav-link">
+            <a href="<?= base_url()."admin/"?>frames/iframe" class="nav-link">
               <button class='btn bg-gradient-info'><i class="nav-icon fas fa-ellipsis-h"></i></button>
               <p>Tabbed frames/iframe Plugin</p>
             </a>

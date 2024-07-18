@@ -22,7 +22,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
-      <a href="<?= base_url()."index.php/admin/"?>frames/dashboard3" class="navbar-brand">
+      <a href="<?= base_url()."admin/"?>frames/dashboard3" class="navbar-brand">
         <img src="<?=base_url('assets/dist/img/AdminLTELogo.png')?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">AdminLTE 3</span>
       </a>
