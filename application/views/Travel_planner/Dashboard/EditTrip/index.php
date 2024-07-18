@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Journeys | <?=$_SESSION['email']?></title>
+
     <script>
         // Ajax Scripts For requesting php
 
