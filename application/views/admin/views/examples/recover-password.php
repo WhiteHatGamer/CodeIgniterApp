@@ -17,7 +17,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="<?= base_url()."index.php/admin/"?>frames/dashboard2"><b>Admin</b>LTE</a>
+    <a href="<?= base_url()."admin/"?>frames/dashboard2"><b>Admin</b>LTE</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
