@@ -235,7 +235,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= adminUrl()."Travel_planner"?>" class="nav-link">
+                <a href="<?= adminTravelPlannerUrl()?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Travel Planner</p>
                 </a>

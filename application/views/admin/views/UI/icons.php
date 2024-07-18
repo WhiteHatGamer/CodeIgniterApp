@@ -199,7 +199,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= adminUrl()."Travel_planner"?>" class="nav-link">
+                <a href="<?= adminTravelPlannerUrl()?>" class="nav-link">
                   <button class='btn bg-gradient-info'><i class="far fa-circle nav-icon"></i></button>
                   <p>Travel Planner</p>
                 </a>

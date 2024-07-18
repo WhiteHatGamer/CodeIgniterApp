@@ -113,7 +113,7 @@
     <a href="<?=adminTravelPlannerUrl()."User_profile/clear_session"?>">Or sign in as a different user</a>
   </div>
   <div class="lockscreen-footer text-center">
-    Copyright &copy; 2018-2013 <b><a href="<?= adminTravelPlannerUrl()?>" class="text-black">Travel Planner</a></b><br>
+    Copyright &copy; 2023 <b><a href="<?= adminTravelPlannerUrl()?>" class="text-black">Travel Planner</a></b><br>
     All rights reserved
   </div>
 </div>
