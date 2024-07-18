@@ -123,7 +123,7 @@
                     <td>
                     </td>
                     <td>
-                        <form action="<?= $_SERVER['PHP_SELF']?>" method="post">
+                        <form action="<?= $_SERVER['REQUEST_URI']?>" method="post">
                         <button class='btn btn-xs bg-gradient-danger float-right' name="logout" type="submit"><span  style="color: #f2f2f2;">Log Out</span></button>
                         </form>
                     </td>
