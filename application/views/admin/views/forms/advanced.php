@@ -39,7 +39,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?= base_url()."index.php/admin/"?>frames/dashboard3" class="nav-link">Home</a>
+        <a href="<?= base_url()."admin/"?>frames/dashboard3" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -228,13 +228,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url()."index.php/admin/"?>frames/dashboard2" class="nav-link">
+                <a href="<?= base_url()."admin/"?>frames/dashboard2" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v2</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url()."index.php/admin/"?>frames/dashboard3" class="nav-link">
+                <a href="<?= base_url()."admin/"?>frames/dashboard3" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v3</p>
                 </a>
@@ -748,7 +748,7 @@
           </li>
           <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
-            <a href="<?= base_url()."index.php/admin/"?>frames/iframe" class="nav-link">
+            <a href="<?= base_url()."admin/"?>frames/iframe" class="nav-link">
               <i class="nav-icon fas fa-ellipsis-h"></i>
               <p>Tabbed frames/iframe Plugin</p>
             </a>
