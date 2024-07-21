@@ -12,7 +12,7 @@
 	},
 	"require": {
 		"php": ">=5.3.7",
-		"phpoffice/phpspreadsheet": "*",
+		"phpoffice/phpspreadsheet": "^2.1",
 		"dompdf/dompdf": "*"
 	},
 	"suggest": {
