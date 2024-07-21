@@ -139,12 +139,12 @@ use PhpParser\Node\Stmt\Catch_;
                     break;
                     
                 case 'pdf':
-                    
+
                     // instantiate and use the dompdf class
-                    $fileName = 'hotel.pdf';
+                    $fileName = $uploadsDir.'hotel.pdf';
                     $writer = new Dompdf($spreadsheet);
-                    $writer->save("uploads/".$fileName);
-                    $filePath = "uploads/".$fileName;
+                    $writer->save($fileName);
+                    $filePath = $fileName;
                     header('Content-Disposition: attachment; filename="hotel.pdf"');
                     header("Content-Type: application/download");
                     header('Content-Description: File Transfer;');
@@ -155,11 +155,11 @@ use PhpParser\Node\Stmt\Catch_;
                 case 'csv':
                         
                     // instantiate and use the dompdf class
-                    $fileName = 'hotel.csv';
+                    $fileName = $uploadsDir.'hotel.csv';
                     $writer = new Csv($spreadsheet);
-                    $writer->save("uploads/".$fileName);
+                    $writer->save($fileName);
                     header("Content-Type: application/csv");
-                    redirect(base_url()."uploads/".$fileName);
+                    redirect(base_url().$fileName);
                     break;
                 default:
                     show_404();
