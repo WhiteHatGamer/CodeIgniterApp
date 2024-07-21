@@ -2,6 +2,7 @@
 
     defined('BASEPATH') OR exit('No direct script access allowed');
 
+require_once('vendor/autoload.php');
 use PhpOffice\PhpSpreadsheet\Reader\Csv as ReaderCsv;
 use PhpOffice\PhpSpreadsheet\Reader\Xls;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx as ReaderXlsx;
@@ -11,6 +12,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Html as WriterHtml;
 use PhpOffice\PhpSpreadsheet\Writer\Pdf\Dompdf;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xls as WriterXls;
+use PhpParser\Node\Stmt\Catch_;
 
     class Hotel extends CI_Controller{
         
@@ -115,16 +117,25 @@ use PhpOffice\PhpSpreadsheet\Writer\Xls as WriterXls;
                 $sheet->setCellValue('E' . $rows, $val['checkOut']);
                 $rows++;
             }
+
+            // Create Directory if not exists
+            $uploadsDir = 'assets/uploads/';
+            if (!file_exists($uploadsDir)) {
+                mkdir($uploadsDir, 0777, true);
+            }
             
             switch ($export) {
-
                 case 'excel':
-                    
-                    $fileName = 'hotel.xlsx';
+                    $fileName = $uploadsDir.'hotel.xlsx';
                     $writer = new Xlsx($spreadsheet);
-                    $writer->save("uploads/".$fileName);
+
+                    // Create File if Not Exists
+                    if (!file_exists($fileName)) {
+                        touch($fileName);
+                    }
+                    $writer->save($fileName);
                     header("Content-Type: application/vnd.ms-excel");
-                    redirect(base_url()."uploads/".$fileName);
+                    redirect(base_url().$fileName);
                     break;
                     
                 case 'pdf':
