@@ -223,8 +223,14 @@ use PhpParser\Node\Stmt\Catch_;
                 }
                 $successRow = 0;
                 $writer = new WriterHtml($spreadsheet);
-                $DataHtml = $writer->generateHtmlAll();
-                echo $DataHtml;
+
+                $writer->generateHTMLHeader();
+
+                $dataHtml = $writer->generateHtmlAll();
+                echo $dataHtml;
+
+                $writer->generateHTMLFooter();
+
                 foreach($dataArray as $row){
                     if($this->hotel_model->store_stays($row)){
                         $successRow++;
