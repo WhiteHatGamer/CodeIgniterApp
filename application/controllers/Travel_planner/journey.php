@@ -84,24 +84,30 @@
             $sheet->getColumnDimension('E')->setAutoSize(true);
             $sheet->getColumnDimension('F')->setAutoSize(true);
             
+            // Create Directory if not exists
+            $uploadsDir = 'assets/uploads/';
+            if (!file_exists($uploadsDir)) {
+                mkdir($uploadsDir, 0777, true);
+            }
+
             switch ($export) {
 
                 case 'excel':
                     
-                    $fileName = 'journey.xlsx';
+                    $fileName = $uploadsDir.'journey.xlsx';
                     $writer = new Xlsx($spreadsheet);
-                    $writer->save("uploads/".$fileName);
+                    $writer->save($fileName);
                     header("Content-Type: application/vnd.ms-excel");
-                    redirect(base_url()."uploads/".$fileName);
+                    redirect(base_url().$fileName);
                     break;
                     
                 case 'pdf':
                     
                     // instantiate and use the dompdf class
-                    $fileName = 'journey.pdf';
+                    $fileName = $uploadsDir.'journey.pdf';
                     $writer = new Dompdf($spreadsheet);
-                    $writer->save("uploads/".$fileName);
-                    $filePath = "uploads/".$fileName;
+                    $writer->save($fileName);
+                    $filePath = $fileName;
                     header('Content-Disposition: attachment; filename="journey.pdf"');
                     header("Content-Type: application/download");
                     header('Content-Description: File Transfer;');
@@ -112,11 +118,11 @@
                 case 'csv':
                         
                     // instantiate and use the dompdf class
-                    $fileName = 'journey.csv';
+                    $fileName = $uploadsDir.'journey.csv';
                     $writer = new Csv($spreadsheet);
-                    $writer->save("uploads/".$fileName);
+                    $writer->save($fileName);
                     header("Content-Type: application/csv");
-                    redirect(base_url()."uploads/".$fileName);
+                    redirect(base_url().$fileName);
                     break;
                 default:
                     show_404();
