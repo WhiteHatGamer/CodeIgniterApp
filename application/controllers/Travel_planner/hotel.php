@@ -186,6 +186,7 @@ use PhpParser\Node\Stmt\Catch_;
                         $canRead = 0;
                         $data['errorTitle'] = "Error Importing";
                         $data['error'] = "File Format Not Supported";
+                        $data['warningHtml'] = '<button class="btn btn-info" onClick="window.location.href=window.location.href">Refresh Page to Try Again</button>';
         
                         $this->load->view("Travel_planner\inc/warning",$data);
                         
@@ -203,6 +204,7 @@ use PhpParser\Node\Stmt\Catch_;
                         $canRead = 0;
                         $data['errorTitle'] = "Error Importing";
                         $data['error'] = "File Format Not Supported";
+                        $data['warningHtml'] = '<button class="btn btn-info" onClick="window.location.href=window.location.href">Refresh Page to Try Again</button>';
         
                         $this->load->view("Travel_planner\inc/warning",$data);
 
@@ -254,6 +256,7 @@ use PhpParser\Node\Stmt\Catch_;
                     }
                     $data['errorTitle'] = "Uploading Finished";
                     $data['error'] = "$successRow Out of $dataIDX Uploaded";
+                    $data['warningHtml'] = '<p>Note: Duplicate Entries are not Uploaded</p>';
     
                     $this->load->view("Travel_planner\inc/warning",$data);
 
