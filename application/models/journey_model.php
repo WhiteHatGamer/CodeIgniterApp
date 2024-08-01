@@ -56,6 +56,47 @@
         
     }
 
+    public function check_duplicate($input = array(null=>null)){
+        if($input == array(null=>null)){
+            return false;
+        }
+
+        $result = $this->db->get_where($this->table, $input);
+        if($result->num_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function insert_trips($inputs = array('journey'=>'null')){
+
+        // Getting mail id from session
+        $email  = $this->session->email;
+
+        // Getting input from post variables if input is null(not import)
+        if($inputs == array('journey' => 'null')){
+            $inputs = $this->input->dump_post_array(array('source','destination','way','journey','round'));
+        }
+
+        $inputs['email'] = $email;
+
+        // Checking duplicate entry and return false
+        if($this->check_duplicate($inputs)){
+            return false;
+        }
+
+        // Inserting Input array to db and return code
+        $this->db->insert($this->table, $inputs);
+        if($this->db->error()['code']){
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
+    
     public function insert_trip(){
         $email  = $this->session->email;
         foreach($this->db->query("SELECT EXISTS(SELECT * FROM $this->table WHERE email='$email' AND  journey='{$this->input->post('journey')}')")->result_array()[0] as $key => $val){
