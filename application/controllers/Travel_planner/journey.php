@@ -2,10 +2,18 @@
 
     defined('BASEPATH') OR exit('No direct script access allowed');
 
+    require_once('vendor/autoload.php');
     use PhpOffice\PhpSpreadsheet\Spreadsheet;
+    use PhpOffice\PhpSpreadsheet\Reader\Csv as ReaderCsv;
+    use PhpOffice\PhpSpreadsheet\Reader\Xls;
+    use PhpOffice\PhpSpreadsheet\Reader\Xlsx as ReaderXlsx;
+    use PhpOffice\PhpSpreadsheet\Writer\Html as WriterHtml;
+    use PhpOffice\PhpSpreadsheet\Writer\Xls as WriterXls;
     use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
     use PhpOffice\PhpSpreadsheet\Writer\Pdf\Dompdf;
     use PhpOffice\PhpSpreadsheet\Writer\Csv;
+    use PhpParser\Node\Stmt\Catch_;
+    
 
     class Journey extends CI_Controller{
 
@@ -124,8 +132,97 @@
                 return;
             }
 
-            $this->load->view("Travel_planner\inc/header");
-            if($this->input->server('REQUEST_METHOD')=='POST'){
+            if(isset($_POST['submit'])){
+                // Verifying File
+                $canRead = 1;
+                if(@$_FILES['excel']){
+                    
+                    $reader = new ReaderXlsx();
+                    if(!$reader->canRead($_FILES['excel']['tmp_name'])){
+                        $canRead = 0;
+                        $data['errorTitle'] = "Error Importing";
+                        $data['error'] = "File Format Not Supported";
+                        $data['warningHtml'] = '<button class="btn btn-info" onClick="window.location.href=window.location.href">Refresh Page to Try Again</button>';
+        
+                        $this->load->view("Travel_planner\inc/warning",$data);
+                        
+                    }
+                    if($canRead){
+                        $reader->setReadDataOnly(true);
+                        $spreadsheet = $reader->load($_FILES['excel']['tmp_name']);
+                    }
+                    
+                    
+                }elseif(@$_FILES['csv']){
+                    
+                    $reader = new ReaderCsv();
+                    if(!$reader->canRead($_FILES['csv']['tmp_name'])){
+                        $canRead = 0;
+                        $data['errorTitle'] = "Error Importing";
+                        $data['error'] = "File Format Not Supported";
+                        $data['warningHtml'] = '<button class="btn btn-info" onClick="window.location.href=window.location.href">Refresh Page to Try Again</button>';
+        
+                        $this->load->view("Travel_planner\inc/warning",$data);
+
+                    }
+                    
+                    if($canRead){
+                        $reader->setReadDataOnly(true);
+                        $spreadsheet = $reader->load($_FILES['csv']['tmp_name']);
+                    }
+                }else{
+                    redirect(adminTravelPlannerUrl().'\journey');
+                }
+
+                
+                // run code if only Readable
+                if($canRead){
+                    $dataTitle = [];
+                    $dataArray = [];
+                    $dataIDX = 0;
+                    foreach ($spreadsheet->getActiveSheet()->toArray() as $idx=>$row) {
+                        if($idx == 0){
+                            $dataTitle[1]=$row[1]=='Source'? 'source':exit;
+                            $dataTitle[2]=$row[2]=='Destination'? 'destination':exit;
+                            $dataTitle[3]=$row[3]=='Way'? 'way':exit;
+                            $dataTitle[4]=$row[4]=='Journey'? 'journey':exit;
+                            $dataTitle[5]=$row[5]=='Return'? 'round':exit;
+                            continue;
+                        }
+                        foreach($row as $key=>$value){
+                            if($key==0){
+                                continue;
+                            }
+                            $dataArray[$dataIDX][$dataTitle[$key]] = $value;
+                        }
+                        $dataIDX++;
+                    }
+                    $successRow = 0;
+                    $writer = new WriterHtml($spreadsheet);
+    
+                    $writer->generateHTMLHeader();
+    
+                    $dataHtml = $writer->generateHtmlAll();
+                    echo $dataHtml;
+    
+                    $writer->generateHTMLFooter();
+    
+                    foreach($dataArray as $row){
+                        if($this->journey_model->insert_trips($row)){
+                            $successRow++;
+                        }
+                    }
+                    $data['errorTitle'] = "Uploading Finished";
+                    $data['error'] = "$successRow Out of $dataIDX Uploaded";
+                    $data['warningHtml'] = '<p>Note: Duplicate Entries are not Uploaded</p>';
+    
+                    $this->load->view("Travel_planner\inc/warning",$data);
+
+                }
+
+            }
+
+            if(isset($_POST['plan'])){
                 try{
                     $this->journey_model->insert_trip();
 
@@ -138,6 +235,8 @@
                     $this->load->view("Travel_planner\inc\warning",$data);
                 }
             }
+            
+            $this->load->view("Travel_planner\inc/header");
             $this->load->view("Travel_planner\Dashboard\PlanTrip\index");
             $this->load->view("Travel_planner\inc/footer");
         }
