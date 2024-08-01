@@ -14,11 +14,11 @@
 - [x] Ask about Selection Suggestion AJAX
   - [x] TriedautoComplete Library JQuery
   - [x] Done by adding Datalist in Site Response
-<!-- - [ ] Date of Birth YEAR -->
-- [ ] Add Data using Import
-  -[ ] Check if Data Type is Same
+- [x] Add Data using Import
+  -[x] Check if Data Type is Same
   -[x] Check if Duplicate Entry
   -[x] Do CSV
+<!-- - [ ] Date of Birth YEAR -->
 
 - [ ] Ask about Edit Post Variable Returns in js Functions
 

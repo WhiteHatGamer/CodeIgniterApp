@@ -177,69 +177,87 @@ use PhpParser\Node\Stmt\Catch_;
 
 
             if($this->input->post('submit')){
-                // print_r($_POST);
-                // print_r($_FILES);
+                // Verifying File
+                $canRead = 1;
                 if(@$_FILES['excel']){
-
+                    
                     $reader = new ReaderXlsx();
                     if(!$reader->canRead($_FILES['excel']['tmp_name'])){
-                        redirect(adminTravelPlannerUrl().'hotel/appoint');
-
+                        $canRead = 0;
+                        $data['errorTitle'] = "Error Importing";
+                        $data['error'] = "File Format Not Supported";
+        
+                        $this->load->view("Travel_planner\inc/warning",$data);
+                        
                     }
-                    $reader->setReadDataOnly(true);
-                    $spreadsheet = $reader->load($_FILES['excel']['tmp_name']);
+                    if($canRead){
+                        $reader->setReadDataOnly(true);
+                        $spreadsheet = $reader->load($_FILES['excel']['tmp_name']);
+                    }
                     
-
+                    
                 }elseif(@$_FILES['csv']){
                     
                     $reader = new ReaderCsv();
                     if(!$reader->canRead($_FILES['csv']['tmp_name'])){
-                        redirect(adminTravelPlannerUrl().'hotel/appoint');
+                        $canRead = 0;
+                        $data['errorTitle'] = "Error Importing";
+                        $data['error'] = "File Format Not Supported";
+        
+                        $this->load->view("Travel_planner\inc/warning",$data);
 
                     }
-                    $reader->setReadDataOnly(true);
-                    $spreadsheet = $reader->load($_FILES['csv']['tmp_name']);
+                    
+                    if($canRead){
+                        $reader->setReadDataOnly(true);
+                        $spreadsheet = $reader->load($_FILES['csv']['tmp_name']);
+                    }
                 }else{
                     redirect(adminTravelPlannerUrl().'\hotel');
                 }
-                $dataTitle = [];
-                $dataArray = [];
-                $dataIDX = 0;
-                foreach ($spreadsheet->getActiveSheet()->toArray() as $idx=>$row) {
-                    if($idx == 0){
-                        $dataTitle[1]=$row[1]=='City'? 'city':exit;
-                        $dataTitle[2]=$row[2]=='Hotel'? 'hotel':exit;
-                        $dataTitle[3]=$row[3]=='Check-In'? 'checkIn':exit;
-                        $dataTitle[4]=$row[4]=='Check-Out'? 'checkOut':exit;
-                        continue;
-                    }
-                    foreach($row as $key=>$value){
-                        if($key==0){
+
+                // Run code if only Readable
+                if($canRead){
+                    $dataTitle = [];
+                    $dataArray = [];
+                    $dataIDX = 0;
+                    foreach ($spreadsheet->getActiveSheet()->toArray() as $idx=>$row) {
+                        if($idx == 0){
+                            $dataTitle[1]=$row[1]=='City'? 'city':exit;
+                            $dataTitle[2]=$row[2]=='Hotel'? 'hotel':exit;
+                            $dataTitle[3]=$row[3]=='Check-In'? 'checkIn':exit;
+                            $dataTitle[4]=$row[4]=='Check-Out'? 'checkOut':exit;
                             continue;
                         }
-                        $dataArray[$dataIDX][$dataTitle[$key]] = $value;
+                        foreach($row as $key=>$value){
+                            if($key==0){
+                                continue;
+                            }
+                            $dataArray[$dataIDX][$dataTitle[$key]] = $value;
+                        }
+                        $dataIDX++;
                     }
-                    $dataIDX++;
-                }
-                $successRow = 0;
-                $writer = new WriterHtml($spreadsheet);
-
-                $writer->generateHTMLHeader();
-
-                $dataHtml = $writer->generateHtmlAll();
-                echo $dataHtml;
-
-                $writer->generateHTMLFooter();
-
-                foreach($dataArray as $row){
-                    if($this->hotel_model->store_stays($row)){
-                        $successRow++;
+                    $successRow = 0;
+                    $writer = new WriterHtml($spreadsheet);
+    
+                    $writer->generateHTMLHeader();
+    
+                    $dataHtml = $writer->generateHtmlAll();
+                    echo $dataHtml;
+    
+                    $writer->generateHTMLFooter();
+    
+                    foreach($dataArray as $row){
+                        if($this->hotel_model->store_stays($row)){
+                            $successRow++;
+                        }
                     }
-                }
-                $data['errorTitle'] = "Uploading Finished";
-                $data['error'] = "$successRow Out of $dataIDX Uploaded";
+                    $data['errorTitle'] = "Uploading Finished";
+                    $data['error'] = "$successRow Out of $dataIDX Uploaded";
+    
+                    $this->load->view("Travel_planner\inc/warning",$data);
 
-                $this->load->view("Travel_planner\inc/warning",$data);
+                }
 
             }
             
