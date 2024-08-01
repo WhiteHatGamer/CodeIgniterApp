@@ -53,6 +53,48 @@
 
         }
 
+
+        public function check_duplicate($input = array('note'=>'null')){
+            if($input == array('notes'=>'null')){
+                return false;
+            }
+
+            $results = $this->db->get_where($this->table, $input);
+            if($results->num_rows() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+
+        public function insert_notes($inputs = array('notes'=>'null')){
+            
+            // Getting mail id from session
+            $email  = $this->session->email;
+            
+            if($inputs == array('notes'=>'null')){
+                $inputs = $this->input->dump_post_array(array('create_time', 'note'));
+            }
+        
+            $inputs['email'] = $email;
+            
+            if($this->check_duplicate($inputs)){
+                return false;
+            }
+
+            
+            // Inserting Input array to db and return code
+            $this->db->insert($this->table, $inputs);
+            if($this->db->error()['code']){
+                return false;
+            }else{
+                return true;
+            }
+
+        }
+
+        
         public function insert_note(){
             $email  = $this->session->email;
 
