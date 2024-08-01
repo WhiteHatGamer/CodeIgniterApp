@@ -170,12 +170,12 @@
             'https://c8.alamy.com/comp/2D6RDC0/hotel-room-service-icons-set-simple-set-of-hotel-room-service-vector-icons-for-web-design-on-white-background-2D6RDC0.jpg'
         ); background-size: cover;">
             <div style="background-color: rgba(255, 255, 255, 0.4);" class="center-page">
-                <div class="card col-md-5" style="background-color: rgba(255, 255, 255, 0.92);">
+                <div class="card card-outline card-success col-md-5" style="background-color: rgba(255, 255, 255, 0.92);">
                     <div class="card-header">
                         <h3 class="card-title"><b>H</b>otel <b>S</b>tay</h3>
-                        <div class="btn-group float-right">
-                            <button type="button" class="btn btn-outline-success dropdown-toggle btn-sm" data-toggle="dropdown"><i class="fas fa-file-import"></i>Import<span class="sr-only"></span></button>
-                            <div class="dropdown-menu" role="menu">
+                        <div class="btn-group float-right dropdown">
+                            <button type="button" id='dropdownMenuButton' class="btn btn-outline-success dropdown-toggle btn-sm" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><i class="fas fa-file-import"></i>Import<span class="sr-only"></span></button>
+                            <div class="dropdown-menu" role="menu" labelledby="dropdownMenuButton" id='dropdown-menu'>
                                 <button onclick="importData('excel')" class="dropdown-item btn-sm"><i class="fas fa-file-excel"></i>Excel</button>
                                 <button onclick="importData('csv')" class="dropdown-item btn-sm"><i class="fas fa-file-csv"></i>CSV</button>
                             </div>
