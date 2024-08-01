@@ -58,85 +58,97 @@
     </script>
 </head>
 <body>
-    <div style="min-height: 90%; background-image: url('https://in2english.net/wp-content/uploads/2017/04/transport.png'); background-size: cover;" class='login-page'>
-        <div class="card col-md-6" style="background-color: rgba(29, 94, 116, 0.75);">
-            <div class="card-header">
-                <h3 class="card-title text-bold " style="color: #e9ecef;">Plan Journey</h3>
-                <div class="btn-group float-right dropdown">
-                    <button type="button" id='dropdownMenuButton' class="btn btn-outline-warning dropdown-toggle btn-sm" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><i class="fas fa-file-import"></i>Import<span class="sr-only"></span></button>
-                    <div class="dropdown-menu" role="menu" labelledby="dropdownMenuButton" id='dropdown-menu'>
-                        <button onclick="importData('excel')" class="dropdown-item btn-sm"><i class="fas fa-file-excel"></i>Excel</button>
-                        <button onclick="importData('csv')" class="dropdown-item btn-sm"><i class="fas fa-file-csv"></i>CSV</button>
+    <div style="min-height: 89%; background-image: url('https://in2english.net/wp-content/uploads/2017/04/transport.png'); background-size: cover;">
+        <div style="background-color: rgba(255, 255, 255, 0.4);" class="center-page">
+            <div class="card card-outline card-warning col-md-6" style="background-color: rgba(255, 255, 255, 0.92);">
+                <div class="card-header">
+                    <h3 class="card-title"><b>P</b>lan <b>J</b>ourney</h3>
+                    <div class="btn-group float-right dropdown">
+                        <button type="button" id='dropdownMenuButton' class="btn btn-outline-warning dropdown-toggle btn-sm" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><i class="fas fa-file-import"></i>Import<span class="sr-only"></span></button>
+                        <div class="dropdown-menu" role="menu" labelledby="dropdownMenuButton" id='dropdown-menu'>
+                            <button onclick="importData('excel')" class="dropdown-item btn-sm"><i class="fas fa-file-excel"></i>Excel</button>
+                            <button onclick="importData('csv')" class="dropdown-item btn-sm"><i class="fas fa-file-csv"></i>CSV</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-body">
-
-                <!-- Conditional Radio Buttons -->
-                <div class="custom-control custom-radio">
-                    <input type="radio" id="trip1" name="trip" class="custom-control-input" onclick="round.disabled = true;round.value = ''" checked value="one_way">
-                    <label for="trip1" class="custom-control-label" style="color: #e9ecef;">One Way<i class="fas fa-arrow-right"></i></label>&emsp;&emsp;
-                </div>
-                <div class="custom-control custom-radio">
-                    <input type="radio" id="trip2" name="trip" class="custom-control-input" onclick="round.disabled = false" value="round_trip">
-                    <label for="trip2" class="custom-control-label" style="color: #e9ecef;">Round Trip<i class="fas fa-arrows-alt-h"></i></label>
-                </div>
+                <div class="card-body">
+                
+                    <!-- Form Start -->
+                    <form method="post" name="plan" action=<?=$_SERVER['REQUEST_URI']?>>
+                        <div class="input-group mb-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-plane-departure"></i></span>
+                            </div>
+                            <input type="text" name="source" id="source" class="form-control" placeholder="Type Source City" required list="id_list" onclick="getCity(this.value)" onkeyup="getCity(this.value)" autocomplete="off">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-plane-arrival"></i></span>
+                            </div>
+                            <input type="text" class="form-control" name="destination" id="destination" placeholder="Type Destination City" required list="id_list" onclick="getCity(this.value)" onkeyup="getCity(this.value)" autocomplete="off">
+                        </div>
+                        <div id="id_city">
+                            <!-- To be filled onKeyUp type -->
             
-                <!-- Form Start -->
-                <form method="post" name="plan" action=<?=$_SERVER['REQUEST_URI']?>>
-                    <div class="input-group mb-1">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-plane-departure"></i></span>
                         </div>
-                        <input type="text" name="source" id="source" class="form-control" placeholder="Type Source City" required list="id_list" onclick="getCity(this.value)" onkeyup="getCity(this.value)" autocomplete="off">
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-plane-arrival"></i></span>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn bg-olive">
+                                <input id="way1" name='way' type="radio" onclick="CalculateTime(this.value)" autocomplete='off' value="airplane" required><i class="fas fa-plane"></i>Airplane</option>
+                            </label>
+                            <label class="btn bg-olive">
+                                <input id="way2" name='way' type="radio" onclick="CalculateTime(this.value)" autocomplete='off' value="train"><i class="fas fa-train"></i>Train</option>
+                            </label>
+                            <label class="btn bg-olive">
+                                <input id="way3" name='way' type="radio" onclick="CalculateTime(this.value)" autocomplete='off' value="car"><i class="fas fa-car"></i>Car</option>
+                            </label>
+                            <label class="btn bg-olive">
+                                <input id="way4" name='way' type="radio" onclick="CalculateTime(this.value)" autocomplete='off' value="bus"><i class="fas fa-bus"></i>Bus</option>
+                            </label>
+                            <label class="btn bg-olive">
+                                <input id="way5" name='way' type="radio" onclick="CalculateTime(this.value)" autocomplete='off' value="cycling"><i class="fas fa-bicycle"></i>Cycle</option>
+                            </label>
+                            <label class="btn bg-olive">
+                                <input id="way6" name='way' type="radio" onclick="CalculateTime(this.value)" autocomplete='off' value="walk"><i class="fas fa-walking"></i>Walk</option>
+                            </label>
                         </div>
-                        <input type="text" class="form-control" name="destination" id="destination" placeholder="Type Destination City" required list="id_list" onclick="getCity(this.value)" onkeyup="getCity(this.value)" autocomplete="off">
-                    </div>
-                    <div id="id_city">
-                        <!-- To be filled onKeyUp type -->
-        
-                    </div>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn bg-olive">
-                            <input id="way1" name='way' type="radio" onclick="CalculateTime(this.value)" autocomplete='off' value="airplane" required><i class="fas fa-plane"></i>Airplane</option>
-                        </label>
-                        <label class="btn bg-olive">
-                            <input id="way2" name='way' type="radio" onclick="CalculateTime(this.value)" autocomplete='off' value="train"><i class="fas fa-train"></i>Train</option>
-                        </label>
-                        <label class="btn bg-olive">
-                            <input id="way3" name='way' type="radio" onclick="CalculateTime(this.value)" autocomplete='off' value="car"><i class="fas fa-car"></i>Car</option>
-                        </label>
-                        <label class="btn bg-olive">
-                            <input id="way4" name='way' type="radio" onclick="CalculateTime(this.value)" autocomplete='off' value="bus"><i class="fas fa-bus"></i>Bus</option>
-                        </label>
-                        <label class="btn bg-olive">
-                            <input id="way5" name='way' type="radio" onclick="CalculateTime(this.value)" autocomplete='off' value="cycling"><i class="fas fa-bicycle"></i>Cycle</option>
-                        </label>
-                        <label class="btn bg-olive">
-                            <input id="way6" name='way' type="radio" onclick="CalculateTime(this.value)" autocomplete='off' value="walk"><i class="fas fa-walking"></i>Walk</option>
-                        </label>
-                    </div>
-                    <output name="tripTime" id="tripTime" style="color: #e9ecef;"></output>
-                    <br><br>
-                    
-                    <!-- Date with Limit using PHP -->
-                    <label class="form-control-label" for="journey" style="color: #e9ecef;">Journey Date: </label>
-                    <input class="form-control col-md-4" type="datetime-local" name="journey" id="journey" required min="<?php echo date('Y-m-d')."T".date("H:i");?>">
-                    <label class="form-control-label text-center" for="round" style="color: #e9ecef;">Return Date: </label>
-                    <input class="form-control col-md-4" type="datetime-local" name="round" id="round" disabled required onclick="Calculate_min()"><br><br>
-                    <button class="btn btn-small bg-gradient-primary float-right" type="submit" name="plan">Save</button>
-                </form>
+                        <output name="tripTime" id="tripTime"></output>
+                        <br><br>
+                        
+                        <!-- Date with Limit using PHP -->
+                         
+                        <div class="input-group mb-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            </div>
+                            <input class="form-control col-md-4" type="text" placeholder="Journey Date" onfocus="(this.type='datetime-local')" name="journey" id="journey" required min="<?php echo date('Y-m-d')."T".date("H:i");?>">
+                        </div>
+                        
+                        <div class="custom-control custom-radio">
+                            <input type="checkbox" id="trip2" name="trip" class="custom-control-input" value="round_trip">
+                            <label for="trip2" class="custom-control-label">Round Trip<i class="fas fa-arrows-alt-h"></i></label>
+                        </div>
+                        <div class="input-group mb-1" id='round-div' style='display: none'>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            </div>
+                            <input class="form-control col-md-4" type="text" placeholder="Return Date" onfocus="(this.type='datetime-local')" name="round" id="round" required onclick="Calculate_min()">
+                        </div>
+                        <button class="btn btn-small bg-gradient-primary float-right" type="submit" name="plan">Save</button>
+                    </form>
+                </div>
             </div>
+
         </div>
+        <a class='float-right' href='vscode://file/C:\xampp\htdocs\CodeIgniterApp\application\views\Travel_planner\Dashboard\PlanTrip\index.php'><button class='btn btn-sm btn-dark'>Open In</button><button class="btn btn-sm btn-outline-primary">Code</button></a>
     </div>
-    <a class='float-right' href='vscode://file/C:\xampp\htdocs\CodeIgniterApp\application\views\Travel_planner\Dashboard\PlanTrip\index.php'><button class='btn btn-sm btn-dark'>Open In</button><button class="btn btn-sm btn-outline-primary">Code</button></a>
     <script>
         $(document).ready(function(){
             $(".sheet0").addClass("table table-bordered card col-sm-12 table-striped dataTable dtr-inline");
+        });
+        
+        $('#trip2').click(function() {
+            $("#round-div").toggle(this.checked);
+            $("#round").val('');
         });
 
     </script>
