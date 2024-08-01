@@ -2,10 +2,17 @@
 
     defined('BASEPATH') OR exit('No direct script access allowed');
 
+    require_once('vendor/autoload.php');
     use PhpOffice\PhpSpreadsheet\Spreadsheet;
+    use PhpOffice\PhpSpreadsheet\Reader\Csv as ReaderCsv;
+    use PhpOffice\PhpSpreadsheet\Reader\Xls;
+    use PhpOffice\PhpSpreadsheet\Reader\Xlsx as ReaderXlsx;
+    use PhpOffice\PhpSpreadsheet\Writer\Html as WriterHtml;
+    use PhpOffice\PhpSpreadsheet\Writer\Xls as WriterXls;
     use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
     use PhpOffice\PhpSpreadsheet\Writer\Pdf\Dompdf;
     use PhpOffice\PhpSpreadsheet\Writer\Csv;
+    use PhpParser\Node\Stmt\Catch_;
 
     class Note extends CI_Controller{
 
@@ -81,24 +88,30 @@
             $sheet->getColumnDimension('B')->setAutoSize(true);
             $sheet->getColumnDimension('C')->setAutoSize(true);
             
+            // Create Directory if not exists
+            $uploadsDir = 'assets/uploads/';
+            if (!file_exists($uploadsDir)) {
+                mkdir($uploadsDir, 0777, true);
+            }
+
             switch ($export) {
 
                 case 'excel':
                     
-                    $fileName = 'note.xlsx';
+                    $fileName = $uploadsDir.'note.xlsx';
                     $writer = new Xlsx($spreadsheet);
-                    $writer->save("uploads/".$fileName);
+                    $writer->save($fileName);
                     header("Content-Type: application/vnd.ms-excel");
-                    redirect(base_url()."uploads/".$fileName);
+                    redirect(base_url().$fileName);
                     break;
                     
                 case 'pdf':
                     
                     // instantiate and use the dompdf class
-                    $fileName = 'note.pdf';
+                    $fileName = $uploadsDir.'note.pdf';
                     $writer = new Dompdf($spreadsheet);
-                    $writer->save("uploads/".$fileName);
-                    $filePath = "uploads/".$fileName;
+                    $writer->save($fileName);
+                    $filePath = $fileName;
                     header('Content-Disposition: attachment; filename="note.pdf"');
                     header("Content-Type: application/download");
                     header('Content-Description: File Transfer;');
@@ -109,11 +122,11 @@
                 case 'csv':
                         
                     // instantiate and use the dompdf class
-                    $fileName = 'note.csv';
+                    $fileName = $uploadsDir.'note.csv';
                     $writer = new Csv($spreadsheet);
-                    $writer->save("uploads/".$fileName);
+                    $writer->save($fileName);
                     header("Content-Type: application/csv");
-                    redirect(base_url()."uploads/".$fileName);
+                    redirect(base_url().$fileName);
                     break;
                 default:
                     show_404();
