@@ -6,6 +6,8 @@
 
 <!-- icheck bootstrap -->
 <link rel="stylesheet" href="<?=base_url('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')?>">
+    <!-- Bootstrap 4 -->
+    <script src="<?=base_url('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
 
 <!-- Theme style -->
 <link rel="stylesheet" href="<?=base_url('assets/dist/css/adminlte.min.css')?>">
