@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plan Trip | Travel Planner</title>
     <script>
+        function importData(str){
+            Swal.fire({
+                title: "Select Your "+str+" File.",
+                html: `
+                <form method='post' enctype="multipart/form-data">
+                    <input type='file' class='form-control' name='`+str+`'><br>
+                    <button class='btn bg-gradient-primary' type='submit' name='submit' value='1'>Submit</button>
+                    <button class='btn bg-gradient-danger' type='menu' name='submit' value='0'>Cancel</button>
+                </form>
+                `,
+                showConfirmButton: false,
+            });
+            
+        }
+        async:false;
+
         function getCity(str){
             // Function to suggest City
             var xmlHttp = new XMLHttpRequest();
@@ -44,8 +60,15 @@
 <body>
     <div style="min-height: 90%; background-image: url('https://in2english.net/wp-content/uploads/2017/04/transport.png'); background-size: cover;" class='login-page'>
         <div class="card col-md-6" style="background-color: rgba(29, 94, 116, 0.75);">
-            <div class="card-head">
-                <h3 class="card-header" style="color: #e9ecef;">Plan Journey</h3>
+            <div class="card-header">
+                <h3 class="card-title text-bold " style="color: #e9ecef;">Plan Journey</h3>
+                <div class="btn-group float-right dropdown">
+                    <button type="button" id='dropdownMenuButton' class="btn btn-outline-warning dropdown-toggle btn-sm" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><i class="fas fa-file-import"></i>Import<span class="sr-only"></span></button>
+                    <div class="dropdown-menu" role="menu" labelledby="dropdownMenuButton" id='dropdown-menu'>
+                        <button onclick="importData('excel')" class="dropdown-item btn-sm"><i class="fas fa-file-excel"></i>Excel</button>
+                        <button onclick="importData('csv')" class="dropdown-item btn-sm"><i class="fas fa-file-csv"></i>CSV</button>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
 
@@ -111,6 +134,12 @@
         </div>
     </div>
     <a class='float-right' href='vscode://file/C:\xampp\htdocs\CodeIgniterApp\application\views\Travel_planner\Dashboard\PlanTrip\index.php'><button class='btn btn-sm btn-dark'>Open In</button><button class="btn btn-sm btn-outline-primary">Code</button></a>
+    <script>
+        $(document).ready(function(){
+            $(".sheet0").addClass("table table-bordered card col-sm-12 table-striped dataTable dtr-inline");
+        });
+
+    </script>
 
 </body>
 </html>
