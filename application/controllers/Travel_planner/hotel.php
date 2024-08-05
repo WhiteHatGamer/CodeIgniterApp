@@ -225,6 +225,11 @@ use PhpParser\Node\Stmt\Catch_;
                     $dataIDX = 0;
                     foreach ($spreadsheet->getActiveSheet()->toArray() as $idx=>$row) {
                         if($idx == 0){
+                            // Checking if Sheet Contains Correct Data
+                            if($row[1]!='city'){
+                                $wrongFile = true;
+                                break;
+                            }
                             $dataTitle[1]=$row[1]=='City'? 'city':exit;
                             $dataTitle[2]=$row[2]=='Hotel'? 'hotel':exit;
                             $dataTitle[3]=$row[3]=='Check-In'? 'checkIn':exit;
@@ -239,26 +244,38 @@ use PhpParser\Node\Stmt\Catch_;
                         }
                         $dataIDX++;
                     }
-                    $successRow = 0;
-                    $writer = new WriterHtml($spreadsheet);
-    
-                    $writer->generateHTMLHeader();
-    
-                    $dataHtml = $writer->generateHtmlAll();
-                    echo $dataHtml;
-    
-                    $writer->generateHTMLFooter();
-    
-                    foreach($dataArray as $row){
-                        if($this->hotel_model->store_stays($row)){
-                            $successRow++;
+
+                    // Show Error Alert for Importing Wrong Data
+                    if(isset($wrongFile)){
+                        $data['errorTitle'] = "Not Imported";
+                        $data['error'] = "Wrong Data Format";
+                        $data['warningHtml'] = '<p>Try to Import In the same Data Types and Formats</p><br><button class="btn btn-info" onClick="window.location.href=window.location.href">Refresh Page to Try Again</button>';
+        
+                        $this->load->view("Travel_planner\inc/danger",$data);
+
+                    }else{
+
+                        $successRow = 0;
+                        $writer = new WriterHtml($spreadsheet);
+        
+                        $writer->generateHTMLHeader();
+        
+                        $dataHtml = $writer->generateHtmlAll();
+                        echo $dataHtml;
+        
+                        $writer->generateHTMLFooter();
+        
+                        foreach($dataArray as $row){
+                            if($this->hotel_model->store_stays($row)){
+                                $successRow++;
+                            }
                         }
+                        $data['errorTitle'] = "Uploading Finished";
+                        $data['error'] = "$successRow Out of $dataIDX Uploaded";
+                        $data['warningHtml'] = '<p>Note: Duplicate Entries are not Uploaded</p>';
+        
+                        $this->load->view("Travel_planner\inc/warning",$data);
                     }
-                    $data['errorTitle'] = "Uploading Finished";
-                    $data['error'] = "$successRow Out of $dataIDX Uploaded";
-                    $data['warningHtml'] = '<p>Note: Duplicate Entries are not Uploaded</p>';
-    
-                    $this->load->view("Travel_planner\inc/warning",$data);
 
                 }
 

@@ -190,6 +190,10 @@
                     $dataIDX = 0;
                     foreach ($spreadsheet->getActiveSheet()->toArray() as $idx=>$row) {
                         if($idx == 0){
+                            if($row[1]!='Modified Time'){
+                                $wrongFile = true;
+                                break;
+                            }
                             $dataTitle[1]=$row[1]=='Modified Time'? 'create_time':exit;
                             $dataTitle[2]=$row[2]=='Note'? 'note':exit;
                             continue;
@@ -202,26 +206,37 @@
                         }
                         $dataIDX++;
                     }
-                    $successRow = 0;
-                    $writer = new WriterHtml($spreadsheet);
-    
-                    $writer->generateHTMLHeader();
-    
-                    $dataHtml = $writer->generateHtmlAll();
-                    echo $dataHtml;
-    
-                    $writer->generateHTMLFooter();
-    
-                    foreach($dataArray as $row){
-                        if($this->note_model->insert_notes($row)){
-                            $successRow++;
+                    
+                    if(isset($wrongFile)){
+                        $data['errorTitle'] = "Not Imported";
+                        $data['error'] = "Wrong Data Format";
+                        $data['warningHtml'] = '<p>Try to Import In the same Data Types and Formats</p><br><button class="btn btn-info" onClick="window.location.href=window.location.href">Refresh Page to Try Again</button>';
+        
+                        $this->load->view("Travel_planner\inc/danger",$data);
+
+                    }else{
+                            
+                        $successRow = 0;
+                        $writer = new WriterHtml($spreadsheet);
+        
+                        $writer->generateHTMLHeader();
+        
+                        $dataHtml = $writer->generateHtmlAll();
+                        echo $dataHtml;
+        
+                        $writer->generateHTMLFooter();
+        
+                        foreach($dataArray as $row){
+                            if($this->note_model->insert_notes($row)){
+                                $successRow++;
+                            }
                         }
+                        $data['errorTitle'] = "Uploading Finished";
+                        $data['error'] = "$successRow Out of $dataIDX Uploaded";
+                        $data['warningHtml'] = '<p>Note: Duplicate Entries are not Uploaded</p>';
+        
+                        $this->load->view("Travel_planner\inc/warning",$data);
                     }
-                    $data['errorTitle'] = "Uploading Finished";
-                    $data['error'] = "$successRow Out of $dataIDX Uploaded";
-                    $data['warningHtml'] = '<p>Note: Duplicate Entries are not Uploaded</p>';
-    
-                    $this->load->view("Travel_planner\inc/warning",$data);
 
                 }
 
