@@ -18,7 +18,8 @@
     Toast.fire({
         icon: 'warning',
         title: '<?=$errorTitle?>!!\n<?=$error?>',
-        html: '<?php if(!empty($warningHtml)){echo $warningHtml;}?>',
+        html: `<?php if(!empty($warningHtml)){echo $warningHtml;}?>`,
+        width: 'auto',
       })
     });
   </script>
