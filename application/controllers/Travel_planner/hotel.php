@@ -263,31 +263,53 @@ use PhpParser\Node\Stmt\Catch_;
                         $this->load->view("Travel_planner\inc/danger",$data);
 
                     }else{
+                        
+                        $tableHtml = "
+                        <form method='post' action='".$_SERVER['REQUEST_URI']."'>
+                            <table id='hotel_table' class='table table-bordered table-striped'>
+                                <thead>
+                                    <tr>
+                                        <th>Sl No.</th>
+                                        <th>City</th>
+                                        <th>Hotel</th>
+                                        <th>CheckIn</th>
+                                        <th>CheckOut</th>
+                                    </tr>
+                                </thead>
+                        ";
 
-                        $successRow = 0;
-                        $writer = new WriterHtml($spreadsheet);
-        
-                        $writer->generateHTMLHeader();
-        
-                        $dataHtml = $writer->generateHtmlAll();
-                        echo $dataHtml;
-        
-                        $writer->generateHTMLFooter();
-        
-                        foreach($dataArray as $row){
-                            if($this->hotel_model->store_stays($row)){
-                                $successRow++;
+                        $id = 1;
+                        foreach ($dataArray as $row) {
+                            $tableHtml = $tableHtml."<tr>";
+                            $tableHtml = $tableHtml."<td class='text-center'>".$id."</td>";
+                            foreach ($row as $key => $value) {
+                                if ($key == 'email') {
+                                    continue;
+                                }
+                                if ($key == 'checkIn' || $key == 'checkOut') {
+                                    $tableHtml = $tableHtml."<td>" . date('d-M-Y', strtotime($value)) . "</td>";
+                                } else {
+                                    $tableHtml = $tableHtml."<td>" . $value . "</td>";
+                                }
                             }
+                            $tableHtml = $tableHtml."</tr>";
+                            $id++;
                         }
-                        $data['errorTitle'] = "Uploading Finished";
-                        $data['error'] = "$successRow Out of $dataIDX Uploaded";
-                        $data['warningHtml'] = '<p>Note: Duplicate Entries are not Uploaded</p>';
-        
-                        $this->load->view("Travel_planner\inc/warning",$data);
+
+                        $file_path_encode = base64_encode($file_path);
+
+                        $tableHtml = $tableHtml.'</table><input type="hidden" value="'.$fileType.'" name="type">';
+                        $tableHtml = $tableHtml."<div class='card-footer'><button class='btn bg-gradient-info float-left' type='submit' name='confirm' value='".$file_path_encode."'><i class='fas fa-tools'></i>Confirm Upload</button>";
+                        $tableHtml = $tableHtml."<button class='btn bg-gradient-danger float-right'  type='submit' name='cancel'><i class='fas fa-skull-crossbones'></i>Cancel</button></div>";
+                        $tableHtml = $tableHtml.'</form>';
+
+                        $data['tableHtml'] = $tableHtml;
+                        $this->load->view("Travel_planner/Inc/show_import", $data);
                     }
 
                 }
 
+            }
             }
             
             if(isset($_POST['stay'])){
