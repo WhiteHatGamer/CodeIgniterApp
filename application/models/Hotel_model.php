@@ -14,8 +14,8 @@
 
         public function __construct()
         {
-        $this->load->database();
-        $this->load->library('session');
+            $this->load->database();
+            $this->load->library('session');
         }
 
         public function checkDuplicate($input = array(null=>null)){
