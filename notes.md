@@ -18,6 +18,7 @@
   -[x] Check if Data Type is Same
   -[x] Check if Duplicate Entry
   -[x] Do CSV
+- [x] Preview Imported File Before Saving
 <!-- - [ ] Date of Birth YEAR -->
 
 - [ ] Ask about Edit Post Variable Returns in js Functions
