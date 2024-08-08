@@ -179,6 +179,7 @@ use PhpParser\Node\Stmt\Catch_;
             if($this->input->post('submit')){
                 // Verifying File
                 $canRead = 1;
+                $fileType = 'none';
                 if(@$_FILES['excel']){
                     
                     $reader = new ReaderXlsx();
@@ -192,6 +193,8 @@ use PhpParser\Node\Stmt\Catch_;
                         
                     }
                     if($canRead){
+                        
+                        $fileType = 'excel';
                         $reader->setReadDataOnly(true);
                         $spreadsheet = $reader->load($_FILES['excel']['tmp_name']);
                     }
@@ -211,6 +214,7 @@ use PhpParser\Node\Stmt\Catch_;
                     }
                     
                     if($canRead){
+                        $fileType = 'csv';
                         $reader->setReadDataOnly(true);
                         $spreadsheet = $reader->load($_FILES['csv']['tmp_name']);
                     }
@@ -220,13 +224,18 @@ use PhpParser\Node\Stmt\Catch_;
 
                 // Run code if only Readable
                 if($canRead){
+                    $tmp_file_path = $_FILES[$fileType]['tmp_name'];
+                    $file_path = tempnam(explode('application', APPPATH)[0].'assets/tmp/','tmp');
+
+                    copy($tmp_file_path, $file_path);
+                    
                     $dataTitle = [];
                     $dataArray = [];
                     $dataIDX = 0;
                     foreach ($spreadsheet->getActiveSheet()->toArray() as $idx=>$row) {
                         if($idx == 0){
                             // Checking if Sheet Contains Correct Data
-                            if($row[1]!='city'){
+                            if($row[1]!='City'){
                                 $wrongFile = true;
                                 break;
                             }
