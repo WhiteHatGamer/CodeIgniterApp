@@ -40,6 +40,13 @@
             echo $url;
           }
         ?>
+        
+        <script>
+            $(document).ready(function(){
+                $(".sheet0").addClass("table table-bordered card col-sm-12 table-striped dataTable dtr-inline");
+            });
+
+        </script>
     </footer>
     </div>
     
