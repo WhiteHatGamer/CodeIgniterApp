@@ -310,6 +310,111 @@ use PhpParser\Node\Stmt\Catch_;
                 }
 
             }
+
+            // User Confirmed Upload
+            if(isset($_POST['confirm'])){
+
+                // Decoding File Path
+                $file_path = base64_decode($_POST['confirm']);
+
+                // Initializing Reader Based On File Type
+                if($_POST['type'] = 'excel'){
+                    $reader = new ReaderXlsx();
+                    
+                }elseif($_POST['type'] = 'csv'){
+                    $reader = new ReaderCsv();
+                }else{
+                    redirect(adminTravelPlannerUrl().'\hotel');
+                }
+
+                // Load file as SpreadSheet
+                $reader->setReadDataOnly(true);
+                $spreadsheet = $reader->load($file_path);
+
+                // Initializing Constants
+                $dataTitle = [];
+                $dataArray = [];
+                $dataIDX = 0;
+                foreach ($spreadsheet->getActiveSheet()->toArray() as $idx=>$row) {
+                    if($idx == 0){
+                        // Checking if Sheet Contains Correct Data
+                        $dataTitle[1]=$row[1]=='City'? 'city':exit;
+                        $dataTitle[2]=$row[2]=='Hotel'? 'hotel':exit;
+                        $dataTitle[3]=$row[3]=='Check-In'? 'checkIn':exit;
+                        $dataTitle[4]=$row[4]=='Check-Out'? 'checkOut':exit;
+                        continue;
+                    }
+
+                    // Storing Each data to respective Associative Array
+                    foreach($row as $key=>$value){
+                        if($key==0){
+                            continue;
+                        }
+                        $dataArray[$dataIDX][$dataTitle[$key]] = $value;
+                    }
+                    $dataIDX++;
+                }
+
+                $successCount = 0;
+                $successRow = array();
+                foreach($dataArray as $row){
+                    // Appending Data to DB using Model Method
+                    if($this->hotel_model->store_stays($row)){
+                        $successCount++;
+                        $successRow[] = $row;
+                    }
+
+                }
+                $tableHtml = '';
+                // Generating Table only if Uploaded at least one
+                if($successCount>0){
+
+                    $tableHtml = "
+                        <table id='hotel_table' class='table table-bordered table-striped'>
+                            <thead>
+                                <tr>
+                                    <th>Sl No.</th>
+                                    <th>City</th>
+                                    <th>Hotel</th>
+                                    <th>CheckIn</th>
+                                    <th>CheckOut</th>
+                                </tr>
+                            </thead>
+                    ";
+
+                    $id = 1;
+                    foreach ($successRow as $row) {
+                        $tableHtml = $tableHtml."<tr>";
+                        $tableHtml = $tableHtml."<td class='text-center'>".$id."</td>";
+                        foreach ($row as $key => $value) {
+                            if ($key == 'checkIn' || $key == 'checkOut') {
+                                $tableHtml = $tableHtml."<td>" . date('d-M-Y', strtotime($value)) . "</td>";
+                            } else {
+                                $tableHtml = $tableHtml."<td>" . $value . "</td>";
+                            }
+                        }
+                        $tableHtml = $tableHtml."</tr>";
+                        $id++;
+                    }
+
+                    $tableHtml = $tableHtml.'</table>';
+                }
+                $tableHtml = $tableHtml.'<br><p>Note: Duplicate Entries are not Uploaded</p>';
+
+                // Calling Alert
+                $data['errorTitle'] = "Uploading Finished";
+                $data['error'] = "$successCount Out of $dataIDX Uploaded";
+                $data['warningHtml'] = $tableHtml;
+
+                $this->load->view("Travel_planner\inc/warning",$data);
+
+            }
+
+            // User Cancelled Upload
+            if(isset($_POST['cancel'])){
+
+                $data['errorTitle'] = "Not Uploaded";
+                $this->load->view("Travel_planner\inc/warning",$data);
             }
             
             if(isset($_POST['stay'])){
