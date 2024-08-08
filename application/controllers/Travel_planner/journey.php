@@ -190,7 +190,7 @@
                         if($idx == 0){
                             // Check if importing file has Wrong Data
                             if($idx == 0){
-                                if($row[1]!='source'){
+                                if($row[1]!='Source'){
                                     $wrongFile = true;
                                     break;
                                 }
