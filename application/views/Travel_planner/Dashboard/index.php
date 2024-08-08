@@ -10,32 +10,78 @@
 <script>
 
     function travel_click() {
-        travel_btn.className = 'btn bg-gradient-success active';
+        
+        if(travel.hidden == false){
+
+            travel_btn.className = 'btn btn-outline-info';
+            travel.hidden=true;
+        }else{
+
+            travel_btn.className = 'btn bg-gradient-success active';
+            travel.hidden=false;
+        }
         hotel_btn.className = 'btn btn-outline-info ';
         note_btn.className = 'btn btn-outline-info ';
-        travel.hidden=false;
+        doc_btn.className = 'btn btn-outline-info';
+        doc.hidden=true,
         stay.hidden=true;
         note.hidden = true;
         
     }
 
     function hotel_click(){
+        if(stay.hidden == false){
+
+            hotel_btn.className = 'btn btn-outline-info';
+            stay.hidden=true;
+        }else{
+
+            hotel_btn.className = 'btn bg-gradient-success active';
+            stay.hidden=false;
+        }
         travel_btn.className = 'btn btn-outline-info';
-        hotel_btn.className = 'btn bg-gradient-success active';
         note_btn.className = 'btn btn-outline-info';
+        doc_btn.className = 'btn btn-outline-info';
+        doc.hidden=true,
         travel.hidden=true,
-        stay.hidden=false,
         note.hidden = true;
 
     }
 
     function note_click(){
+        if(note.hidden == false){
+
+            note_btn.className = 'btn btn-outline-info';
+            note.hidden=true;
+        }else{
+
+            note_btn.className = 'btn bg-gradient-success active';
+            note.hidden=false;
+        }
         travel_btn.className = 'btn btn-outline-info';
         hotel_btn.className = 'btn btn-outline-info';
-        note_btn.className = 'btn bg-gradient-success active';
+        doc_btn.className = 'btn btn-outline-info';
+        doc.hidden=true,
+        travel.hidden=true,
+        stay.hidden=true;
+    }
+
+    function doc_click(){
+        if(doc.hidden == false){
+
+            doc_btn.className = 'btn btn-outline-info';
+            doc.hidden=true;
+        }else{
+
+            doc_btn.className = 'btn bg-gradient-success active';
+            doc.hidden=false;
+        }
+        travel_btn.className = 'btn btn-outline-info';
+        hotel_btn.className = 'btn btn-outline-info';
+        note_btn.className = 'btn btn-outline-info';
         travel.hidden=true,
         stay.hidden=true,
-        note.hidden = false;
+        note.hidden = true;
     }
 
 </script>
@@ -68,56 +114,71 @@
                         <th><button class="btn btn-outline-info" type="button" name='travel_btn' id='travel_btn' onclick=travel_click()><i class="fa fa-plane-departure"></i> <b>T</b>ravel <b>P</b>lan</button></th>
                         <th><button class="btn btn-outline-info" type="button" name='hotel_btn' id='hotel_btn' onclick=hotel_click()><i class="fa fa-bed"></i> <b>H</b>otel <b>S</b>tay</button></th>
                         <th><button class="btn btn-outline-info" type="button" name='note_btn' id='note_btn' onclick=note_click()><i class="fa fa-edit"></i> <b>T</b>ravel <b>N</b>ote</button></th>
+                        <th><button class="btn btn-outline-info" type="button" name='doc_btn' id='doc_btn' onclick=doc_click()><i class="fa fa-images"></i> <b>D</b>ocument <b>S</b>tore</button></th>
                     </div>
                 </tr>
                 <tr>
                     <div class="card-box">
-                    <td>
-                        <!-- Travel Plan -->
-                        <div class='card-body' id="travel" hidden>
-                            <div class="tab-content">
-                                <div class="tab-pane active">
-                                    <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey/plan">Plan Travel</a></p>
-                                    <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey">Show Trips</a></p>
-                                    <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey/edit">Edit Trip</a></p>
+                        <td>
+                            <!-- Travel Plan -->
+                            <div class='card-body' id="travel" hidden>
+                                <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey/plan">Plan Travel</a></p>
+                                        <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey">Show Trips</a></p>
+                                        <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey/edit">Edit Trip</a></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <!-- Stay Plan -->
-                        <div class='card-body' id="stay" hidden>
-                            <div class="tab-content">
-                                <div class="tab-pane active">
-                                    <p><a class="post" href="<?=adminTravelPlannerUrl()?>hotel/Appoint">Appoint Hotel</a></p>
+                        </td>
+                        <td>
+                            <!-- Stay Plan -->
+                            <div class='card-body' id="stay" hidden>
+                                <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        <p><a class="post" href="<?=adminTravelPlannerUrl()?>hotel/Appoint">Appoint Hotel</a></p>
 
-                                    <!-- List Stays Stored -->
-                                    <p><a class='post' href="<?=adminTravelPlannerUrl()?>hotel/">List Stays</a></p>
+                                        <!-- List Stays Stored -->
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>hotel/">List Stays</a></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <!-- Note Operations -->
-                        <div class='card-body' id="note" hidden>
-                            <div class="tab-content">
-                                <div class="tab-pane active">
-                                    <!-- Add Note -->
-                                    <p><a class='post' href="<?=adminTravelPlannerUrl()?>note/create">Create Note</a></p>
+                        </td>
+                        <td>
+                            <!-- Note Operations -->
+                            <div class='card-body' id="note" hidden>
+                                <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        <!-- Add Note -->
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>note/create">Create Note</a></p>
 
-                                    <!-- List Note -->
-                                    <p><a class='post' href="<?=adminTravelPlannerUrl()?>note/">Read Notes</a></p>
+                                        <!-- List Note -->
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>note/">Read Notes</a></p>
 
-                                    <!-- Update Note -->
-                                    <p><a class='post' href="<?=adminTravelPlannerUrl()?>note/update">Update Notes</a></p>
+                                        <!-- Update Note -->
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>note/update">Update Notes</a></p>
 
-                                    <!-- Delete Note -->
-                                    <p><a class='post' href="<?=adminTravelPlannerUrl()?>note/delete">Delete Note</a></p>
-                        </div>
-                    </td>
+                                        <!-- Delete Note -->
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>note/delete">Delete Note</a></p>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- Document Operations -->
+                            <div class='card-body' id="doc" hidden>
+                                <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        <!-- Add Note -->
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>doc/create">Save Document</a></p>
+
+                                        <!-- List Note -->
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>doc/">Gallery</a></p>
+                            </div>
+                        </td>
                     </div>
                 </tr>
                 <tr>
+                    <td>
+                    </td>
                     <td>
                     </td>
                     <td>
