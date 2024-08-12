@@ -26,7 +26,7 @@
                 <button class='btn btn-xs btn-danger' name='dltImg' value="1"><i class="fas fa-trash"></i></button>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input name='image' type="file" class="custom-file-input" id="exampleInputFile">
+                    <input name="image" type="file" class="custom-file-input" id="exampleInputFile" accept=".jpeg">
                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                   </div>
                 </div>

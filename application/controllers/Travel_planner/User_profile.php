@@ -8,6 +8,7 @@
             parent::__construct();
             $this->load->model("user_model");
             $this->load->library("session");
+            $this->load->helper('form', 'url');
         }
 
         public function index(){
@@ -34,8 +35,8 @@
 
             if($this->input->server('REQUEST_METHOD') == 'POST'){
 
-                $config['upload_path']      = APPPATH."../uploads";
-                $config['allowed_types']    = 'gif|jpg|png';
+                $config['upload_path']      = FCPATH."assets/uploads";
+                $config['allowed_types']    = 'gif|jpg|jpeg|png';
 
                 $this->load->library('upload', $config);
 
@@ -52,7 +53,6 @@
                     
                 }
                 if($this->upload->do_upload('image')){
-
                     // Saving File into Database
                     $source = $this->upload->data()['full_path'];
 

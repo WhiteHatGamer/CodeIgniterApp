@@ -36,7 +36,7 @@
           <!-- card-header -->
           <div class="card-body">
           <p class="login-box-msg">LogIn to Travel Planner:</p>
-            <form action="<?= $_SERVER['REQUEST_URI']."login/validate"; ?>" method="post">
+            <form action="<?= $_SERVER['REQUEST_URI']; ?>" method="post">
               <div class="input-group mb-3">
                 <input type="email" class="form-control" name="email" placeholder="Email" autocomplete="username" required>
                 <div class="input-group-append">
@@ -71,7 +71,7 @@
           <!-- card-body -->
 
           <!-- Test Login Button -->
-          <form action="<?= $_SERVER['REQUEST_URI']."login/validate"; ?>" method="post">
+          <form action="<?= $_SERVER['REQUEST_URI']; ?>" method="post">
             <button class="btn float-right btn-outline-warning btn-xs" type="login" name="login">Test Log-in</button>
           </form>
 
