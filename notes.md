@@ -19,6 +19,9 @@
   -[x] Check if Duplicate Entry
   -[x] Do CSV
 - [x] Preview Imported File Before Saving
+- [x] Multiple Images Upload Jquery Ajax
+  - [x] image Download in gallery
+  - [x] Image Path Update in Db
 <!-- - [ ] Date of Birth YEAR -->
 
 - [ ] Ask about Edit Post Variable Returns in js Functions
