@@ -12,3 +12,21 @@ use FontLib\Table\Type\post;
             $this->load->library(array('session','table'));
         }
 
+        public function index(){
+
+            // Checking If User is Logged In
+            if(!$this->session->email){
+                redirect(adminTravelPlannerUrl());
+                return;
+            }
+
+
+            $data['result'] = $this->document_model->getImages();
+
+            $this->load->view("Travel_planner/inc/header");
+            $this->load->view("Travel_planner/Dashboard/Document/gallery", $data);
+            $this->load->view("Travel_planner/inc/footer");
+        }
+        
+    }
+    

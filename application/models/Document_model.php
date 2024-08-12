@@ -18,3 +18,15 @@ use PhpOffice\PhpSpreadsheet\Cell\DataType;
             $this->load->library('session');
         }
 
+
+        public function getImages(){
+            $email = $this->session->email;
+
+            $results = $this->db->get_where($this->table, array('user_id'=>$email));
+            if($results->num_rows() > 0){
+
+                return $results->result_array();
+            }else{
+                return false;
+            }
+        }
