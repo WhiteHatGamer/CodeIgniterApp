@@ -20,6 +20,38 @@ use FontLib\Table\Type\post;
                 return;
             }
 
+            if($this->input->server('REQUEST_METHOD') == 'POST'){
+
+                foreach($_POST as $key => $value){
+                    // User Confirmed Delete
+                    if($key == 'cancel'){
+                        break;
+
+                    }
+
+                    // User Confirmed Delete
+                    if($key == 'confirmDlt'){
+                        if($this->document_model->deleteImage($_POST['confirmDlt'])){
+                            $this->load->view('Travel_planner\inc\deleted');
+                        }else{
+                            $data['errorTitle'] = "Couldn't Delete Data";
+                            $data['warningHtml'] = '<button class="btn btn-info" onClick="window.location.href=window.location.href">Refresh Page to Try Again</button>';
+                            $this->load->view('Travel_planner\inc\danger');
+                        }
+
+                        break;
+                    }
+                    
+                    if(stripos($value, 'btn') == 0){
+                        $data['value'] = $value;
+                        $this->load->view('Travel_planner\inc\confirm', $data);
+
+                        break;
+                    }
+
+                }
+
+            }
 
             $data['result'] = $this->document_model->getImages();
 
