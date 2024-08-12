@@ -49,3 +49,25 @@ use PhpOffice\PhpSpreadsheet\Cell\DataType;
                 return false;
             }
         }
+
+
+        public function deleteImage($id){
+            $email = $this->session->email;
+            $data = array("user_id" => $email, 'id'=> $id);
+            $result = $this->db->get_where($this->table, $data);
+
+            if($result->num_rows() > 0){
+                if($this->db->delete($this->table, $data)){
+                    // Deleted File
+                    return true;
+                }else{
+                    // Can't Delete
+                    return false;
+                }
+            }else{
+                // Couldn't Find Result
+                return false;
+            }
+        }
+
+    }
