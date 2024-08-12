@@ -114,7 +114,7 @@
                         <th><button class="btn btn-outline-info" type="button" name='travel_btn' id='travel_btn' onclick=travel_click()><i class="fa fa-plane-departure"></i> <b>T</b>ravel <b>P</b>lan</button></th>
                         <th><button class="btn btn-outline-info" type="button" name='hotel_btn' id='hotel_btn' onclick=hotel_click()><i class="fa fa-bed"></i> <b>H</b>otel <b>S</b>tay</button></th>
                         <th><button class="btn btn-outline-info" type="button" name='note_btn' id='note_btn' onclick=note_click()><i class="fa fa-edit"></i> <b>T</b>ravel <b>N</b>ote</button></th>
-                        <th><button class="btn btn-outline-info" type="button" name='doc_btn' id='doc_btn' onclick=doc_click()><i class="fa fa-images"></i> <b>D</b>ocument <b>S</b>tore</button></th>
+                        <th><button class="btn btn-outline-info" type="button" name='doc_btn' id='doc_btn' onclick=doc_click()><i class="fa fa-images"></i> <b>D</b>ocument <b>D</b>rive</button></th>
                     </div>
                 </tr>
                 <tr>
@@ -168,10 +168,10 @@
                                 <div class="tab-content">
                                     <div class="tab-pane active">
                                         <!-- Add Note -->
-                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>doc/create">Save Document</a></p>
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>document/upload">Upload Documents</a></p>
 
                                         <!-- List Note -->
-                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>doc/">Gallery</a></p>
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>document/">Gallery</a></p>
                             </div>
                         </td>
                     </div>
