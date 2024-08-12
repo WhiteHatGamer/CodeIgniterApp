@@ -18,6 +18,25 @@ use PhpOffice\PhpSpreadsheet\Cell\DataType;
             $this->load->library('session');
         }
 
+        public function uploadImages($inputs = array('user_id' => 'null')){
+
+            $email = $this->session->email;
+            
+            if($inputs == array('user_id'=> 'null')){
+                return false;
+            }else{
+                foreach ($inputs as $key => $value){
+                    $inputRow['user_id'] = $email;
+                    $filePath = base64_encode('\\CodeIgniterApp\\'.explode(FCPATH,str_replace('/', '\\', $value['path']))[1]);
+                    $dataType = $value['type'];
+                    
+                    $QueryInsert = "INSERT INTO {$this->table} (user_id, dataType, filePath) VALUES( '$email', '$dataType', '$filePath' );";
+                    $result = $this->db->query($QueryInsert);
+                }
+
+                return true;
+            }
+        }
 
         public function getImages(){
             $email = $this->session->email;

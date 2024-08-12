@@ -28,5 +28,19 @@ use FontLib\Table\Type\post;
             $this->load->view("Travel_planner/inc/footer");
         }
         
+        public function upload(){
+
+            // Checking If User is Logged In
+            if(!$this->session->email){
+                redirect(adminTravelPlannerUrl());
+                return;
+            }
+
+            
+            $this->load->view("Travel_planner/inc/header");
+            $this->load->view("Travel_planner/Dashboard/Document/Upload");
+            $this->load->view("Travel_planner/inc/footer");
+        }
+
     }
     
