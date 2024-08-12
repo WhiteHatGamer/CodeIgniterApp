@@ -128,4 +128,3 @@ use FontLib\Table\Type\post;
             }
         }
     }
-    

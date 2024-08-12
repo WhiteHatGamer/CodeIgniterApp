@@ -50,6 +50,23 @@ use PhpOffice\PhpSpreadsheet\Cell\DataType;
             }
         }
 
+        public function getImage($inputs=array('user'=>'null')){
+            if($inputs == array('user'=>'null')){
+                return false;
+            }else{
+
+                $email = $this->session->email;
+                $id = $inputs['id'];
+    
+                $results = $this->db->get_where($this->table, array('user_id'=>$email, 'id'=>$id));
+                if($results->num_rows() > 0){
+    
+                    return $results->result_array();
+                }else{
+                    return false;
+                }
+            }
+        }
 
         public function deleteImage($id){
             $email = $this->session->email;
