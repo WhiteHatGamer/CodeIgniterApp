@@ -63,6 +63,17 @@
     public function get_hint(){
       $this->load->view('Travel_planner/dashboard/getHint');
     }
+
+    public function get_feed(){
+      
+      // Checking If User is Logged In
+      if(!$this->session->email){
+        redirect(adminTravelPlannerUrl());
+          return;
+      }
+      
+      $this->load->view('Travel_planner/dashboard/getFeed');
+    }
   }
 
 ?>

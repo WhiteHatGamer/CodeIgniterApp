@@ -22,6 +22,7 @@
 - [x] Multiple Images Upload Jquery Ajax
   - [x] image Download in gallery
   - [x] Image Path Update in Db
+- [x] Fb Page Graph API
 <!-- - [ ] Date of Birth YEAR -->
 
 - [ ] Ask about Edit Post Variable Returns in js Functions

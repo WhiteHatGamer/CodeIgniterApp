@@ -193,6 +193,9 @@
         </div>
     </div>
     <!-- Log out -->
+    <div id="feed">
+
+    </div>
     <!-- <form action="EditProfile/index.php" method="post">
     <button type="submit">Edit Profile</button>
     </form> -->
@@ -207,3 +210,24 @@
 <script src="<?=base_url('assets/dist/js/adminlte.min.js')?>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?=base_url('assets/dist/js/demo.js')?>"></script>
+
+<script>
+    window.onload = 
+        function getFeed(){
+            // Function to suggest City
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    if(this.response.includes("Error")){
+                        console.log("Error");
+                        document.getElementById("feed").innerHTML = "<div class='card'>No Feed Available<div>";
+                    }else{
+
+                        document.getElementById("feed").innerHTML = this.responseText;
+                    }
+                }
+            }
+            xmlHttp.open("GET","<?= adminTravelPlannerUrl()?>dashboard/get_feed", true);
+            xmlHttp.send();
+        }
+</script>
