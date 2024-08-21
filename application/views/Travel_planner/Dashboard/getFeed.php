@@ -38,6 +38,41 @@
         if(isset($feedData['data'])){
 
             switch($choice){
+                case "page":
+                    $feedData = $feedData['data'];
+                    ?>
+                    <div class='card card-success'>
+                        <div class='card-body'>
+                            <div class='row'><?php
+                                // Getting Latest Post from dataArray
+                                foreach ($feedData as $post){
+                                    if($post['id'] == "377906868745299_122094371258488824"){
+                                        break;
+                                    }
+                                    ?>
+                                    <div class='col-3 img-thumbnail'>
+                                        <div class='card mb-2 d-flex justify-content-center'>
+                                            <!-- Feed Image -->
+                                            <img class='card-img-top rounded img-fluid mx-auto d-block' src='<?=@$post['full_picture']?>'> <!--  -->
+                                                <div class='card-img-overlay d-flex flex-column justify-content-end'>
+                                                    <?php if(isset($post['message'])){
+                                                            // Caption if any
+                                                            echo "<a href='https://facebook.com/".@$post['id']."' class='btn btn-outline-primary text-white pb-2 pt-1' style='font-size:0.75rem;'>".$post['message']."</a>";
+
+                                                        }
+                                                        ?>
+                                                        <!-- Uploaded Date -->
+                                                    <p class='text-white' style="font-size: 0.5rem;">Last update <?=date("d-m-Y h:i a",strtotime($post['created_time']))?></p>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                }?>
+                            </div>
+                        </div>
+                    </div><?php
+                    
+                    break;
                 case "person":
                     $feedData = $feedData['data'];
                     ?>
