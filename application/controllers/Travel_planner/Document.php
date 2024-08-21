@@ -56,7 +56,13 @@ use FontLib\Table\Type\post;
             $data['result'] = $this->document_model->getImages();
 
             $this->load->view("Travel_planner/inc/header");
-            $this->load->view("Travel_planner/Dashboard/Document/gallery", $data);
+            if($data['result']){
+
+                $this->load->view("Travel_planner/Dashboard/Document/gallery", $data);
+            }else{
+                $this->load->view("Travel_planner/inc/no_data_doc");
+
+            }
             $this->load->view("Travel_planner/inc/footer");
         }
         
