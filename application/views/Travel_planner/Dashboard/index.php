@@ -167,12 +167,15 @@
                             <div class='card-body' id="doc" hidden>
                                 <div class="tab-content">
                                     <div class="tab-pane active">
-                                        <!-- Add Note -->
+                                        <!-- Upload -->
                                         <p><a class='post' href="<?=adminTravelPlannerUrl()?>document/upload">Upload Documents</a></p>
 
-                                        <!-- List Note -->
+                                        <!-- Gallery -->
                                         <p><a class='post' href="<?=adminTravelPlannerUrl()?>document/">Gallery</a></p>
-                            </div>
+
+                                        <!-- Image Editor -->
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>document/edit_image">Edit Image</a></p>
+                                    </div>
                         </td>
                     </div>
                 </tr>

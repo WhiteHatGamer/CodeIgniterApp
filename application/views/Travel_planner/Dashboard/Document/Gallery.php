@@ -48,11 +48,14 @@
                           
                           ?>
                           <div class="item col-sm-1 d-flex justify-content-center align-items-center text-center">
-                            <form method="post">
-                              <a href="/CodeIgniterApp/Travel_planner/document/enlarge?id=<?=$row['id']?>" data-toggle="lightbox" data-title="Document" data-width="500" data-height="500">
-                                <img class="img-fluid mb-2 img-rounded shadow mx-auto d-block" src="<?= base64_decode($row['filePath']);?>"/>
-                              </a>
-                              <button class='btn btn-danger position-absolute' style="bottom: 0; right: 0;" name='btn<?=$row['id']?>' value="<?=$row['id']?>" ><i class="fas fa-trash"></i></button>
+                            <a href="/CodeIgniterApp/Travel_planner/document/enlarge?id=<?=$row['id']?>" data-toggle="lightbox" data-title="Document" data-width="500" data-height="500">
+                              <img class="img-fluid mb-2 img-rounded shadow mx-auto d-block" src="<?= base64_decode($row['filePath']);?>"/>
+                            </a>
+                            <form method="post" action="<?=$_SERVER["REQUEST_URI"]."edit_image"?>">
+                              <button class='btn btn-info position-absolute' style="bottom: 0; left: 20%;" name='edit' value="<?=$row['id']?>" ><i class="fas fa-wrench"></i></button>
+                            </form>
+                            <form method="post" action="<?=$_SERVER["REQUEST_URI"]?>">
+                              <button class='btn btn-danger position-absolute' style="bottom: 0; right: 20%;" name='btn<?=$row['id']?>' value="<?=$row['id']?>" ><i class="fas fa-trash"></i></button>
                             </form>
                           </div>
                       <?php }
