@@ -181,6 +181,9 @@ use FontLib\Table\Type\post;
                 $merged_img_path = str_replace(explode("_merged.",$merged_img_path)[1],"png", $merged_img_path);
                 imagepng($selected_img, $merged_img_path);
 
+                //File Download Code
+                if($_POST['type'] == "image"){
+
                     // Set the appropriate headers for the file download
                     header('Content-Type: application/octet-stream');
                     header('Content-Disposition: attachment; filename="' . basename($merged_img_path) . '"');
@@ -188,6 +191,39 @@ use FontLib\Table\Type\post;
                 
                     // Read and output the file content
                     readfile($merged_img_path);
+                }elseif($_POST['type'] == "pdf"){
+                    // FPDF Instance
+                    $pdf = new FPDF('P', 'mm', 'A4');
+                    $pdf->AddPage();
+                    list($width, $height) = getimagesize($merged_img_path);
+
+                    $dpi = 300;
+                    // Converting to MM from px
+                    $width_mm = $width * 25.4 / $dpi;
+                    $height_mm = $height * 25.4 / $dpi;
+
+                    // Get the Generated PDF's page Sizes
+                    $page_width = $pdf->GetPageWidth();
+                    $page_height = $pdf->GetPageHeight();
+
+                    // Calculate the scaling factor to fit the image within the page dimensions
+                    $scale_factor = min($page_width / $width_mm, $page_height / $height_mm);
+
+                    // Scaled height and Width
+                    $scaled_width = $width_mm * $scale_factor;
+                    $scaled_height = $height_mm * $scale_factor;
+
+                    // Center the image on the page
+                    $x = ($page_width - $scaled_width) / 2;
+                    $y = ($page_height - $scaled_height) / 2;
+
+                    $pdf->Image($merged_img_path, $x, $y, $scaled_width, $scaled_height);
+                    date_default_timezone_set("Asia/Dubai");
+                    $merged_img_basename = explode('.',basename($merged_img_path))[0].date("_y-m-d_h-m-s");
+                    $pdf->Output('D', $merged_img_basename.".pdf");
+                    echo "Old: $width, $height ........ New: $width_mm, $height_mm";
+
+                }
 
                 imagedestroy($selected_img);
                 imagedestroy($image);
