@@ -133,6 +133,52 @@ use FontLib\Table\Type\post;
                 show_404();
             }
         }
+
+        
+        public function edit_image_merge(){
+            // Checking If User is Logged In
+            if(!$this->session->email){
+            redirect(adminTravelPlannerUrl());
+                return;
+            }
+
+            if($this->input->method() == "post"){
+                // Code for Merging the image and Download Directly
+                $selected_img_path = FCPATH.str_replace("\CodeIgniterApp\\","",base64_decode($_POST['selected-img']));
+                $image_path = FCPATH.str_replace("\CodeIgniterApp","",base64_decode($_POST['image']));
+                $x_pos = $_POST['x-pos'];
+                $y_pos = $_POST['y-pos'];
+                
+                $selected_img = imagecreatefromstring(file_get_contents($selected_img_path));
+                $image = imagecreatefromstring(file_get_contents($image_path));
+                    list($width, $height) = getimagesize($image_path);
+                // imagecopymerge_alpha
+                $cut = imagecreatetruecolor($width, $height);
+                imagecopy($cut, $selected_img, 0, 0, $x_pos, $y_pos, $width, $height);
+                imagecopy($cut, $image, 0, 0, 0, 0, $width, $height);
+                imagecopymerge($selected_img, $cut, $x_pos, $y_pos, 0, 0, $width, $height, 100);
+
+                $merged_img_path = str_replace(".","_merged.",$selected_img_path);
+                $merged_img_path = str_replace(explode("_merged.",$merged_img_path)[1],"png", $merged_img_path);
+                imagepng($selected_img, $merged_img_path);
+
+                    // Set the appropriate headers for the file download
+                    header('Content-Type: application/octet-stream');
+                    header('Content-Disposition: attachment; filename="' . basename($merged_img_path) . '"');
+                    header('Content-Length: ' . filesize($merged_img_path));
+                
+                    // Read and output the file content
+                    readfile($merged_img_path);
+
+                imagedestroy($selected_img);
+                imagedestroy($image);
+                imagedestroy($cut);
+
+            }else{
+                redirect("Travel_planner/document/edit_image");
+            }
+
+        }
         public function edit_image(){
         
             // Checking If User is Logged In
