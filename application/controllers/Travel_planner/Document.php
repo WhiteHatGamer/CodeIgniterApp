@@ -133,4 +133,16 @@ use FontLib\Table\Type\post;
                 show_404();
             }
         }
+        public function edit_image(){
+        
+            // Checking If User is Logged In
+            if(!$this->session->email){
+            redirect(adminTravelPlannerUrl());
+                return;
+            }
+            
+            $this->load->view("Travel_planner/inc/header");
+            $this->load->view('Travel_planner/dashboard/editImage', $data);
+            $this->load->view("Travel_planner/inc/footer");
+        }
     }

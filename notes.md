@@ -23,6 +23,12 @@
   - [x] image Download in gallery
   - [x] Image Path Update in Db
 - [x] Fb Page Graph API
+- [x] Image Merge with Drag and Drop
+  - [x] php image Manipulation
+  - [x] php pdf to image
+  - [x] js drag and drop
+  - [x] download updated image
+  - [x] Option for pdf/image
 <!-- - [ ] Date of Birth YEAR -->
 
 - [ ] Ask about Edit Post Variable Returns in js Functions

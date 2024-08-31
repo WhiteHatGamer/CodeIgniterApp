@@ -13,7 +13,8 @@
 	"require": {
 		"php": ">=5.3.7",
 		"phpoffice/phpspreadsheet": "^2.1",
-		"dompdf/dompdf": "*"
+		"dompdf/dompdf": "*",
+		"setasign/fpdf": "^1.8"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
