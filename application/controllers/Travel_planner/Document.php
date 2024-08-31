@@ -151,7 +151,26 @@ use FontLib\Table\Type\post;
                 
                 $selected_img = imagecreatefromstring(file_get_contents($selected_img_path));
                 $image = imagecreatefromstring(file_get_contents($image_path));
+                
+                if(isset($_POST['custom-height'])){
+
+                    // Resizing Image based on Slider
+                    $oldW = imagesx($image);
+                    $oldH = imagesy($image);
+                    $aspectRatio = $oldW/$oldH;
+                    $height = $_POST["custom-height"];
+                    $width = $aspectRatio*$height;
+                    $temp = imagecreatetruecolor($width, $height);
+                    imagealphablending($temp, false);
+                    imagesavealpha($temp, true);
+                    imagecopyresampled($temp, $image, 0, 0, 0, 0, $width, $height, $oldW, $oldH);
+                    $image = $temp;
+
+                }else{
+
                     list($width, $height) = getimagesize($image_path);
+                }
+
                 // imagecopymerge_alpha
                 $cut = imagecreatetruecolor($width, $height);
                 imagecopy($cut, $selected_img, 0, 0, $x_pos, $y_pos, $width, $height);
