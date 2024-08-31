@@ -147,6 +147,72 @@ use FontLib\Table\Type\post;
                 if(@$_POST["edit"]){
                     $data = $this->document_model->getImage(array("id"=>$_POST["edit"]))[0];
 
+                }elseif(isset($_FILES["selected-img"])){
+                    
+                    // Upload Form  Submitted
+                    $config['upload_path']      = FCPATH."assets/uploads";
+                    $config['allowed_types']    = 'gif|jpg|jpeg|png|bmp|webp|tiff|x-icon|pdf';
+
+                    $this->load->library('upload', $config);
+                    
+                    
+                    if($_FILES["selected-img"]["type"] == "application/pdf"){
+                        
+                        $pdfPath = $config['upload_path'].'/'.$_FILES["selected-img"]['name'];
+
+                        // Checking if File Already Exists
+                        if(file_exists($pdfPath)){
+                            // File Exists
+                            $data["selected_img"] = $pdfPath;
+                        }else{
+                            // File Doesn't Exists
+                            if($this->upload->do_upload('selected-img')){
+                                // Saving File into Database
+                                $data["selected_img"] = str_replace('/', '\\',$this->upload->data()['full_path']);
+                                
+                            }
+                        }
+
+                        // Imagick Instance
+                        $img = new Imagick();
+                        $img->setResolution(210,297);
+                        $img->readimage($data["selected_img"]);
+                        $img = $img->mergeImageLayers(Imagick::LAYERMETHOD_FLATTEN);
+                        $img->setImageFormat('png');
+                        
+                        $fileName = str_replace("pdf", "png", $_FILES["selected-img"]['name']);
+                        $filePath = $config['upload_path'].'/'.$fileName;
+                        $filePathUrl = '\\CodeIgniterApp\\'.explode(FCPATH,str_replace('/', '\\',$filePath))[1];
+
+                        // Checking if File Already Exists
+                        if(file_exists($filePath)){
+                            $data["selected_img"] = $filePathUrl;
+                        }else{
+                            
+                            $img->writeImage($filePath);
+                            $data["selected_img"] = $filePathUrl;
+                        }
+                        
+                        $img->clear();
+                        $img->destroy();
+                    }else{
+
+                        // Checking if File Already Exists
+                        if(file_exists($config['upload_path'].'/'.$_FILES["selected-img"]["name"])){
+                            $data["selected_img"] = '\\CodeIgniterApp\\'.explode(FCPATH,str_replace('/', '\\',$config['upload_path'].'/'.$_FILES["selected-img"]['name']))[1];
+                        }else{
+                            
+                            if($this->upload->do_upload('selected-img')){
+                                // Saving File into Database
+                                $data["selected_img"] = '\\CodeIgniterApp\\'.explode(FCPATH,str_replace('/', '\\',$this->upload->data()['full_path']))[1];
+        
+                            }
+                        }
+                    }
+
+
+
+                }
                 if(isset($_FILES["image"])){
                     // Upload Form  Submitted
                     $config['upload_path']      = FCPATH."assets/uploads";

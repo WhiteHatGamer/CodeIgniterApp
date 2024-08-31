@@ -9,6 +9,31 @@
     }
 </style>
 <?php
+    if(isset($image)){
+        if(!isset($selected_img)){
+
+            $selected_img = base64_decode($filePath);
+        }
+        ?>
+        <form action="edit_image_merge" method="post" enctype="multipart/form-data">
+            <input type="hidden" value="<?=base64_encode($selected_img)?>" name="selected-img" id="selected-img">
+            <input type="hidden" value="<?=base64_encode($image)?>" name="image" id="image">
+            <div ondragover="allowDrop(event)" >
+                <img id="dropImg" draggable="false" src='<?=$selected_img?>' style="border: 3px solid #000;">
+                <img draggable="true" id="card" src='<?=$image?>' style="border: 3px solid #000">
+            </div>
+            <input type="hidden" name="x-pos" id="x-pos">
+            <input type="hidden" name="y-pos" id="y-pos">
+            <label for="custom-height" class="form-label">Sub Image Size: </label>
+            <input type="range" name="custom-height" id="custom-height" class="form-range" min="10" max="1000" style="width: 500px;"><input type="number" id="custom-h-text" > <br>
+            <button type="submit" class="btn btn-outline-success" disabled id="download-btn-img" name="type" value="image"><i class="fas fa-download"></i> Image</button>
+            <button type="submit" class="btn btn-outline-primary" disabled id="download-btn-pdf" name="type" value="pdf"><i class="fas fa-download"></i> Pdf</button>
+            </div>
+            <p id="error-msg" style="color: red;"></p>
+        </form>
+
+        <?php
+    }else{
         ?>
         <div class="wrapper bg-white">
             <div class="center-page m-2 bg-white">
