@@ -141,6 +141,34 @@ use FontLib\Table\Type\post;
                 return;
             }
             
+            $data = array();
+            
+            if($this->input->post()){
+                if(@$_POST["edit"]){
+                    $data = $this->document_model->getImage(array("id"=>$_POST["edit"]))[0];
+
+                if(isset($_FILES["image"])){
+                    // Upload Form  Submitted
+                    $config['upload_path']      = FCPATH."assets/uploads";
+                    $config['allowed_types']    = 'gif|jpg|jpeg|png|bmp|webp|tiff|x-icon';
+
+                    $this->load->library('upload', $config);
+
+                    // Checking if File Already Exists
+                    if(file_exists($config['upload_path'].'/'.$_FILES["image"]['name'])){
+                        $data["image"] = '\\CodeIgniterApp\\'.explode(FCPATH,str_replace('/', '\\',$config['upload_path'].'/'.$_FILES["image"]['name']))[1];
+                    }else{
+
+                        if($this->upload->do_upload('image')){
+                            // Saving File into Database
+                            $data["image"] = '\\CodeIgniterApp\\'.explode(FCPATH,str_replace('/', '\\',$this->upload->data()['full_path']))[1];
+    
+                        }
+                    }
+                }
+            }
+
+            
             $this->load->view("Travel_planner/inc/header");
             $this->load->view('Travel_planner/dashboard/editImage', $data);
             $this->load->view("Travel_planner/inc/footer");
