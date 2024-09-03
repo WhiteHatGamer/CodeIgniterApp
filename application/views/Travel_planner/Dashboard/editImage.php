@@ -85,8 +85,8 @@
 <script>
     window.onload=function() {
         var Card = document.getElementById("card");
-        document.getElementById('custom-height').value = Card.offsetHeight;
-        $('#custom-h-text').val(parseInt(Card.offsetHeight));
+        document.getElementById('custom-height').value = Card.offsetHeight - 5;
+        $('#custom-h-text').val(parseInt(Card.offsetHeight) - 5);
     }
 
     let newX = 0, newY = 0, startX = 0, startY = 0;
@@ -176,21 +176,17 @@
         $('label[for="'+input.id+'"]').text(input.files[0].name);
     }
 
-    function updateSize(element, value){
-        element=value;
-    }
-
     const customHeight = document.getElementById('custom-height')
 
     customHeight.addEventListener('change', (event) => {
         $("#custom-h-text").val(customHeight.value);
-        card.style.height= customHeight.value+'px';
+        card.style.height= (parseInt(customHeight.value)+parseInt(5))+'px';
     })
 
     const customHeightText = document.getElementById('custom-h-text')
 
     customHeightText.addEventListener('change', (event) => {
         $("#custom-height").val(customHeightText.value);
-        card.style.height= customHeight.value+'px';
+        card.style.height= (parseInt(customHeight.value)+parseInt(5))+'px';
     })
 </script>
