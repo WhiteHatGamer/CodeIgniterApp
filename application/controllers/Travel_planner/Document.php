@@ -1,6 +1,7 @@
 <?php
 
-use FontLib\Table\Type\post;
+    use FontLib\Table\Type\post;
+
 
     defined("BASEPATH") OR exit("Direct access not Allowed");
 
@@ -152,23 +153,22 @@ use FontLib\Table\Type\post;
                 $selected_img = imagecreatefromstring(file_get_contents($selected_img_path));
                 $image = imagecreatefromstring(file_get_contents($image_path));
                 
-                if(isset($_POST['custom-height'])){
+                list($width, $height) = getimagesize($image_path);
+
+                if(isset($_POST['custom-height']) && @$_POST['custom-height']!=$height){
 
                     // Resizing Image based on Slider
                     $oldW = imagesx($image);
                     $oldH = imagesy($image);
                     $aspectRatio = $oldW/$oldH;
                     $height = $_POST["custom-height"];
-                    $width = $aspectRatio*$height;
+                    $width = (int)$aspectRatio*$height;
                     $temp = imagecreatetruecolor($width, $height);
                     imagealphablending($temp, false);
                     imagesavealpha($temp, true);
                     imagecopyresampled($temp, $image, 0, 0, 0, 0, $width, $height, $oldW, $oldH);
                     $image = $temp;
 
-                }else{
-
-                    list($width, $height) = getimagesize($image_path);
                 }
 
                 // imagecopymerge_alpha
@@ -221,10 +221,10 @@ use FontLib\Table\Type\post;
                     date_default_timezone_set("Asia/Dubai");
                     $merged_img_basename = explode('.',basename($merged_img_path))[0].date("_y-m-d_h-m-s");
                     $pdf->Output('D', $merged_img_basename.".pdf");
-                    echo "Old: $width, $height ........ New: $width_mm, $height_mm";
 
                 }
 
+                // Freeing Memories
                 imagedestroy($selected_img);
                 imagedestroy($image);
                 imagedestroy($cut);
@@ -234,6 +234,7 @@ use FontLib\Table\Type\post;
             }
 
         }
+
         public function edit_image(){
         
             // Checking If User is Logged In
@@ -320,15 +321,36 @@ use FontLib\Table\Type\post;
                     $config['allowed_types']    = 'gif|jpg|jpeg|png|bmp|webp|tiff|x-icon';
 
                     $this->load->library('upload', $config);
-
+                    $image_path = $config['upload_path'].'/'.$_FILES["image"]['name'];
                     // Checking if File Already Exists
-                    if(file_exists($config['upload_path'].'/'.$_FILES["image"]['name'])){
-                        $data["image"] = '\\CodeIgniterApp\\'.explode(FCPATH,str_replace('/', '\\',$config['upload_path'].'/'.$_FILES["image"]['name']))[1];
+                    if(file_exists($image_path)){
+                        $data["image"] = '\\CodeIgniterApp\\'.explode(FCPATH,str_replace('/', '\\',$image_path))[1];
                     }else{
 
                         if($this->upload->do_upload('image')){
                             // Saving File into Database
                             $data["image"] = '\\CodeIgniterApp\\'.explode(FCPATH,str_replace('/', '\\',$this->upload->data()['full_path']))[1];
+                            try {
+                                // Some Image Error Because Garbage Input(Corrupted)
+                                // Convert warnings to exceptions
+                                set_error_handler(function($severity, $message, $file, $line) {
+                                    throw new \ErrorException($message, 0, $severity, $file, $line);
+                                });
+                                $image = imagecreatefromstring(file_get_contents($image_path));
+                            } catch (\Throwable $th) {
+
+                                    // Imagick Fixes Image
+                                    $img = new Imagick($image_path);
+                                    $img->stripImage();
+                                    // Save the image back
+                                    $img->writeImage($image_path);
+
+                                    // Free Memory
+                                    $img->clear();
+                                    $img->destroy();
+                            } finally{
+                                restore_error_handler();
+                            }
     
                         }
                     }
