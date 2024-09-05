@@ -40,7 +40,7 @@
 
                 $this->load->library('upload', $config);
 
-                if($this->input->post('dltImg')){
+                if(!is_null($this->input->post('dltImg'))){
                     
                     $data = $this->user_model->get_user_details($this->session->email);
                     if($data['image']){
@@ -58,32 +58,32 @@
 
                     $this->user_model->update_column("image", "LOAD_FILE('$source')");
                 }
-                if($this->input->post('confirmDlt')){
+                if(!is_null($this->input->post('confirmDlt'))){
                     $source = 'C:/xampp/htdocs/CodeIgniterApp/assets/dist/img/default-user.png';
                     $this->user_model->update_column("image", "LOAD_FILE('$source')");
                 }
-                if($this->input->post('prefix')){
+                if(!is_null($this->input->post('prefix'))){
                     
                     $this->user_model->update_column("prefix", $this->input->post('prefix'));
                 }
-                if($this->input->post('name')){
+                if(!is_null($this->input->post('name'))){
 
                     $this->user_model->update_column("name", $this->input->post('name'));
                 }
-                if($this->input->post('number')){
+                if(!is_null($this->input->post('number'))){
 
-                    $value = str_replace(' ','',$_POST['number']);
+                    $value = str_replace(' ','',$this->input->post('number'));
                     $this->user_model->update_column("number",$this->input->post('number'));
                 }
-                if($this->input->post('gender')){
+                if(!is_null($this->input->post('gender'))){
 
                     $this->user_model->update_column("gender", $this->input->post('gender'));
                 }
-                if($this->input->post('dob')){
+                if(!is_null($this->input->post('dob'))){
 
                     $this->user_model->update_column("dob", $this->input->post('dob'));
                 }
-                if($this->input->post('editSubmit')){
+                if(!is_null($this->input->post('editSubmit'))){
 
                     redirect(adminTravelPlannerUrl()."User_profile");
                 }

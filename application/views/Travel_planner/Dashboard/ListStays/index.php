@@ -30,7 +30,7 @@
         <?php
 
         // Edit Form With Autocomplete
-        if (isset($_POST['edit'])) {
+        if (!is_null($this->input->post('edit'))) {
 
             // Getting Results Based on id
             $city = $edit['city'];
@@ -85,7 +85,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <button class='btn btn-success' type="submit" name="stay" value="<?= $_POST['edit'] ?>"><i class="fas fa-check"></i></button>
+                                        <button class='btn btn-success' type="submit" name="stay" value="<?= $this->input->post('edit') ?>"><i class="fas fa-check"></i></button>
                         </form>
                         </td>
                         <form method="post" action="#">
@@ -104,7 +104,7 @@
         }
 
         // Delete Confirmation
-        if (isset($_POST['delete'])) { ?>
+        if (!is_null($this->input->post('delete'))) { ?>
             <div class="card-body" style="background-color: rgba(255, 255, 255, .5);">
                 <div class="card">
                     <div class="card-header">
@@ -139,7 +139,7 @@
                                 }
                             }
                             // Button with id as Value
-                            echo "<td><button class='btn bg-gradient-danger' type='submit' name='confirm_delete' value={$_POST['delete']}><i class='fas fa-check'></i></button></td>";
+                            echo "<td><button class='btn bg-gradient-danger' type='submit' name='confirm_delete' value={$this->input->post('delete')}><i class='fas fa-check'></i></button></td>";
                             echo "<td><button class='btn bg-gradient-info' type='submit' name='cancel'><i class='fas fa-times'></i></button></td>";
                             echo "</tr>";
                             echo "</table></form></div></div></div>";
@@ -361,7 +361,7 @@
         </script>
                             
         <?php
-        if (isset($_POST['edit'])) { ?>
+        if (!is_null($this->input->post('edit'))) { ?>
             <script>
                 // Calculating Expense Of the stay Editing
                 calculateExpense("<?= date('Y-m-d', strtotime($edit['checkOut'])); ?>");

@@ -138,7 +138,7 @@
                 return;
             }
 
-            if(isset($_POST['submit'])){
+            if(!is_null($this->input->post('submit'))){
                 // Verifying File
                 $canRead = 1;
                 if(@$_FILES['excel']){
@@ -246,7 +246,7 @@
 
             }
 
-            if(isset($_POST['plan'])){
+            if(!is_null($this->input->post('plan'))){
                 try{
                     $this->journey_model->insert_trip();
 
@@ -276,7 +276,7 @@
 
             $this->load->view("Travel_planner\inc/header");
             
-            if($this->input->post('edit')){
+            if(!is_null($this->input->post('edit'))){
                 $edit = $this->journey_model->get_trip($this->input->post('edit'));
                 $data['result']=$result;
                 $data['edit']=$edit[0];
@@ -286,7 +286,7 @@
 
             }
 
-            if($this->input->post('delete')){
+            if(!is_null($this->input->post('delete'))){
                 $delete = $this->journey_model->get_trip($this->input->post('delete'));
                 $data['result']=$result;
                 $data['delete']=$delete[0];
@@ -296,12 +296,12 @@
 
             }
 
-            if($this->input->post('confirm_edit')){
+            if(!is_null($this->input->post('confirm_edit'))){
                 $this->journey_model->update_trip();
                 $this->load->view("Travel_planner\inc\saved");
             }
 
-            if($this->input->post('confirm_delete')){
+            if(!is_null($this->input->post('confirm_delete'))){
                 $deleted = $this->journey_model->delete_trip();
                 if($deleted){
                     $this->load->view("Travel_planner\inc\deleted");

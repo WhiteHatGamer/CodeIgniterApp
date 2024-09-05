@@ -17,7 +17,7 @@
 
             if($this->input->server('REQUEST_METHOD')=='POST'){
 
-                if(isset($_POST['login'])){
+                if(!is_null($this->input->post('login'))){
                     // Test Login
                     $email = 'abc@example.com';
                     $password = 'abc';

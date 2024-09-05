@@ -23,7 +23,7 @@
 
             if($this->input->server('REQUEST_METHOD') == 'POST'){
 
-                foreach($_POST as $key => $value){
+                foreach($this->input->post(NULL, true) as $key => $value){
                     // User Confirmed Delete
                     if($key == 'cancel'){
                         break;
@@ -32,7 +32,7 @@
 
                     // User Confirmed Delete
                     if($key == 'confirmDlt'){
-                        if($this->document_model->deleteImage($_POST['confirmDlt'])){
+                        if($this->document_model->deleteImage($this->input->post('confirmDlt'))){
                             $this->load->view('Travel_planner\inc\deleted');
                         }else{
                             $data['errorTitle'] = "Couldn't Delete Data";
@@ -75,7 +75,7 @@
                 return;
             }
 
-            if($this->input->post('upload')){
+            if(!is_null($this->input->post('upload'))){
 
                 // Upload Form  Submitted
                 $config['upload_path']      = FCPATH."assets/uploads";
@@ -145,23 +145,23 @@
 
             if($this->input->method() == "post"){
                 // Code for Merging the image and Download Directly
-                $selected_img_path = FCPATH.str_replace("\CodeIgniterApp\\","",base64_decode($_POST['selected-img']));
-                $image_path = FCPATH.str_replace("\CodeIgniterApp","",base64_decode($_POST['image']));
-                $x_pos = $_POST['x-pos'];
-                $y_pos = $_POST['y-pos'];
+                $selected_img_path = FCPATH.str_replace("\CodeIgniterApp\\","",base64_decode($this->input->post('selected-img')));
+                $image_path = FCPATH.str_replace("\CodeIgniterApp","",base64_decode($this->input->post('image')));
+                $x_pos = $this->input->post('x-pos');
+                $y_pos = $this->input->post('y-pos');
                 
                 $selected_img = imagecreatefromstring(file_get_contents($selected_img_path));
                 $image = imagecreatefromstring(file_get_contents($image_path));
                 
                 list($width, $height) = getimagesize($image_path);
 
-                if(isset($_POST['custom-height']) && @$_POST['custom-height']!=$height){
+                if(!is_null($this->input->post("custom-height")) && $this->input->post("custom-height")!=$height){
 
                     // Resizing Image based on Slider
                     $oldW = imagesx($image);
                     $oldH = imagesy($image);
                     $aspectRatio = $oldW/$oldH;
-                    $height = $_POST["custom-height"];
+                    $height = $this->input->post("custom-height");
                     $width = (int)$aspectRatio*$height;
                     $temp = imagecreatetruecolor($width, $height);
                     imagealphablending($temp, false);
@@ -182,7 +182,7 @@
                 imagepng($selected_img, $merged_img_path);
 
                 //File Download Code
-                if($_POST['type'] == "image"){
+                if($this->input->post('type') == "image"){
 
                     // Set the appropriate headers for the file download
                     header('Content-Type: application/octet-stream');
@@ -191,7 +191,7 @@
                 
                     // Read and output the file content
                     readfile($merged_img_path);
-                }elseif($_POST['type'] == "pdf"){
+                }elseif($this->input->post('type') == "pdf"){
                     // FPDF Instance
                     $pdf = new FPDF('P', 'mm', 'A4');
                     $pdf->AddPage();
@@ -245,9 +245,9 @@
             
             $data = array();
             
-            if($this->input->post()){
-                if(@$_POST["edit"]){
-                    $data = $this->document_model->getImage(array("id"=>$_POST["edit"]))[0];
+            if(!is_null($this->input->post())){
+                if(!is_null($this->input->post("edit"))){
+                    $data = $this->document_model->getImage(array("id"=>$this->input->post("edit")))[0];
 
                 }elseif(isset($_FILES["selected-img"])){
                     

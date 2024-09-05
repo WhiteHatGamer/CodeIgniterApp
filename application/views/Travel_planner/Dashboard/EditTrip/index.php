@@ -47,7 +47,7 @@
 <body>
 <?php
     // Checking if Submitted
-    if(isset($_POST['edit'])){
+    if(!is_null($this->input->post('edit'))){
         ?>
         <div style='background-color: #f2f2f2;'>
         <div class='card-body'>
@@ -57,7 +57,7 @@
                 </div><div class="card-body p-0">
 
         <!-- // Listing the Journey to be Edited using id -->
-        <!-- // $result = $mysqli->query("SELECT * FROM $JourneyTable WHERE id={$_POST['edit']}")->fetch_assoc(); -->
+        <!-- // $result = $mysqli->query("SELECT * FROM $JourneyTable WHERE id={$this->input->post('edit')}")->fetch_assoc(); -->
         
         <!-- // Creating Form with Table -->
         <form method='post' action='<?=$_SERVER['REQUEST_URI']?>'><table class='table table-striped table-bordered'>
@@ -89,7 +89,7 @@
             <output name="tripTime" id="tripTime"></output></td>
             <td><input class='form-control' type="datetime-local" name="journey" id="journey" required value="<?=$edit['journey']?>" min="<?php echo date('Y-m-d')."T".date("H:i");?>"></td>
             <td><input class='form-control' type="datetime-local" name="round" id="round" required value="<?=$edit['round']?>" onclick="Calculate_min()"></td>
-            <td><button type='submit' name='confirm_edit' class="btn btn-success" value="<?=$_POST['edit']?>"><i class="fas fa-check"></i></button></td>
+            <td><button type='submit' name='confirm_edit' class="btn btn-success" value="<?=$this->input->post('edit')?>"><i class="fas fa-check"></i></button></td>
         </form>
 
         <!-- Separate Form to Cancel Else Conflicts with required and Client side -->
@@ -101,7 +101,7 @@
 
 
     // Delete Confirmation
-    if(isset($_POST['delete'])){
+    if(!is_null($this->input->post('delete'))){
         echo "<div style='background-color: #f2f2f2;'>";
         echo "<div class='card-body'><div class='card'><div class='card-header'><h3 class='card-title'><b>C</b>onfirm <b>D</b>elete:</h3></div>";
         echo "<div class='card-body p-0'><form method='post' action='{$_SERVER['REQUEST_URI']}'><table class='table table-striped table-bordered'>
@@ -131,7 +131,7 @@
         }
 
         // Button with id as Value
-        echo "<td><button class='btn btn-danger'type='submit' name='confirm_delete' value={$_POST['delete']}><i class='fas fa-check'></i></button></td>";
+        echo "<td><button class='btn btn-danger'type='submit' name='confirm_delete' value={$this->input->post('delete')}><i class='fas fa-check'></i></button></td>";
         echo "<td><button class='btn btn-info'type='submit' name='cancel'><i class='fas fa-times'></i></button></td>";
         echo "</tr></table></form></div></div></div>";
 

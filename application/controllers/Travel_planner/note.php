@@ -141,7 +141,7 @@
                 return;
             }
 
-            if($this->input->post('import')){
+            if(!is_null($this->input->post('import'))){
                 // Verifying File
                 $canRead = 1;
                 if(@$_FILES['excel']){
@@ -243,7 +243,7 @@
             }
             $this->load->view("Travel_planner\inc/header");
 
-            if($this->input->post('submit')){
+            if(!is_null($this->input->post('submit'))){
                 if($this->note_model->insert_note()){
                     $this->load->view('Travel_planner/inc/saved');
                 }
@@ -262,7 +262,7 @@
 
             $this->load->view("Travel_planner\inc/header");
 
-            if($this->input->post('submit')){
+            if(!is_null($this->input->post('submit'))){
                 if($this->note_model->update_note()){
                     
                     $this->load->view("Travel_planner\inc/saved");
@@ -299,7 +299,7 @@
             $this->load->view("Travel_planner\inc/header");
             
             // Checking if Submitted Already
-            if($this->input->post('confirmDlt')){
+            if(!is_null($this->input->post('confirmDlt'))){
 
                 if($this->note_model->delete_note()){
                     
@@ -312,7 +312,7 @@
                 }
 
             }
-            if($this->input->post('submit')){
+            if(!is_null($this->input->post('submit'))){
                 
                 $data['value'] = $this->input->post('id');
                 if($this->note_model->get_note($data['value'])){

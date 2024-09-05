@@ -23,7 +23,7 @@
       // Starting Session
       @session_start();
       
-      if(isset($_POST['logout'])){
+      if(!is_null($this->input->post("logout"))){
         if($this->session->remember){
           $email= $this->session->email;
           session_unset();

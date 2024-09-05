@@ -105,7 +105,7 @@
             }
         }
 
-        if($this->input->post('round')){
+        if(!is_null($this->input->post('round'))){
 
             $inputs = $this->input->dump_post_array(array('source','destination','way','journey','round'));
         }else{

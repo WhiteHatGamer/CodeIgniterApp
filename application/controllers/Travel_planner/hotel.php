@@ -31,7 +31,7 @@ use PhpParser\Node\Stmt\Catch_;
                 return;
             }
 
-            if(isset($_POST['edit'])){
+            if(!is_null($this->input->post('edit'))){
                 
                 $edit = $this->hotel_model->get_stay($this->input->post('edit'));
                 if(!$edit){
@@ -43,7 +43,7 @@ use PhpParser\Node\Stmt\Catch_;
                 }
             }
 
-            if($this->input->post('stay')){
+            if(!is_null($this->input->post('stay'))){
                 if($this->hotel_model->update_stay($this->input->post('stay'))){
 
                     $this->load->view("Travel_planner\inc\saved");
@@ -55,7 +55,7 @@ use PhpParser\Node\Stmt\Catch_;
 
             }
 
-            if($this->input->post('delete')){
+            if(!is_null($this->input->post('delete'))){
                 $delete = $this->hotel_model->get_stay($this->input->post('delete'));
                 if(!$delete){
 
@@ -66,7 +66,7 @@ use PhpParser\Node\Stmt\Catch_;
                 }
             }
             
-            if($this->input->post('confirm_delete')){
+            if(!is_null($this->input->post('confirm_delete'))){
                 if($this->hotel_model->delete_stay($this->input->post('confirm_delete'))){
                     $this->load->view("Travel_planner\inc\deleted");
                 }else{
@@ -176,7 +176,7 @@ use PhpParser\Node\Stmt\Catch_;
             }
 
 
-            if($this->input->post('submit')){
+            if(!is_null($this->input->post('submit'))){
                 // Verifying File
                 $canRead = 1;
                 $fileType = 'none';
@@ -312,16 +312,16 @@ use PhpParser\Node\Stmt\Catch_;
             }
 
             // User Confirmed Upload
-            if(isset($_POST['confirm'])){
+            if(!is_null($this->input->post('confirm'))){
 
                 // Decoding File Path
-                $file_path = base64_decode($_POST['confirm']);
+                $file_path = base64_decode($this->input->post('confirm'));
 
                 // Initializing Reader Based On File Type
-                if($_POST['type'] = 'excel'){
+                if($this->input->post('type') == 'excel'){
                     $reader = new ReaderXlsx();
                     
-                }elseif($_POST['type'] = 'csv'){
+                }elseif($this->input->post('type') == 'csv'){
                     $reader = new ReaderCsv();
                 }else{
                     redirect(adminTravelPlannerUrl().'\hotel');
@@ -411,13 +411,13 @@ use PhpParser\Node\Stmt\Catch_;
             }
 
             // User Cancelled Upload
-            if(isset($_POST['cancel'])){
+            if(!is_null($this->input->post('cancel'))){
 
                 $data['errorTitle'] = "Not Uploaded";
                 $this->load->view("Travel_planner\inc/warning",$data);
             }
             
-            if(isset($_POST['stay'])){
+            if(!is_null($this->input->post('stay'))){
         
                 try {
         
