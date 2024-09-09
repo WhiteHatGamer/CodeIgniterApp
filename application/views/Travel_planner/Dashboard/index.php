@@ -23,6 +23,8 @@
         hotel_btn.className = 'btn btn-outline-info ';
         note_btn.className = 'btn btn-outline-info ';
         doc_btn.className = 'btn btn-outline-info';
+        tour_btn.className = 'btn btn-outline-info';
+        tour.hidden=true,
         doc.hidden=true,
         stay.hidden=true;
         note.hidden = true;
@@ -42,6 +44,8 @@
         travel_btn.className = 'btn btn-outline-info';
         note_btn.className = 'btn btn-outline-info';
         doc_btn.className = 'btn btn-outline-info';
+        tour_btn.className = 'btn btn-outline-info';
+        tour.hidden=true,
         doc.hidden=true,
         travel.hidden=true,
         note.hidden = true;
@@ -61,6 +65,8 @@
         travel_btn.className = 'btn btn-outline-info';
         hotel_btn.className = 'btn btn-outline-info';
         doc_btn.className = 'btn btn-outline-info';
+        tour_btn.className = 'btn btn-outline-info';
+        tour.hidden=true,
         doc.hidden=true,
         travel.hidden=true,
         stay.hidden=true;
@@ -79,6 +85,28 @@
         travel_btn.className = 'btn btn-outline-info';
         hotel_btn.className = 'btn btn-outline-info';
         note_btn.className = 'btn btn-outline-info';
+        tour_btn.className = 'btn btn-outline-info';
+        tour.hidden=true,
+        travel.hidden=true,
+        stay.hidden=true,
+        note.hidden = true;
+    }
+
+    function tour_click(){
+        if(tour.hidden == false){
+
+            tour_btn.className = 'btn btn-outline-info';
+            tour.hidden=true;
+        }else{
+
+            tour_btn.className = 'btn bg-gradient-success active';
+            tour.hidden=false;
+        }
+        travel_btn.className = 'btn btn-outline-info';
+        hotel_btn.className = 'btn btn-outline-info';
+        note_btn.className = 'btn btn-outline-info';
+        doc_btn.className = 'btn btn-outline-info';
+        doc.hidden=true,
         travel.hidden=true,
         stay.hidden=true,
         note.hidden = true;
@@ -107,26 +135,32 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-5" style="background-color: rgba(242,242,242,0.925);">
+        <div class="col-md-7" style="background-color: rgba(242,242,242,0.925);">
             <table class="table ">
                 <tr>
                     <div class="btn-group-vertical">
-                        <th><button class="btn btn-outline-info" type="button" name='travel_btn' id='travel_btn' onclick=travel_click()><i class="fa fa-plane-departure"></i> <b>T</b>ravel <b>P</b>lan</button></th>
-                        <th><button class="btn btn-outline-info" type="button" name='hotel_btn' id='hotel_btn' onclick=hotel_click()><i class="fa fa-bed"></i> <b>H</b>otel <b>S</b>tay</button></th>
-                        <th><button class="btn btn-outline-info" type="button" name='note_btn' id='note_btn' onclick=note_click()><i class="fa fa-edit"></i> <b>T</b>ravel <b>N</b>ote</button></th>
                         <th><button class="btn btn-outline-info" type="button" name='doc_btn' id='doc_btn' onclick=doc_click()><i class="fa fa-images"></i> <b>D</b>ocument <b>D</b>rive</button></th>
+                        <th><button class="btn btn-outline-info" type="button" name='hotel_btn' id='hotel_btn' onclick=hotel_click()><i class="fa fa-bed"></i> <b>H</b>otel <b>S</b>tay</button></th>
+                        <th><button class="btn btn-outline-info" type="button" name='tour_btn' id='tour_btn' onclick=tour_click()><i class="fab fa-accusoft"></i> <b>T</b>ourism <b>P</b>ackages</button></th>
+                        <th><button class="btn btn-outline-info" type="button" name='note_btn' id='note_btn' onclick=note_click()><i class="fa fa-edit"></i> <b>T</b>ravel <b>N</b>ote</button></th>
+                        <th><button class="btn btn-outline-info" type="button" name='travel_btn' id='travel_btn' onclick=travel_click()><i class="fa fa-plane-departure"></i> <b>T</b>ravel <b>P</b>lan</button></th>
                     </div>
                 </tr>
                 <tr>
                     <div class="card-box">
                         <td>
-                            <!-- Travel Plan -->
-                            <div class='card-body' id="travel" hidden>
+                            <!-- Document Operations -->
+                            <div class='card-body' id="doc" hidden>
                                 <div class="tab-content">
                                     <div class="tab-pane active">
-                                        <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey/plan">Plan Travel</a></p>
-                                        <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey">Show Trips</a></p>
-                                        <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey/edit">Edit Trip</a></p>
+                                        <!-- Upload -->
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>document/upload">Upload Documents</a></p>
+
+                                        <!-- Gallery -->
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>document/">Gallery</a></p>
+
+                                        <!-- Image Editor -->
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>document/edit_image">Edit Image</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -140,6 +174,20 @@
 
                                         <!-- List Stays Stored -->
                                         <p><a class='post' href="<?=adminTravelPlannerUrl()?>hotel/">List Stays</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- Tourism Operations -->
+                            <div class='card-body' id="tour" hidden>
+                                <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        <!-- Destination Packages -->
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>tourism/">Destination Packages</a></p>
+
+                                        <!-- All Tourist Packages -->
+                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>tourism/all_packages">WorldWide Tours</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -160,22 +208,21 @@
 
                                         <!-- Delete Note -->
                                         <p><a class='post' href="<?=adminTravelPlannerUrl()?>note/delete">Delete Note</a></p>
+                                    </div>
+                                </div>
                             </div>
                         </td>
                         <td>
-                            <!-- Document Operations -->
-                            <div class='card-body' id="doc" hidden>
+                            <!-- Travel Plan -->
+                            <div class='card-body' id="travel" hidden>
                                 <div class="tab-content">
                                     <div class="tab-pane active">
-                                        <!-- Upload -->
-                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>document/upload">Upload Documents</a></p>
-
-                                        <!-- Gallery -->
-                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>document/">Gallery</a></p>
-
-                                        <!-- Image Editor -->
-                                        <p><a class='post' href="<?=adminTravelPlannerUrl()?>document/edit_image">Edit Image</a></p>
+                                        <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey/plan">Plan Travel</a></p>
+                                        <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey">Show Trips</a></p>
+                                        <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey/edit">Edit Trip</a></p>
                                     </div>
+                                </div>
+                            </div>
                         </td>
                     </div>
                 </tr>
