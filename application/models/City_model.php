@@ -30,4 +30,17 @@
             }
         }
 
+        public function storeCity($input = array("city"=>"null")){
+            if($input == array("city"=>"null")){
+                return false;
+            }
+            if($this->isDuplicate($input)){
+                return false;
+            }
+            if($this->db->insert($this->table, $input)){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
