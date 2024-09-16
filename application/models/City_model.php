@@ -44,6 +44,27 @@
             }
         }
 
+        public function getCities($input = array("city"=>"null"), $order_by = "null"){
+            if($input == array("city"=>"null")){
+                // Getting Every Cities
+                $result = $this->db->get($this->table);
+            }else{
+                // Checking If Input Cities are available
+                if(!$this->isDuplicate($input)){
+                    return null;
+                }
+                // Getting the result based on the Input
+                if($order_by != "null"){
+                    $this->db->order_by($order_by);
+                    $result = $this->db->get_where($this->table, $input);
+                }else{
+                    $result = $this->db->get_where($this->table, $input);
+                    
+                }
+            }
+            return $result->toArray();
+        }
+
         public function get_city($str, $type="null"){
             $this->db->select(array("id","city", "state", "country"));
             if($type == "api"){
