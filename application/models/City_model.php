@@ -43,4 +43,32 @@
                 return false;
             }
         }
+
+        public function get_city($str, $type="null"){
+            $this->db->select(array("id","city", "state", "country"));
+            if($type == "api"){
+                // Searching countries
+                $this->db->like("country",$str);
+                $countries = $this->db->get($this->table)->result_array();
+
+                // Searching Cities
+                $this->db->select(array("id","city", "state", "country"));
+                $this->db->like("city",$str, "after");
+                $cities = $this->db->get($this->table)->result_array();
+
+                // Fetching States
+                $this->db->select(array("id","city", "state", "country"));
+                $this->db->like("state",$str);
+                $states = $this->db->get($this->table)->result_array();
+                return array_merge($countries, $cities, $states);
+            }else{
+                $this->db->select(array("id","city", "state", "country"));
+
+                $this->db->like("city",$str);
+                $results = $this->db->get($this->table);
+                return $results->result_array();
+
+            }
+            
+        }
     }
