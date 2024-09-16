@@ -28,7 +28,7 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
           <div class="card-header text-center">
-            <a href="<?= base_url()."admin/"?>Travel_planner" class="h1">
+            <a href="<?= adminTravelPlannerUrl()?>" class="h1">
               <img src="<?=base_url("assets/dist/img/Travel_planner_128.png")?>" alt="Travel Planner Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
               <b>T</b>ravel<b>P</b>lanner
             </a>
