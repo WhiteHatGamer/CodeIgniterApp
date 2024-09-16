@@ -8,12 +8,13 @@
                 
             parent::__construct();
             $this->load->model("user_model");
+            $this->load->library("session");
         }
 
         public function index(){
             
             // Checking If User is Logged In
-            if($this->session->email){
+            if(!$this->session->email){
                 redirect(adminTravelPlannerUrl());
                 return;
             }
