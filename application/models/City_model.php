@@ -16,4 +16,18 @@
             $this->load->library('session');
         }
 
+        private function isDuplicate($input = array("city"=>"null")){
+            if($input == array("city"=>"null")){
+                return true;
+            }else{
+                $count = $this->db->get_where($this->table, array("city"=>$input["city"], "country"=>$input["country"], "state"=>$input["state"]))->num_rows();
+                if($count > 0){
+                    return true;
+                }else{
+                    
+                    return false;
+                }
+            }
+        }
+
     }
