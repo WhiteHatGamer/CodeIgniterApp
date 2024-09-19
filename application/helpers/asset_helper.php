@@ -9,4 +9,3 @@
     function Travel_plannerInc(){
         return APPPATH.'views/Travel_planner/inc/';
     }
-?>

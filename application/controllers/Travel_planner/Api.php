@@ -23,15 +23,7 @@
 
             // Checking If User is Logged In
             if(!$this->session->email){
-                $this->output
-                        ->set_status_header(401)
-                        ->set_content_type('application/json', 'utf-8')
-                        ->set_output(json_encode([
-                        "status"=>"error",
-                        "message"=>"",
-                        "data"=>"Please Login First"
-                        ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT))
-                        ->_display();
+                $this->throw_response(401, "Please Login First");
                 exit;
             }
       
@@ -96,7 +88,7 @@
     }
 
     private function throw_response($status, $data="null"){
-        switch($status){
+        switch ($status) {
             case 200:
                 // Success
                 $this->output
@@ -109,6 +101,7 @@
                         "data"=>$data
                         ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
                 );
+                break;
             case 400:
                 // Bad Request
                 $this->output
@@ -120,7 +113,8 @@
                         "message"=>"Bad Request",
                         "data"=>$data
                         ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
-                    );
+                );
+                break;
             case 401:
                 // Unauthorized
                 $this->output
@@ -132,7 +126,8 @@
                         "message"=>"Unauthorized",
                         "data"=>$data
                         ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
-                    );
+                );
+                break;
             case 403:
                 // Forbidden
                 $this->output
@@ -144,7 +139,8 @@
                         "message"=>"Forbidden",
                         "data"=>$data
                         ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
-                    );
+                );
+                break;
             case 404:
                 // Not Found
                 $this->output
@@ -156,7 +152,8 @@
                         "message"=>"Not Found",
                         "data"=>$data
                         ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
-                    );
+                );
+                break;
             case 500:
                 // Internal Server Error
                 $this->output
@@ -167,19 +164,21 @@
                         "status"=>STATUS_ERROR,
                         "message"=>"Internal Server Error",
                         "data"=>$data
-                        ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
-                    );
+                        ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+                break;
             default:
                 // Unknown Error
                 $this->output
                     ->set_content_type("application/json", "utf-8")
+                    ->set_status_header(404)
                     ->set_output(
                         json_encode([
                         "status"=>STATUS_ERROR,
                         "message"=>"Unknown Error",
                         "data"=>""
                         ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
-                    );
+                );
+                break;
 
             return;
         }

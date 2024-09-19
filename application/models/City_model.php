@@ -30,13 +30,16 @@
             }
         }
 
+        // Add City
         public function storeCity($input = array("city"=>"null")){
+            // Check If Duplicate
             if($input == array("city"=>"null")){
                 return false;
             }
             if($this->isDuplicate($input)){
                 return false;
             }
+            // Inserting Input array to db and return code
             if($this->db->insert($this->table, $input)){
                 return true;
             }else{
@@ -62,7 +65,7 @@
                     
                 }
             }
-            return $result->toArray();
+            return $result->result_array();
         }
 
         public function get_city($str, $type="null"){
