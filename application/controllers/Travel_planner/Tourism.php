@@ -12,6 +12,7 @@
             $this->load->model('journey_model');
             $this->load->model('hotel_model');
             $this->load->model('city_model');
+            $this->load->model('country_model');
             $this->load->model('document_model');
         }
 
