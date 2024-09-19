@@ -8,6 +8,7 @@
       
       parent::__construct();
       $this->load->model("user_model");
+      $this->load->model("city_model");
     }
 
     public function index(){
@@ -39,16 +40,9 @@
           header("Location: ".adminTravelPlannerUrl());
         }
       }
-      
-      // Checking If User is Logged In
-      if(!isset($_SESSION['email'])){
-          echo "<h3>You Are Logged out Please Login Again!!!</h3><br>";
-          echo '<a href="'.adminTravelPlannerUrl().'">Home</a><br>';
-          exit;
-      }
 
       // Get Name from db
-      $user_details = $this->user_model->get_user_details($_SESSION['email']);
+      $user_details = $this->user_model->get_user_details($this->session->email);
       $name = $user_details['name'];
       if(isset($name)){
           $_SESSION['name'] = $name;

@@ -1,7 +1,10 @@
 <?php
+  defined("BASEPATH") OR exit("No Direct Access Allowed");
 
   class User_model extends CI_Model{
     
+    // User Properties
+    public $id;
     public $name;
     public $email;
     public $password;
@@ -10,11 +13,12 @@
     public $dob;
     public $image;
     public $prefix;
+    public $user_type_id;
     
+    // Table Name
     private $table = 'user';
 
-    public function __construct()
-    {
+    public function __construct(){
       $this->load->database();
       $this->load->library('session');
     }
