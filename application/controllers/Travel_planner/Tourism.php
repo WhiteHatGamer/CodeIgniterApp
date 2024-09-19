@@ -10,7 +10,7 @@
             parent::__construct();
             $this->load->library("session");
             $this->load->model('journey_model');
-            $this->load->model('hotel_model');
+            $this->load->model('stay_model');
             $this->load->model('city_model');
             $this->load->model('country_model');
             $this->load->model('document_model');
@@ -30,7 +30,7 @@
             foreach($this->journey_model->get_trips() as $key => $value){
                 $temp[] = $value["destination"];
             }
-            foreach($this->hotel_model->get_stays() as $key => $value){
+            foreach($this->stay_model->get_stays() as $key => $value){
                 $temp[] = $value["city"];
             }
             

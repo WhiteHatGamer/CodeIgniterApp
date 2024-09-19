@@ -19,7 +19,7 @@ use PhpParser\Node\Stmt\Catch_;
 
         public function __construct(){
             parent::__construct();
-            $this->load->model('hotel_model');
+            $this->load->model('stay_model');
             $this->load->library(array('session','table'));
         }
 
@@ -33,7 +33,7 @@ use PhpParser\Node\Stmt\Catch_;
 
             if(!is_null($this->input->post('edit'))){
                 
-                $edit = $this->hotel_model->get_stay($this->input->post('edit'));
+                $edit = $this->stay_model->get_stay($this->input->post('edit'));
                 if(!$edit){
 
                     redirect(adminTravelPlannerUrl().'hotel/');
@@ -44,7 +44,7 @@ use PhpParser\Node\Stmt\Catch_;
             }
 
             if(!is_null($this->input->post('stay'))){
-                if($this->hotel_model->update_stay($this->input->post('stay'))){
+                if($this->stay_model->update_stay($this->input->post('stay'))){
 
                     $this->load->view("Travel_planner\inc\saved");
                 }else{
@@ -56,7 +56,7 @@ use PhpParser\Node\Stmt\Catch_;
             }
 
             if(!is_null($this->input->post('delete'))){
-                $delete = $this->hotel_model->get_stay($this->input->post('delete'));
+                $delete = $this->stay_model->get_stay($this->input->post('delete'));
                 if(!$delete){
 
                     redirect(adminTravelPlannerUrl().'hotel/');
@@ -67,7 +67,7 @@ use PhpParser\Node\Stmt\Catch_;
             }
             
             if(!is_null($this->input->post('confirm_delete'))){
-                if($this->hotel_model->delete_stay($this->input->post('confirm_delete'))){
+                if($this->stay_model->delete_stay($this->input->post('confirm_delete'))){
                     $this->load->view("Travel_planner\inc\deleted");
                 }else{
                     
@@ -75,7 +75,7 @@ use PhpParser\Node\Stmt\Catch_;
                 }
             }
 
-            $result = $this->hotel_model->get_stays();
+            $result = $this->stay_model->get_stays();
             if(!$result){
                 // No Data Stored
                 $this->load->view("Travel_planner\inc/header");
@@ -93,7 +93,7 @@ use PhpParser\Node\Stmt\Catch_;
 
         public function export_table($export){
 
-            $hotel_data = $this->hotel_model->get_stays();
+            $hotel_data = $this->stay_model->get_stays();
 
             $spreadsheet = new Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
@@ -359,7 +359,7 @@ use PhpParser\Node\Stmt\Catch_;
                 $successRow = array();
                 foreach($dataArray as $row){
                     // Appending Data to DB using Model Method
-                    if($this->hotel_model->store_stays($row)){
+                    if($this->stay_model->store_stays($row)){
                         $successCount++;
                         $successRow[] = $row;
                     }
@@ -422,7 +422,7 @@ use PhpParser\Node\Stmt\Catch_;
                 try {
         
                     // Insertion Query
-                    if($this->hotel_model->store_stays()){
+                    if($this->stay_model->store_stays()){
                         
                         // If success Show Toast Animation
                         $this->load->view("Travel_planner\inc\saved");

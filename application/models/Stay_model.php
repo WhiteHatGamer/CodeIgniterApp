@@ -1,10 +1,11 @@
 <?php
     if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    class Hotel_model extends CI_Model{
+    class Stay_model extends CI_Model{
     
-        public $id;
-        public $email;
+        // Hotel Properties
+        public $id; // PK
+        public $user_id; // FK
         public $city;
         public $hotel;
         public $checkIn;
