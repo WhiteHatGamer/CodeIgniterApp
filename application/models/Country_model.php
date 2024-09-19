@@ -33,6 +33,24 @@
             }
         }
 
+        // Add Country
+        public function addCountry($inputs = array("country"=>"null")){
+            if($inputs == array("country"=>"null")){
+                // No input so error
+                return false;
+            }
+            if($this->isDuplicate($inputs)){
+                // Duplicate
+                return false;
+            }
+            if($this->db->insert($this->table, $inputs)){
+                // Added
+                return true;
+            }else{
+                // Not Added
+                return false;
+            }
+        }
 
         // Get Countries
         public function getCountries($inputs = array("country"=>"null")){
