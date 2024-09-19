@@ -135,15 +135,24 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-7" style="background-color: rgba(242,242,242,0.925);">
+        <div class="col-md-12" style="background-color: rgba(242,242,242,0.925);">
             <table class="table ">
                 <tr>
                     <div class="btn-group-vertical">
-                        <th><button class="btn btn-outline-info" type="button" name='doc_btn' id='doc_btn' onclick=doc_click()><i class="fa fa-images"></i> <b>D</b>ocument <b>D</b>rive</button></th>
-                        <th><button class="btn btn-outline-info" type="button" name='hotel_btn' id='hotel_btn' onclick=hotel_click()><i class="fa fa-bed"></i> <b>H</b>otel <b>S</b>tay</button></th>
-                        <th><button class="btn btn-outline-info" type="button" name='tour_btn' id='tour_btn' onclick=tour_click()><i class="fab fa-accusoft"></i> <b>T</b>ourism <b>P</b>ackages</button></th>
-                        <th><button class="btn btn-outline-info" type="button" name='note_btn' id='note_btn' onclick=note_click()><i class="fa fa-edit"></i> <b>T</b>ravel <b>N</b>ote</button></th>
-                        <th><button class="btn btn-outline-info" type="button" name='travel_btn' id='travel_btn' onclick=travel_click()><i class="fa fa-plane-departure"></i> <b>T</b>ravel <b>P</b>lan</button></th>
+                        <th><button class="btn btn-outline-primary" type="button" name='doc_btn' id='doc_btn' onclick=doc_click()><i class="fa fa-images"></i> <b>D</b>ocument <b>D</b>rive</button></th>
+                        <th><button class="btn btn-outline-primary" type="button" name='hotel_btn' id='hotel_btn' onclick=hotel_click()><i class="fa fa-bed"></i> <b>H</b>otel <b>S</b>tay</button></th>
+                        <th><button class="btn btn-outline-primary" type="button" name='tour_btn' id='tour_btn' onclick=tour_click()><i class="fab fa-accusoft"></i> <b>T</b>ourism <b>P</b>ackages</button></th>
+                        <th><button class="btn btn-outline-primary" type="button" name='note_btn' id='note_btn' onclick=note_click()><i class="fa fa-edit"></i> <b>T</b>ravel <b>N</b>ote</button></th>
+                        <th><button class="btn btn-outline-primary" type="button" name='travel_btn' id='travel_btn' onclick=travel_click()><i class="fa fa-plane-departure"></i> <b>T</b>ravel <b>P</b>lan</button></th>
+                        
+                        <?php
+                            if(viewUserRole("1")){
+                                
+                        ?>
+                            <th><button class="btn btn-outline-warning" type="button" name='users_btn' id='users_btn' onclick=users_click()><i class="fa fa-users"></i> <b>M</b>anage <b>U</b>sers</button></th>
+                        <?php
+                            }
+                        ?>
                     </div>
                 </tr>
                 <tr>
@@ -217,13 +226,34 @@
                             <div class='card-body' id="travel" hidden>
                                 <div class="tab-content">
                                     <div class="tab-pane active">
+                                        <!-- Plan Travel -->
                                         <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey/plan">Plan Travel</a></p>
+                                        <!-- Show Trips -->
                                         <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey">Show Trips</a></p>
+                                        <!-- Edit Trips Saved -->
                                         <p><a class="post" href="<?=adminTravelPlannerUrl()?>journey/edit">Edit Trip</a></p>
                                     </div>
                                 </div>
                             </div>
                         </td>
+                        <?php
+                            if(viewUserRole("1")){
+                                
+                        ?>
+                        <td>
+                            <!-- Travel Plan -->
+                            <div class='card-body' id="users">
+                                <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        <p><a class="post" href="<?=adminTravelPlannerUrl()?>users/">List Users</a></p>
+                                        <p><a class="post" href="<?=adminTravelPlannerUrl()?>users/approve">Approve Role</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <?php
+                            }
+                        ?>
                     </div>
                 </tr>
                 <tr>
@@ -236,8 +266,39 @@
                     <td>
                     </td>
                     <td>
+                    </td>
+                    
+                    <?php
+                        if(viewUserRole("1")){
+                            
+                    ?>
+                        <td>
+                        </td>
+                    <?php
+                        }
+                    ?>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                        <?php
+                            if(viewUserRole("1")){
+                                
+                        ?>
+                            <td>
+                            </td>
+                        <?php
+                            }
+                        ?>
+                    <td>
                         <form action="<?= $_SERVER['REQUEST_URI']?>" method="post">
-                        <button class='btn btn-xs bg-gradient-danger float-right' name="logout" type="submit"><span  style="color: #f2f2f2;">Log Out</span></button>
+                            <button class='btn btn-xs bg-gradient-danger float-right' name="logout" type="submit"><span  style="color: #f2f2f2;">Log Out</span></button>
                         </form>
                     </td>
                 </tr>
