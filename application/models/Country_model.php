@@ -17,6 +17,23 @@
             $this->load->library('session');
         }
 
+        // Check If Duplicate
+        private function isDuplicate($inputs = array("country"=>"null")){
+            if($inputs == array("country"=>"null")){
+                // Duplicate cause no input so error
+                return true;
+            }
+            $count = $this->db->get_where($this->table, array("iso3"=>$inputs["iso3"]))->num_rows();
+            if($count > 0){
+                // Duplicate
+                return true;
+            }else{
+                // Not Duplicate
+                return false;
+            }
+        }
+
+
         // Get Countries
         public function getCountries($inputs = array("country"=>"null")){
             if($inputs == array("country"=>"null")){
