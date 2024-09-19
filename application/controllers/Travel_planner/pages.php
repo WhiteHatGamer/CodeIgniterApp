@@ -33,6 +33,8 @@
                 if($User_valid){
                 
                     // Authentication Successful
+                    $user = $this->user_model->get_user_details($email);
+                    // $this->session->set_userdata($user);
                     
                     // Starting Session
                     @session_start(); //Error Check for Already Started Session.
@@ -40,7 +42,8 @@
                     if(NULL != $this->input->post('remember')){
                         $_SESSION['remember'] = true;
                     }
-                    $_SESSION['email'] = $email;
+                    $_SESSION['email'] = $user["email"];
+                    $_SESSION['user_type'] = $user["user_type_id"];
     
                     $CookieName = $_SERVER['REMOTE_ADDR'];
                     $CookieValue = md5((isset($_SESSION['name']))? $_SESSION['name']:$_SESSION['email']);
