@@ -97,5 +97,19 @@
 
     }
 
+    public function get_users(){
+      // Getting Every Users
+      if($this->session->user_type_id != 2){
+
+        $result = $this->db->get($this->table);
+        $result = $result->result_array();
+        foreach($result as $key=>$value){
+          unset($result[$key]["image"]);
+          unset($result[$key]["password"]);
+        }
+        return $result;
+      }
+    }
+
 
   }
