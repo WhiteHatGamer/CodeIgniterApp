@@ -1,0 +1,19 @@
+Modules
+========
+
+.. automodule:: controllers.News
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+.. automodule:: models.City_model
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+controllers
+===========
+
+.. toctree::
+   :maxdepth: 4
+

@@ -42,7 +42,7 @@
       }
 
       // Get Name from db
-      $user_details = $this->user_model->get_user_details($this->session->email);
+      $user_details = $this->user_model->get_user_details($this->session->user_id);
       $name = $user_details['name'];
       if(isset($name)){
           $_SESSION['name'] = $name;
