@@ -1,4 +1,396 @@
-<script type="text/javascript">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperVision Docs</title>
+</head>
+<body>
+    <h1>Super Visor Notes</h1>
+    <ul>
 
-  window.location.replace("_build/html/");
-</script>  
+        <!-- Main Server -->
+        <li>
+            <b>Super Vision CodeIgniter Project</b>
+        </li>
+        <ul>
+
+            <!-- Menu -->
+            <li>
+                <code>Menu</code> Controller
+            </li>
+            <ul>
+                <li>
+                    <code>Index</code> Method
+                </li>
+                <ul>
+                    <li>
+                        Navigation Bar
+                    </li>
+                </ul>
+            </ul>
+
+            <!-- General -->
+            <li>
+                <code>General</code> Controller
+            </li>
+            <ul>
+                <li>
+                    <code>initilize_logout</code> Method
+                    <ul>
+                        Logout User
+                    </ul>
+                </li>
+            </ul>
+            
+            <!-- Package -->
+            <li>
+                <code>Package</code> Controller
+            </li>
+            <ul>
+                <!-- create_package -->
+                <li>
+                    <code>create_package</code> GET Method
+                    <ul>{Type="GIT"}: 
+                        Used to create Packages with every Details and Itinerary
+                    </ul>
+                </li>
+                <!-- package_list_international -->
+                <li>
+                    <code>package_list_international</code> GET Method
+                    <ul>{Type="GIT"}: 
+                        Used to List Every Packages
+                    </ul>
+                </li>
+                <!-- dom_package_detail -->
+                <li>
+                    <code>dom_package_detail</code> GET Method
+                    <ul>{id}: 
+                        Get Package Details
+                    </ul>
+                </li>
+                <!-- edit_package -->
+                <li>
+                    <code>edit_package</code> GET Method
+                    <ul>{id}: 
+                        Edit Package Details
+                    </ul>
+                </li>
+                <!-- edit_roe -->
+                <li>
+                    <code>edit_roe</code> GET Method
+                    <ul>{id}: 
+                        Edit ROE of Package
+                    </ul>
+                </li>
+                <!-- upload_gallery -->
+                <li>
+                    <code>upload_gallery</code> GET Method
+                    <ul>{id}: 
+                        Upload/Edit Images of Package
+                    </ul>
+                </li>
+                <!-- package_features_list -->
+                <li>
+                    <code>package_features_list</code> GET Method
+                    <ul>{id}: 
+                        Upload/Edit Features of Package
+                    </ul>
+                </li>
+                <!-- package_hotel_list -->
+                <li>
+                    <code>package_hotel_list</code> GET Method
+                    <ul>{id}: 
+                        Add/Edit Hotels in Package
+                    </ul>
+                </li>
+                <!-- package_seo_details -->
+                <li>
+                    <code>package_seo_details</code> GET Method
+                    <ul>{id}: 
+                        Edit SEO of Package
+                    </ul>
+                </li>
+                <!-- package_flight_list -->
+                <li>
+                    <code>package_flight_list</code> GET Method
+                    <ul>{id}: 
+                        Edit Flight Details of Package
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Cruise -->
+            <li>
+                <code>cruise</code> Controller
+            </li>
+            <ul>
+                <!-- create_cruise -->
+                <li>
+                    <code>create_cruise</code> GET Method
+                    <ul>{Type="GIT"}: 
+                        Used to create cruises with every Details and Itinerary
+                    </ul>
+                </li>
+                <!-- cruise_list_international -->
+                <li>
+                    <code>cruise_list_international</code> GET Method
+                    <ul>{Type="GIT"}: 
+                        Used to List Every cruises
+                    </ul>
+                </li>
+                <!-- dom_cruise_detail -->
+                <!-- <li>
+                    <code>dom_cruise_detail</code> GET Method
+                    <ul>{id}: 
+                        Get cruise Details
+                    </ul>
+                </li> -->
+                <!-- edit_cruise -->
+                <li>
+                    <code>edit_cruise</code> GET Method
+                    <ul>{id}: 
+                        Edit cruise Details
+                    </ul>
+                </li>
+                <!-- edit_roe -->
+                <!-- <li>
+                    <code>edit_roe</code> GET Method
+                    <ul>{id}: 
+                        Edit ROE of cruise
+                    </ul>
+                </li> -->
+                <!-- upload_gallery -->
+                <!-- <li>
+                    <code>upload_gallery</code> GET Method
+                    <ul>{id}: 
+                        Upload/Edit Images of cruise
+                    </ul>
+                </li> -->
+            </ul>
+
+            <!-- Flight New -->
+            <li>
+                <code>flight_new</code> Controller
+            </li>
+            <ul>
+                <li>
+                    <code>flight_list</code> GET Method
+                    <ul>
+                        List Every Flight Details
+                    </ul>
+                </li>
+                <li>
+                    <code>create_flight</code> GET Method
+                    <ul>
+                        {id}
+                        Edit/Create(if no id Passed) Flight Details
+                    </ul>
+                <li>
+                    <code>flight_fare</code> GET Method
+                    <ul>
+                        {id}
+                        Edit Flight Fare
+                    </ul>
+                </li>
+                <li>
+                    <code>export_flight_new_list</code> GET Method
+                    <ul>
+                        Export Flight List(Not Working)
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Hotel New -->
+            <li>
+                <code>hotel_new</code> Controller
+            </li>
+
+            <!-- AJAX -->
+            <li>
+                <code>Ajax</code> Controller(A.P.I)
+            </li>
+            <ul>
+                <li>
+                    <code>booking_events</code> Endpoint
+                </li>
+            </ul>
+
+            <!-- Management -->
+            <li>
+                <code>Management</code> Controller(A.P.I)
+            </li>
+            <ul>
+                <li>
+                    <code>get_travelomatix_balance</code> Endpoint
+                </li>
+            </ul>
+
+            <!-- Utilities -->
+            <li>
+                <code>Utilities</code> Controller(A.P.I)
+            </li>
+            <ul>
+                <li>
+                    <code>active_notifications_count</code> Endpoint
+                </li>
+                <li>
+                    <code>events_notification</code> Endpoint
+                </li>
+            </ul>
+
+            <!-- Enquiry -->
+             <li>
+                <code>Enquiry</code> Controller(A.P.I)
+             </li>
+            <ul>
+                <li>
+                    <code>get_country_list_of_region</code> POST Endpoint
+                </li>
+                <li>
+                    <code>get_city_list_of_country</code> POST Endpoint
+                </li>
+            </ul>
+
+        </ul>
+        
+        <br>
+        <!-- Generals Noted -->
+        <li>
+            <b>General</b>
+        </li>
+        <ul>
+            <li>
+                Libraries Added in extras CodeIgniter Project?
+            </li>
+            <li>
+                Navigation Bar Sometimes Scrollable
+            </li>
+            <li>
+                Package Detail Image Carousel Not Working(Parent Folder is returning as src)
+            </li>
+            <li>
+                Cruise saved with Every Country Rather than Selected
+            </li>
+            <li>
+                Cruise & Package Edit Page not Resizing according to Content Confusing User
+            </li>
+            <li>
+                Cruise Detail Page,ROE, Gallery is not Linked. Coming Package's Page with cruise's id
+            </li>
+            <li>
+                index.php removed but is in some hyperlinks
+            </li>
+            <li>
+                Some Buttons Change visibility of the form using id attribute
+            </li>
+            <li>
+                Cant Export Flight Details
+            </li>
+        </ul>
+
+        <br>
+        <!-- Used Libraries -->
+        <li>
+            <b>Used Libraries</b>
+        </li>
+        <ul>
+
+            <!-- JQuery -->
+            <li>
+                JQuery
+                <ul>
+                    <li>
+                        UI
+                    </li>
+                    <li>
+                        datepicker
+                    </li>
+                    <li>
+                        sparklines
+                    </li>
+                    <li>
+                        slimScroll
+                    </li>
+                    <li>
+                        freshSlider
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Ajax -->
+            <li>
+                AJAX
+                <ul>
+                    <li>
+                        Select2
+                    </li>
+                    <li>
+                        Bootstrap DatePicker
+                    </li>
+                </ul>
+            </li>
+
+            <!-- HighCharts -->
+            <li>
+                HighCharts
+                <ul>
+                    <li>
+                        Data
+                    </li>
+                    <li>
+                        Export
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Chart -->
+            <li>
+                Chart
+            </li>
+
+            <!-- NicEdit -->
+            <li>
+                NicEdit
+            </li>
+
+            <!-- FullCalendar -->
+            <li>
+                FullCalendar
+                <ul>
+                    <li>
+                        Moment
+                    </li>
+                </ul>
+            </li>
+
+            <!-- CK-Editor -->
+            <li>
+                CK-Editor
+            </li>
+
+            <!-- Bootstrap -->
+            <li>
+                Bootstrap
+                <ul>
+                    <li>
+                        dataTables
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Font Awesome -->
+            <li>
+                Font Awesome
+            </li>
+
+            <!-- AdminLTE -->
+            <li>
+                Admin LTE Template
+            </li>
+        </ul>
+        
+    </ul>
+    <a href="_build/html/index.html">Documentation</a>
+</body>
+</html>
