@@ -6,12 +6,12 @@
     <title>SuperVision Docs</title>
 </head>
 <body>
-    <h1>Super Visor Notes</h1>
+    <h1>Super Vision CodeIgniter Project</h1>
     <ul>
 
         <!-- Main Server -->
         <li>
-            <b>Super Vision CodeIgniter Project</b>
+            <b>Controllers</b>
         </li>
         <ul>
 
@@ -30,6 +30,7 @@
                 </ul>
             </ul>
 
+            <br>
             <!-- General -->
             <li>
                 <code>General</code> Controller
@@ -43,6 +44,7 @@
                 </li>
             </ul>
             
+            <br>
             <!-- Package -->
             <li>
                 <code>Package</code> Controller
@@ -120,6 +122,7 @@
                 </li>
             </ul>
 
+            <br>
             <!-- Cruise -->
             <li>
                 <code>cruise</code> Controller
@@ -169,9 +172,10 @@
                 </li> -->
             </ul>
 
+            <br>
             <!-- Flight New -->
             <li>
-                <code>flight_new</code> Controller
+              <code>flight_new</code> Controller
             </li>
             <ul>
                 <li>
@@ -200,8 +204,16 @@
                         Export Flight List(Not Working)
                     </ul>
                 </li>
+                <li>
+                    <code>get_city_list</code> POST Method(API Endpoint)
+                    <ul>
+                      {term:"" //Search Term}
+                      Get City List based on Term
+                    </ul>
+                </li>
             </ul>
 
+            <br>
             <!-- Hotel New -->
             <li>
                 <code>hotel_new</code> Controller
@@ -248,6 +260,170 @@
                 </li>
             </ul>
 
+            <br>
+            <!-- Master -->
+            <li>
+                <code>master</code> Controller
+            </li>
+            <ul>
+                <li>
+                  <code>list_vendor</code> GET Method
+                  <ul>
+                      List Every Vendor List
+                  </ul>
+                </li>
+                <li>
+                  <code>add_vendor</code> GET Method
+                  <ul>
+                      Add a New Vendor
+                  </ul>
+                </li>
+                <li>
+                  <code>edit_vendor</code> GET Method
+                  <ul>
+                      {id}
+                      Edit Vendor Details
+                  </ul>
+                </li>
+                <li>
+                  <code>activity_price</code> GET Method
+                  <ul>
+                      {id}
+                      Edit Vendor Price Details
+                  </ul>
+                </li>
+                <li>
+                  <code>export_activities_new_list</code> GET Method
+                  <ul>
+                      Export Vendor List
+                  </ul>
+                </li>
+            </ul>
+
+
+            <br>
+            <!-- transfer_new -->
+            <li>
+                <code>transfer_new</code> Controller
+            </li>
+            <ul>
+                <li>
+                  <code>car_supplier_list</code> GET Method
+                  <ul>
+                      List Every Transport List
+                  </ul>
+                </li>
+                <li>
+                  <code>create_supplier</code> GET Method
+                  <ul>
+                      Add a New Transport Supplier?
+                  </ul>
+                </li>
+                <li>
+                  <code>save_supplier</code> POST Method
+                  <ul>
+                      {}
+                      Add a New Transport Backend Action
+                  </ul>
+                </li>
+                <li>
+                  <code>edit_supplier</code> GET Method
+                  <ul>
+                      {id}
+                      Edit Transport Supplier Details
+                  </ul>
+                </li>
+                <li>
+                  <code>update_supplier</code> POST Method
+                  <ul>
+                      {}
+                      Edit Transport Supplier Backend Action
+                  </ul>
+                </li>
+                <li>
+                  <code>car_type</code> GET Method
+                  <ul>
+                      {}
+                      Add/Edit Transport Vehicle Details
+                  </ul>
+                </li>
+                <li>
+                  <code>save_cartype</code> POST Method
+                  <ul>
+                    {}
+                      save Transport Vehicle Details Backend Action
+                  </ul>
+                </li>
+                <li>
+                  <code>export_transport_new_list</code> GET Method
+                  <ul>
+                      Export Transport List
+                  </ul>
+                </li>
+                <li>
+                  <code>update_transfer_price</code> GET Method
+                  <ul>
+                      Export Transport List
+                  </ul>
+                </li>
+                <li>
+                  <code>save_transfer</code> POST Method
+                  <ul>
+                    {}
+                      Create Transfer Listing backend Action
+                  </ul>
+                </li>
+                <li>
+                  <code>edit_data</code> POST Method
+                  <ul>
+                    {}
+                      Update Transport List backend Action
+                  </ul>
+                </li>
+            </ul>
+
+            <br>
+            <!-- insurance_new -->
+            <li>
+                <code>insurance_new</code> Controller
+            </li>
+            <ul>
+                <li>
+                  <code>insurance_list</code> GET Method
+                  <ul>
+                      Every insurance List
+                  </ul>
+                </li>
+                <li>
+                  <code>create_insurance</code> GET Method
+                  <ul>
+                    {id}
+                      Edit/Add(If no id Passed) a New insurance with Supplier
+                  </ul>
+                </li>
+                <li>
+                  <code>save_insurance</code> POST Method
+                  <ul>
+                      {}
+                      Add a New insurance Backend Action
+                  </ul>
+                </li>
+                <li>
+                  <code>export_insurance_new_list</code> GET Method
+                  <ul>
+                      Export insurance List in Excel Format
+                  </ul>
+                </li> 
+                <li>
+                  <code>insurance_delete</code> POST Method
+                  <ul>
+                    {id: $id}
+                      Update insurance List backend Action
+                  </ul>
+                </li>
+            </ul>
+
+            <br>
             <!-- AJAX -->
             <li>
                 <code>Ajax</code> Controller(A.P.I)
@@ -258,6 +434,7 @@
                 </li>
             </ul>
 
+            <br>
             <!-- Management -->
             <li>
                 <code>Management</code> Controller(A.P.I)
@@ -268,6 +445,7 @@
                 </li>
             </ul>
 
+            <br>
             <!-- Utilities -->
             <li>
                 <code>Utilities</code> Controller(A.P.I)
@@ -281,6 +459,7 @@
                 </li>
             </ul>
 
+            <br>
             <!-- Enquiry -->
              <li>
                 <code>Enquiry</code> Controller(A.P.I)
@@ -296,6 +475,30 @@
 
         </ul>
         
+        <br>
+        <!-- Database Models -->
+        <li>
+            <b>Models</b>
+        </li>
+        <ul>
+            <li>
+              Package
+            </li>
+            <li>
+              Cruise
+            </li>
+            <li>
+              Flight
+            </li>
+            <li>
+              Hotel
+            </li>
+            <li>
+              Vendor
+            </li>
+        </ul>
+
+
         <br>
         <!-- Generals Noted -->
         <li>
@@ -328,6 +531,12 @@
             </li>
             <li>
                 Cant Export Flight Details
+            </li>
+            <li>
+                <code>transfer_new::edit_supplier</code> City Not coming based on Country
+            </li>
+            <li>
+                Ask about Vendors
             </li>
         </ul>
 
