@@ -120,6 +120,24 @@
                         Edit Flight Details of Package
                     </ul>
                 </li>
+                <!-- offline_package_payment -->
+                <li>
+                    <code>offline_package_payment</code> GET Method
+                    <ul>{form}:
+                        offline package payment Details List
+                    </ul>
+                </li>
+                <!-- holiday_package_dashboard -->
+                <!-- <li>
+                    <code>holiday_package_dashboard</code> GET Method
+                </li> -->
+                <!-- package_sortable -->
+                <li>
+                    <code>package_sortable</code> GET Method
+                    <ul>
+                        Sorting Package with UI
+                    </ul>
+                </li>
             </ul>
 
             <br>
@@ -424,6 +442,161 @@
             </ul>
 
             <br>
+            <!-- git_enquiry -->
+            <li>
+                <code>git_enquiry</code> Controller
+            </li>
+            <ul>
+                <li><code>enquiry_list</code> GET Method</li>
+                <ul>
+                    {Filters}
+                    List Enquiry List with Filter GET Method
+                </ul>
+                <li><code>enquiry_details</code> GET Method</li>
+                <ul>
+                    {id}
+                    Edit OR View Enquiry Details
+                </ul>
+                <li><code>delete_enquiry</code> GET Method</li>
+                <ul>
+                    {id}
+                    Delete Enquiry
+                </ul>
+                <li><code>fd_voucher_generate</code> GET Method</li>
+                <ul>
+                    {Booking REF No}
+                    Generate Voucher for the customer
+                </ul>
+                <li><code>send_fd_voucher_to_customer</code> GET Method</li>
+                <ul>
+                    {Booking REF No}
+                    Send The Generated Voucher to the customer
+                </ul>
+                <li><code>update_enquiry_status</code> POST Method</li>
+                <ul>
+                    {form}
+                    Update Enquiry Status Backend Action
+                </ul>
+                <li><code>follow_ups_email</code> POST Method</li>
+                <ul>
+                    {form}
+                    Compose Email to send Customer
+                </ul>
+                <li><code>update_flight_pnr</code> POST Method</li>
+                <ul>
+                    {form}
+                    Update Enquiry Flight PNR Backend Action
+                </ul>
+                <li><code>update_hotel_reference</code> POST Method</li>
+                <ul>
+                    {form}
+                    Update Enquiry Hotel Confirmation Number Backend Action
+                </ul>
+                <li><code>profitability_report</code> GET Method</li>
+                <ul>
+                    Generate Profitability Report
+                </ul>
+                <li><code>profitability_report_pdf</code> POST Method</li>
+                <ul>
+                    {form}
+                    Generate Profitability Report
+                </ul>
+                <li><code>tour_wise</code> GET Method</li>
+                <ul>
+                    Form For Generating Profitability Report
+                </ul>
+                <li><code>export_tour_wise_data</code> POST Method</li>
+                <ul>
+                    {form}
+                    Generate Profitability Report PDF
+                </ul>
+                <li><code>total_booking</code> GET Method</li>
+                <ul>
+                    Form For Generating Total Booking Data
+                </ul>
+                <li><code>export_total_booking_data_excel</code> POST Method</li>
+                <ul>
+                    {form}
+                    Generate Total Booking Data Excel
+                </ul>
+                <li><code>group_wise_payment_report</code> GET Method</li>
+                <ul>
+                    Form For Generating group wise payment report
+                </ul>
+                <li><code>export_group_wise_payment_report</code> POST Method</li>
+                <ul>
+                    {form}
+                    Generate export group wise payment report
+                </ul>
+            </ul>
+
+            <br>
+            <!-- service Enquiry -->
+            <li>
+                <code>service_enquiry</code> Controller
+            </li>
+            <ul>
+                <li><code>service_enquiry_form</code> POST Method</li>
+                <ul>
+                    Form with Backend Action for Creating Service Enquiry
+
+                </ul>
+                <li><code>service_enquiry_list</code> GET Method</li>
+                <ul>
+                    List Service Enquiries with Filter Form
+
+                </ul>
+                <li><code>edit_service_enquiry</code> GET Method</li>
+                <ul>
+                    {id}
+                    Edit Service Enquiry
+                </ul>
+                <li><code>update_service_enquiry</code> POST Method</li>
+                <ul>
+                    {form}
+                    Save Edited Service Enquiry Backend Action
+                </ul>
+                <li><code>update_assigned_user</code> POST Method</li>
+                <ul>
+                    {form}
+                    Save Edited Service Enquiry Assigned User Backend Action
+                </ul>
+                <li><code>export_service_enquiry_list</code> GET Method</li>
+                <ul>
+                    Export Listed Form in Excel Format
+                </ul>
+            </ul>
+
+            <br>
+            <!-- git_adhoc -->
+            <li>
+                <code>git_adhoc</code> Controller
+            </li>
+            <ul>
+                <li><code>enquiry_report</code>POST Method</li>
+                <ul>
+                    {report_type}:
+                    Form for Enquiry Report PDF Generation
+                </ul>
+                <li><code>enquiry_report_pdf</code>POST Method</li>
+                <ul>
+                    Backend Action Generate Form.
+                </ul>
+            </ul>
+
+            <br>
+            <li>
+                <code>dailysalesreport</code> Controller
+            </li>
+            <ul>
+                <li><code>add_guarantee</code></li>
+                <ul>
+                    {form}: 
+                    Add Customer Form Backend Action
+                </ul>
+            </ul>
+
+            <br>
             <!-- AJAX -->
             <li>
                 <code>Ajax</code> Controller(A.P.I)
@@ -432,16 +605,79 @@
                 <li>
                     <code>booking_events</code> Endpoint
                 </li>
+                <li>
+                    <code>get_calendar_booking_list</code> Endpoint
+                </li>
+                <ul>
+                    {data}:
+                        Get Musandam Booking Calendar
+                </ul>
+            </ul>
+
+            <br>
+            <!-- Blog -->
+            <li>
+                <code>Blog</code> Controller
+            </li>
+            <ul>
+                <li><code>blog_details_list</code> GET Method</li>
+                <ul>List Blog Details</ul>
+
+                <li><code>add_blog_details</code> GET Method</li>
+                <ul>Form for Create/Edit(Pass ID) Blogs</ul>
+                <li><code>save_blog_details</code> POST Method</li>
+                <ul>{form} Save Blog Backend Action</ul>
+                <li><code>update_status_banner</code> POST API Endpoint</li>
+                <ul>{id:, status:}: Update Blog Status </ul>
+            </ul>
+
+            <br>
+            <!-- cms -->
+            <li>
+                <code>cms</code> Controller
+            </li>
+            <ul>
+                <li><code>view_testimonials</code> GET Method</li>
+                <ul>List Testimonials By Customer</ul>
+
+                <li><code>add_testimonial</code> GET Method</li>
+                <ul>Form for Create/Edit(Pass ID) Testimonials</ul>
+                <li><code>delete_testimonials</code> GET Method</li>
+                <ul>{id:, status:}: Update Blog Status </ul>
             </ul>
 
             <br>
             <!-- Management -->
             <li>
-                <code>Management</code> Controller(A.P.I)
+                <code>Management</code> Controller
+            </li>
+            <ul>
+                <li><code>change_password</code> POST Method</li>
+                <ul>Change User Password Form and Backend Action</ul>
+            </ul>
+
+            <br>
+            <!-- Management -->
+            <li>
+                <code>Management</code> Controller
             </li>
             <ul>
                 <li>
-                    <code>get_travelomatix_balance</code> Endpoint
+                    <code>create_banner</code> GET & POST Method
+                </li>
+                <ul>
+                    {form}
+                    Create/Edit(Pass ID as GET)/Delete(Set delete_id with id) Home banner And List Every Banners
+                </ul>
+                <li>
+                    <code>update_status_banner</code> API Endpoint
+                </li>
+                <ul>
+                    {id: id,status:status}:
+                        update Banner Status to active or Inactive
+                </ul>
+                <li>
+                    <code>get_travelomatix_balance</code> API Endpoint
                 </li>
             </ul>
 
@@ -484,18 +720,51 @@
             <li>
               Package
             </li>
+            <ul>ID: PK -> Country FK -> City FK</ul>
             <li>
               Cruise
             </li>
+            <ul>ID: PK -> Country FK -> City FK</ul>
             <li>
               Flight
             </li>
+            <ul>ID: PK -> Supplier: FK -> City: FK</ul>
             <li>
               Hotel
             </li>
+            <ul>ID: PK -> Supplier: FK -> City: FK -> Country: FK</ul>
             <li>
               Vendor
             </li>
+            <ul>ID: PK -> Supplier: FK -> Country: FK -> City: FK</ul>
+            <li>
+              Transfer
+            </li>
+            <ul>ID: PK -> Supplier: FK -> Country: FK -> City: FK</ul>
+            <li>
+                Insurance
+            </li>
+            <ul>ID: PK -> Supplier: FK -> Country: FK -> City: FK</ul>
+            <li>
+                Booking
+            </li>
+            <ul>ID: PK -> Supplier: FK -> Sale Person: FK -> Customer: FK -> Package: FK</ul>
+            <li>
+              Service
+            </li>
+            <ul>ID: PK -> Customer: FK -> Package: FK -> Sale Person: FK</ul>
+            <li>
+              Banner
+            </li>
+            <ul>ID: PK -> Module: FK</ul>
+            <li>
+              Blog
+            </li>
+            <ul>ID: PK</ul>
+            <li>
+              Testimonials
+            </li>
+            <ul>ID: PK</ul>
         </ul>
 
 
@@ -534,6 +803,9 @@
             </li>
             <li>
                 <code>transfer_new::edit_supplier</code> City Not coming based on Country
+            </li>
+            <li>
+                <code>package::holiday_package_dashboard</code> Empty
             </li>
             <li>
                 Ask about Vendors
