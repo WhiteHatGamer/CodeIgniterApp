@@ -7,9 +7,22 @@
 </head>
 <body>
     <h1>Super Vision CodeIgniter Project</h1>
+    <div style="width: fit-content; border: 3px solid antiquewhite; border-radius: 5%;">
+
+        <a name=Index></a>
+        <h4>Index</h4>
+        <ol>
+            <li><a href=#Controllers >Controllers</a></li>
+            <li><a href=#Models>Models</a></li>
+            <li><a href=#General>General</a></li>
+            <li><a href=#Libraries>Libraries</a></li>
+        </ol>
+    </div>
     <ul>
 
-        <!-- Main Server -->
+        <a name=Controllers></a>
+        <br>
+        <!-- Controllers -->
         <li>
             <b>Controllers</b>
         </li>
@@ -61,6 +74,13 @@
                     <code>create_package</code> GET Method
                     <ul>{Type="GIT"}: 
                         Used to create Packages with every Details and Itinerary
+                    </ul>
+                </li>
+                <!-- save_package -->
+                <li>
+                    <code>save_package</code> GET Method
+                    <ul>{form}: 
+                        create Packages Backend Action
                     </ul>
                 </li>
                 <!-- package_list_international -->
@@ -717,6 +737,7 @@
 
         </ul>
         
+        <a name=Models></a>
         <br>
         <!-- Database Models -->
         <li>
@@ -726,7 +747,7 @@
             <li>
               Package
             </li>
-            <ul>ID: PK -> Country FK -> City FK</ul>
+            <ul>*=> ID: PK -> Country FK -> City FK</ul>
             <li>
               Cruise
             </li>
@@ -773,7 +794,7 @@
             <ul>ID: PK</ul>
         </ul>
 
-
+        <a name=General></a>
         <br>
         <!-- Generals Noted -->
         <li>
@@ -814,6 +835,12 @@
                 <code>transfer_new::edit_supplier</code> City Not coming based on Country
             </li>
             <li>
+                <code>package::package_flight_lists</code> Cant select Onward and Return Separate Airline
+            </li>
+            <li>
+                <code>package::package_hotel_lists</code> Cant List Multiple same rated hotel. Not Linked to Hotel Model
+            </li>
+            <li>
                 <code>package::holiday_package_dashboard</code> Empty
             </li>
             <li>
@@ -821,6 +848,7 @@
             </li>
         </ul>
 
+        <a name=Libraries></a>
         <br>
         <!-- Used Libraries -->
         <li>
@@ -923,6 +951,7 @@
         </ul>
         
     </ul>
+    <a href="#Index">Index</a><br>
     <a href="_build/html/index.html">Documentation</a>
 </body>
 </html>
