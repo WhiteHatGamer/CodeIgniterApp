@@ -20,11 +20,10 @@
     </div>
     <ul>
 
-        <a name=Controllers></a>
         <br>
         <!-- Controllers -->
         <li>
-            <b>Controllers</b>
+            <a href=#Controllers name=Controllers><b>Controllers</b></a>
         </li>
         <ul>
 
@@ -56,6 +55,12 @@
                     </ul>
                 </li>
                 <li>
+                    <code>get_city_list</code> POST Method(API Endpoint)
+                    <ul>{state_id: $state_id}:
+                        Get List of Cities
+                    </ul>
+                </li>
+                <li>
                     <code>initilize_logout</code> Method
                     <ul>
                         Initialize Logout of User Backend Action
@@ -78,7 +83,14 @@
                 </li>
                 <!-- save_package -->
                 <li>
-                    <code>save_package</code> GET Method
+                    <code>save_package</code> POST Method
+                    <ul>{form}: 
+                        create Packages Backend Action
+                    </ul>
+                </li>
+                <!-- get_itinerary_block -->
+                <li>
+                    <code>get_itinerary_block</code> GET Method
                     <ul>{form}: 
                         create Packages Backend Action
                     </ul>
@@ -179,6 +191,13 @@
                         Used to create cruises with every Details and Itinerary
                     </ul>
                 </li>
+                <!-- save_cruise -->
+                <li>
+                    <code>save_cruise</code> POST Method
+                    <ul>{form}: 
+                        create Cruise Backend Action
+                    </ul>
+                </li>
                 <!-- cruise_list_international -->
                 <li>
                     <code>cruise_list_international</code> GET Method
@@ -198,6 +217,20 @@
                     <code>edit_cruise</code> GET Method
                     <ul>{id}: 
                         Edit cruise Details
+                    </ul>
+                </li>
+                <!-- get_itinerary_block -->
+                <li>
+                    <code>get_itinerary_block</code> GET Method
+                    <ul>{duration}
+                        Cruise Get Itinerary Block
+                    </ul>
+                </li>
+                <!-- get_itinerary_block -->
+                <li>
+                    <code>get_city_vendor_lists</code> GET Method
+                    <ul>{city}
+                        Cruise Get Itinerary Vendor List from city code
                     </ul>
                 </li>
                 <!-- edit_roe -->
@@ -723,31 +756,36 @@
 
             <br>
             <!-- Enquiry -->
-             <li>
+            <li>
                 <code>Enquiry</code> Controller(A.P.I)
-             </li>
+            </li>
             <ul>
                 <li>
                     <code>get_country_list_of_region</code> POST Endpoint
                 </li>
+                <ul>{term: $term, region: $region}: Get list of Countries based on Term and Region/Country</ul>
                 <li>
                     <code>get_city_list_of_country</code> POST Endpoint
                 </li>
+                <ul>{term: $term}: Get list of Cities based on Term</ul>
             </ul>
 
         </ul>
         
-        <a name=Models></a>
         <br>
         <!-- Database Models -->
         <li>
-            <b>Models</b>
+            <a name=Models href=#Models><b>Models</b></a>
         </li>
         <ul>
             <li>
               Package
             </li>
-            <ul>*=> ID: PK -> Country FK -> City FK</ul>
+            <ul>ID: PK -> Country FK -> City FK -> Category FK -> Tour Genre FK -> inclusions FK -> Package_itinerary 1-M</ul>
+            <li>
+              Package_itinerary
+            </li>
+            <ul>ID: PK -> City FK -> Fixed Tour M-M</ul>
             <li>
               Cruise
             </li>
@@ -794,11 +832,11 @@
             <ul>ID: PK</ul>
         </ul>
 
-        <a name=General></a>
         <br>
         <!-- Generals Noted -->
         <li>
-            <b>General</b>
+            <a name=General href=#General><b>General</b></a>
+            
         </li>
         <ul>
             <li>
@@ -844,15 +882,33 @@
                 <code>package::holiday_package_dashboard</code> Empty
             </li>
             <li>
-                Ask about Vendors
+                <code>package::create_package</code> City Not coming based on Country
             </li>
+            <li>
+                Front end verify if Discount less than actual
+            </li>
+            <li>
+                Itineraries Day 0 Value null
+            </li>
+            <li>
+                Draggable Values (Prone to Value error?)
+            </li>
+            <li>
+                Same Countries Selectable in Country listValues
+            </li>
+            <li>
+                <code>cruise::create_cruise</code> Itinerary Debug Alert Coming while selecting no of nights
+            </li>
+            <!-- <li>
+                Ask about Vendors
+            </li> -->
         </ul>
 
-        <a name=Libraries></a>
         <br>
         <!-- Used Libraries -->
         <li>
-            <b>Used Libraries</b>
+            <a name=Libraries href=#Libraries><b>Used Libraries</b></a>
+            
         </li>
         <ul>
 
