@@ -37,3 +37,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 .vscode/settings.json
 env.php
 /application/views/Travel_planner/Dashboard/phpwebdriver
+/.venv
