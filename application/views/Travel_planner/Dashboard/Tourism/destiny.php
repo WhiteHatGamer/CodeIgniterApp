@@ -16,7 +16,7 @@
                             <a style="height: 100%; width: 100%; display: grid; align-items: center; justify-content: center;" href="<?=str_replace("$1",$countries[$i%$destLen],$packageUrl)?>"><?=$destinations[$i%$destLen]?></a>
                         </div>
                         <div class='card mb-2 d-flex justify-content-center' style="height: 100%;">
-                            <img class='card-img-top rounded img-fluid mx-auto d-block' src='<?=base64_decode($images[$i%$imgLen]["filePath"])?>'>
+                            <img class='card-img-top rounded img-fluid mx-auto d-block' style="height: 400px; width:auto;" src='<?=base64_decode($images[$i%$imgLen]["filePath"])?>'>
                         </div>
                     </div>
                     <?php
