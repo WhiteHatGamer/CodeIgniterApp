@@ -129,7 +129,7 @@
                                 if ($key == "id") {
                                     $id = $value;
                                     continue;
-                                } elseif ($key == 'email') {
+                                } elseif ($key == 'user_id') {
                                     continue;
                                 }
                                 if ($key == 'checkIn' || $key == 'checkOut') {
@@ -185,7 +185,7 @@
                                         if ($key == "id") {
                                             $id = $value;
                                             continue;
-                                        } elseif ($key == 'email') {
+                                        } elseif ($key == 'user_id') {
                                             continue;
                                         }
                                         if ($key == 'checkIn' || $key == 'checkOut') {

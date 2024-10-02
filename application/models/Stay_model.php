@@ -33,9 +33,9 @@
         }
 
         public function get_stays(){
-            $email  = $this->session->email;
+            $user_id  = $this->session->user_id;
 
-            $result = $this->db->get_where($this->table,array('email'=>$email));
+            $result = $this->db->get_where($this->table,array('user_id'=>$user_id));
             
             if($result->num_rows() > 0){
                 
@@ -47,9 +47,9 @@
         }
 
         public function get_stay($id){
-            $email  = $this->session->email;
+            $user_id  = $this->session->user_id;
 
-            $result = $this->db->get_where($this->table,array('id'=>$id,'email'=>$email));
+            $result = $this->db->get_where($this->table,array('id'=>$id,'user_id'=>$user_id));
 
             if($result->num_rows() > 0){
 
@@ -66,13 +66,13 @@
         }
 
         public function delete_stay($id){
-            $email  = $this->session->email;
+            $user_id  = $this->session->user_id;
 
-            $result = $this->db->get_where($this->table,array('id'=>$id,'email'=>$email));
+            $result = $this->db->get_where($this->table,array('id'=>$id,'user_id'=>$user_id));
 
             if($result->num_rows() > 0){
 
-                if($this->db->delete($this->table, array('id'=>$id, 'email'=>$email))){
+                if($this->db->delete($this->table, array('id'=>$id, 'user_id'=>$user_id))){
 
                     return true;
                 }
@@ -83,14 +83,14 @@
         }
 
         public function store_stays($inputs = array('city'=>'null')){
-            $email  = $this->session->email;
+            $user_id  = $this->session->user_id;
 
             if($inputs['city'] == 'null'){
 
                 $inputs = $this->input->dump_post_array(array('city','hotel','checkIn','checkOut'));
             }
 
-            $inputs['email'] = $email;
+            $inputs['user_id'] = $user_id;
             if($this->checkDuplicate($inputs)){
                 return false;
             }
@@ -103,15 +103,15 @@
         }
 
         public function update_stay($id){
-            $email  = $this->session->email;
+            $user_id  = $this->session->user_id;
 
             $inputs = $this->input->dump_post_array(array('city','hotel','checkIn','checkOut'));
 
-            $result = $this->db->get_where($this->table,array('id'=>$id,'email'=>$email));
+            $result = $this->db->get_where($this->table,array('id'=>$id,'user_id'=>$user_id));
 
             if($result->num_rows() > 0){
 
-                if($this->db->update($this->table, $inputs, array('id'=>$id,'email'=>$email))){
+                if($this->db->update($this->table, $inputs, array('id'=>$id,'user_id'=>$user_id))){
 
                     return true;
                 }

@@ -3,7 +3,7 @@
     class Note_model extends CI_Model{
     
         public $id;
-        public $email;
+        public $user_id;
         public $create_time;
         public $note;
         
@@ -16,9 +16,9 @@
         }
 
         public function get_notes(){
-            $email  = $this->session->email;
+            $user_id  = $this->session->user_id;
 
-            $result = $this->db->get_where($this->table,array('email'=>$email));
+            $result = $this->db->get_where($this->table,array('user_id'=>$user_id));
 
             if($result->num_rows() > 0){
 
@@ -35,9 +35,9 @@
         }
 
         public function get_note($id){
-            $email  = $this->session->email;
+            $user_id  = $this->session->user_id;
 
-            $result = $this->db->get_where($this->table,array('email'=>$email, 'id'=>$id));
+            $result = $this->db->get_where($this->table,array('user_id'=>$user_id, 'id'=>$id));
 
             if($result->num_rows() > 0){
 
@@ -71,13 +71,13 @@
         public function insert_notes($inputs = array('notes'=>'null')){
             
             // Getting mail id from session
-            $email  = $this->session->email;
+            $user_id  = $this->session->user_id;
             
             if($inputs == array('notes'=>'null')){
                 $inputs = $this->input->dump_post_array(array('create_time', 'note'));
             }
         
-            $inputs['email'] = $email;
+            $inputs['user_id'] = $user_id;
             
             if($this->check_duplicate($inputs)){
                 return false;
@@ -96,10 +96,10 @@
 
         
         public function insert_note(){
-            $email  = $this->session->email;
+            $user_id  = $this->session->user_id;
 
             $inputs = $this->input->dump_post_array(array('note'));
-            $inputs['email'] = $email;
+            $inputs['user_id'] = $user_id;
             $result = $this->db->insert($this->table,$inputs);
 
             if($result){
@@ -113,10 +113,10 @@
         }
 
         public function update_note(){
-            $email  = $this->session->email;
+            $user_id  = $this->session->user_id;
             
             $inputs = $this->input->dump_post_array(array('note'));
-            $result = $this->db->update($this->table,$inputs, array('id'=>$this->input->post('id'), 'email'=>$email));
+            $result = $this->db->update($this->table,$inputs, array('id'=>$this->input->post('id'), 'user_id'=>$user_id));
 
             if($result){
         
@@ -129,13 +129,13 @@
         }
 
         public function delete_note($id = null){
-            $email  = $this->session->email;
+            $user_id  = $this->session->user_id;
             
             $inputs = [];
             $inputs['id'] = $this->input->post('confirmDlt');
             if($this->get_note($inputs['id'])){
 
-                $inputs['email'] = $email;
+                $inputs['user_id'] = $user_id;
                 $result = $this->db->delete($this->table,$inputs);
                 return true;
             }

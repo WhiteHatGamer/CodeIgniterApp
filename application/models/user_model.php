@@ -27,7 +27,7 @@
 
       $query = $this->db->get_where($this->table, array('email'=>$Email, 'password'=>md5($Password)));
       if($query->num_rows() > 0){
-        return true;
+        return $query->result_array()[0]["id"];
       }else{
         return false;
       }
@@ -37,8 +37,8 @@
       if($Email == ""){
         $Email = $this->session->email;
       }
-      // $query = $this->db->get_where($this->table, array('email'=>$Email));
-      $query = $this->db->query("SELECT name,email,number,gender,dob,image,prefix FROM {$this->table} WHERE email='$Email'");
+      $this->db->select(array("id", "name", "email", "number", "gender", "dob", "prefix", "user_type_id", "image"));
+      $query = $this->db->get_where($this->table, array('email'=>$Email));
 
       if($query->num_rows() > 0){
         return $query->result_array()[0];

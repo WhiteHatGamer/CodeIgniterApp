@@ -20,17 +20,17 @@ use PhpOffice\PhpSpreadsheet\Cell\DataType;
 
         public function uploadImages($inputs = array('user_id' => 'null')){
 
-            $email = $this->session->email;
+            $user_id = $this->session->user_id;
             
             if($inputs == array('user_id'=> 'null')){
                 return false;
             }else{
                 foreach ($inputs as $key => $value){
-                    $inputRow['user_id'] = $email;
+                    $inputRow['user_id'] = $user_id;
                     $filePath = base64_encode('\\CodeIgniterApp\\'.explode(FCPATH,str_replace('/', '\\', $value['path']))[1]);
                     $dataType = $value['type'];
                     
-                    $QueryInsert = "INSERT INTO {$this->table} (user_id, dataType, filePath) VALUES( '$email', '$dataType', '$filePath' );";
+                    $QueryInsert = "INSERT INTO {$this->table} (user_id, dataType, filePath) VALUES( '$user_id', '$dataType', '$filePath' );";
                     $result = $this->db->query($QueryInsert);
                 }
 
@@ -39,9 +39,9 @@ use PhpOffice\PhpSpreadsheet\Cell\DataType;
         }
 
         public function getImages(){
-            $email = $this->session->email;
+            $user_id = $this->session->user_id;
 
-            $results = $this->db->get_where($this->table, array('user_id'=>$email));
+            $results = $this->db->get_where($this->table, array('user_id'=>$user_id));
             if($results->num_rows() > 0){
 
                 return $results->result_array();
@@ -55,10 +55,10 @@ use PhpOffice\PhpSpreadsheet\Cell\DataType;
                 return false;
             }else{
 
-                $email = $this->session->email;
+                $user_id = $this->session->user_id;
                 $id = $inputs['id'];
     
-                $results = $this->db->get_where($this->table, array('user_id'=>$email, 'id'=>$id));
+                $results = $this->db->get_where($this->table, array('user_id'=>$user_id, 'id'=>$id));
                 if($results->num_rows() > 0){
     
                     return $results->result_array();
@@ -69,8 +69,8 @@ use PhpOffice\PhpSpreadsheet\Cell\DataType;
         }
 
         public function deleteImage($id){
-            $email = $this->session->email;
-            $data = array("user_id" => $email, 'id'=> $id);
+            $user_id = $this->session->user_id;
+            $data = array("user_id" => $user_id, 'id'=> $id);
             $result = $this->db->get_where($this->table, $data);
 
             if($result->num_rows() > 0){

@@ -57,7 +57,7 @@
                             foreach($result as $r){
                                 echo "<tr>";
                                 foreach ($r as $col => $val) {
-                                    if(($col=="id") || ($col=='email')){
+                                    if(($col=="id") || ($col=='user_id')){
                                         continue;
                                     }
                                     echo "<td>".$val."</td>";
