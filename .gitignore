@@ -38,3 +38,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 env.php
 /application/views/Travel_planner/Dashboard/phpwebdriver
 /.venv
+.env
