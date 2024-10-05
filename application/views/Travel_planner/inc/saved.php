@@ -23,7 +23,8 @@
 
     Toast.fire({
         icon: 'success',
-        title: 'Saved!\nYour Data is Stored in Database'
+        title: 'Saved!\nYour Data is Stored in Database',
+        html: `<?php if(!empty($savedHtml)){echo $savedHtml;}?>`,
       })
     });
 </script>

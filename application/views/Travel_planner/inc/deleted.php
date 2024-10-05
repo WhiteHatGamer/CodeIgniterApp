@@ -22,7 +22,8 @@
 
     Toast.fire({
         icon: 'error',
-        title: 'Deleted!\nThe Data is Deleted From Database.'
+        title: 'Deleted!\nThe Data is Deleted From Database.',
+        html: `<?php if(!empty($savedHtml)){echo $savedHtml;}?>`,
       })
     });
 </script>
