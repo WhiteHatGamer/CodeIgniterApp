@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard | <?php echo htmlspecialchars($_SESSION['name'])?></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | <?php echo htmlspecialchars($_SESSION['name'])?></title>
 
 </head>
 <script>
@@ -13,17 +13,19 @@
         
         if(travel.hidden == false){
 
-            travel_btn.className = 'btn btn-outline-info';
+            travel_btn.className = 'btn btn-outline-primary';
             travel.hidden=true;
         }else{
 
             travel_btn.className = 'btn bg-gradient-success active';
             travel.hidden=false;
         }
-        hotel_btn.className = 'btn btn-outline-info ';
-        note_btn.className = 'btn btn-outline-info ';
-        doc_btn.className = 'btn btn-outline-info';
-        tour_btn.className = 'btn btn-outline-info';
+        hotel_btn.className = 'btn btn-outline-primary ';
+        note_btn.className = 'btn btn-outline-primary ';
+        doc_btn.className = 'btn btn-outline-primary';
+        tour_btn.className = 'btn btn-outline-primary';
+        users_btn.className = 'btn btn-outline-warning';
+        users.hidden=true,
         tour.hidden=true,
         doc.hidden=true,
         stay.hidden=true;
@@ -34,17 +36,19 @@
     function hotel_click(){
         if(stay.hidden == false){
 
-            hotel_btn.className = 'btn btn-outline-info';
+            hotel_btn.className = 'btn btn-outline-primary';
             stay.hidden=true;
         }else{
 
             hotel_btn.className = 'btn bg-gradient-success active';
             stay.hidden=false;
         }
-        travel_btn.className = 'btn btn-outline-info';
-        note_btn.className = 'btn btn-outline-info';
-        doc_btn.className = 'btn btn-outline-info';
-        tour_btn.className = 'btn btn-outline-info';
+        travel_btn.className = 'btn btn-outline-primary';
+        note_btn.className = 'btn btn-outline-primary';
+        doc_btn.className = 'btn btn-outline-primary';
+        tour_btn.className = 'btn btn-outline-primary';
+        users_btn.className = 'btn btn-outline-warning';
+        users.hidden=true,
         tour.hidden=true,
         doc.hidden=true,
         travel.hidden=true,
@@ -55,17 +59,19 @@
     function note_click(){
         if(note.hidden == false){
 
-            note_btn.className = 'btn btn-outline-info';
+            note_btn.className = 'btn btn-outline-primary';
             note.hidden=true;
         }else{
 
             note_btn.className = 'btn bg-gradient-success active';
             note.hidden=false;
         }
-        travel_btn.className = 'btn btn-outline-info';
-        hotel_btn.className = 'btn btn-outline-info';
-        doc_btn.className = 'btn btn-outline-info';
-        tour_btn.className = 'btn btn-outline-info';
+        travel_btn.className = 'btn btn-outline-primary';
+        hotel_btn.className = 'btn btn-outline-primary';
+        doc_btn.className = 'btn btn-outline-primary';
+        tour_btn.className = 'btn btn-outline-primary';
+        users_btn.className = 'btn btn-outline-warning';
+        users.hidden=true,
         tour.hidden=true,
         doc.hidden=true,
         travel.hidden=true,
@@ -75,17 +81,19 @@
     function doc_click(){
         if(doc.hidden == false){
 
-            doc_btn.className = 'btn btn-outline-info';
+            doc_btn.className = 'btn btn-outline-primary';
             doc.hidden=true;
         }else{
 
             doc_btn.className = 'btn bg-gradient-success active';
             doc.hidden=false;
         }
-        travel_btn.className = 'btn btn-outline-info';
-        hotel_btn.className = 'btn btn-outline-info';
-        note_btn.className = 'btn btn-outline-info';
-        tour_btn.className = 'btn btn-outline-info';
+        travel_btn.className = 'btn btn-outline-primary';
+        hotel_btn.className = 'btn btn-outline-primary';
+        note_btn.className = 'btn btn-outline-primary';
+        tour_btn.className = 'btn btn-outline-primary';
+        users_btn.className = 'btn btn-outline-warning';
+        users.hidden=true,
         tour.hidden=true,
         travel.hidden=true,
         stay.hidden=true,
@@ -95,17 +103,41 @@
     function tour_click(){
         if(tour.hidden == false){
 
-            tour_btn.className = 'btn btn-outline-info';
+            tour_btn.className = 'btn btn-outline-primary';
             tour.hidden=true;
         }else{
 
             tour_btn.className = 'btn bg-gradient-success active';
             tour.hidden=false;
         }
-        travel_btn.className = 'btn btn-outline-info';
-        hotel_btn.className = 'btn btn-outline-info';
-        note_btn.className = 'btn btn-outline-info';
-        doc_btn.className = 'btn btn-outline-info';
+        travel_btn.className = 'btn btn-outline-primary';
+        hotel_btn.className = 'btn btn-outline-primary';
+        note_btn.className = 'btn btn-outline-primary';
+        doc_btn.className = 'btn btn-outline-primary';
+        users_btn.className = 'btn btn-outline-warning';
+        users.hidden=true,
+        doc.hidden=true,
+        travel.hidden=true,
+        stay.hidden=true,
+        note.hidden = true;
+    }
+
+    function users_click(){
+        if(users.hidden == false){
+
+            users_btn.className = 'btn btn-outline-warning';
+            users.hidden=true;
+        }else{
+
+            users_btn.className = 'btn bg-gradient-warning active';
+            users.hidden=false;
+        }
+        travel_btn.className = 'btn btn-outline-primary';
+        hotel_btn.className = 'btn btn-outline-primary';
+        note_btn.className = 'btn btn-outline-primary';
+        doc_btn.className = 'btn btn-outline-primary';
+        tour_btn.className = 'btn btn-outline-primary';
+        tour.hidden=true,
         doc.hidden=true,
         travel.hidden=true,
         stay.hidden=true,
@@ -128,10 +160,10 @@
     ?>
     <div class="user-panel mt-1 mb-3 d-flex" style="background-color: rgba(242,242,242,0.9);">
         <div class="image">
-            <img style="height:35px; width: 35px; border: 1px solid #4F5F5F;" src="data:image/jpeg;base64, <?=@base64_encode($image)?>" class="img-circle elevation-1" alt="User Profile">
+            <img style="height:35px; width: 35px; border: 1px solid #4F5F5F;" src="data:image/jpeg;base64, <?=@base64_encode($user_details['image'])?>" class="img-circle elevation-1" alt="User Profile">
         </div>
         <div class="info">
-            <a href="User_profile" class="d-block"><?=@$name?? 'User' ?></a>
+            <a href="User_profile" class="d-block"><?=@$user_details['name']?? 'User' ?></a>
         </div>
     </div>
     <div class="row">
@@ -242,7 +274,7 @@
                         ?>
                         <td>
                             <!-- Travel Plan -->
-                            <div class='card-body' id="users">
+                            <div class='card-body' id="users" hidden>
                                 <div class="tab-content">
                                     <div class="tab-pane active">
                                         <p><a class="post" href="<?=adminTravelPlannerUrl()?>users/">List Users</a></p>
