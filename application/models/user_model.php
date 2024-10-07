@@ -21,6 +21,7 @@
     public function __construct(){
       $this->load->database();
       $this->load->library('session');
+      $this->load->model('user_type_model');
     }
 
     public function Validate_user($Email, $Password){
@@ -98,14 +99,16 @@
     }
 
     public function get_users(){
+      checkUserRole([1]);
       // Getting Every Users
       if($this->session->user_type_id != 2){
 
         $result = $this->db->get($this->table);
         $result = $result->result_array();
         foreach($result as $key=>$value){
-          unset($result[$key]["image"]);
+          // unset($result[$key]["image"]);
           unset($result[$key]["password"]);
+          $result[$key]["user_type_id"] = $this->user_type_model->get_user_type($result[$key]["user_type_id"]);
         }
         return $result;
       }
