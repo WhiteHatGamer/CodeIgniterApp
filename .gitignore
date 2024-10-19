@@ -39,3 +39,4 @@ env.php
 /application/views/Travel_planner/Dashboard/phpwebdriver
 /.venv
 .env
+docs
